@@ -1,9 +1,4 @@
-﻿
-// More Templates: https://www.ebenmonney.com/templates
-// Email: support@ebenmonney.com
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -14,7 +9,7 @@ namespace DAL.Repositories.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        void Add(TEntity entity);
+        Task Add(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
 
         void Update(TEntity entity);

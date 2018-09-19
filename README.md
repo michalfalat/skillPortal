@@ -1,17 +1,17 @@
-# **QuickApp** - ASPNET Core 2.1 / Angular 6 startup project template
-[![MIT license](https://cdn.rawgit.com/emonney/tempa/7e9d69ad/MITLicense.png)](https://github.com/emonney/QuickApp/blob/master/LICENSE)
+# **SkillPortal** - ASPNET Core 2.1 / Angular 6 startup project template
+[![MIT license](https://cdn.rawgit.com/emonney/tempa/7e9d69ad/MITLicense.png)](https://github.com/emonney/SkillPortal/blob/master/LICENSE)
 
 A startup **Angular 6 / ASP.NET Core 2.1** (cross-platform ) **project template** with an end-to-end login, user and role management implementation.
 As well as other common functionalities for **Quick Application Development**.
 
 [FOLLOW ME](https://twitter.com/kommand) on twitter for important updates
 
-###### NOTE: Please post support related topics in the [help & support forum](https://www.ebenmonney.com/forum/?view=forum&id=14). For bug reports open an [issue on github](https://github.com/emonney/QuickApp/issues). 
+###### NOTE: Please post support related topics in the [help & support forum](https://www.ebenmonney.com/forum/?view=forum&id=14). For bug reports open an [issue on github](https://github.com/emonney/SkillPortal/issues). 
 
-For the older asp.net core 1.x version: [Download](https://github.com/emonney/QuickApp-VSIX/releases/tag/v1.5")
+For the older asp.net core 1.x version: [Download](https://github.com/emonney/SkillPortal-VSIX/releases/tag/v1.5")
 
 [LIVE DEMO](http://quickapp.ebenmonney.com) | [MORE TEMPLATES](https://www.ebenmonney.com/templates)
-[![QuickApp Demo](https://github.com/emonney/QuickApp/blob/9b122b7f3c38121699d3ec41b700474e192abe37/QuickApp.gif?raw=true)](https://www.youtube.com/watch?v=Wuh7NIZ96jA)
+[![SkillPortal Demo](https://github.com/emonney/SkillPortal/blob/9b122b7f3c38121699d3ec41b700474e192abe37/SkillPortal.gif?raw=true)](https://www.youtube.com/watch?v=Wuh7NIZ96jA)
 
 ___
 ## INTRODUCING QUICKAPP PREMIUM TEMPLATES
@@ -23,9 +23,9 @@ ___
 *   Priority Email Support
 *   Etc
 
-[Get QuickApp PRO](https://www.ebenmonney.com/product/quickapp-pro) | [Live Demo](http://quickapp-pro.ebenmonney.com/)
+[Get SkillPortal PRO](https://www.ebenmonney.com/product/quickapp-pro) | [Live Demo](http://quickapp-pro.ebenmonney.com/)
 
-[Get QuickApp STANDARD](https://www.ebenmonney.com/product/quickapp-standard) | [Live Demo](http://quickapp-standard.ebenmonney.com/)
+[Get SkillPortal STANDARD](https://www.ebenmonney.com/product/quickapp-standard) | [Live Demo](http://quickapp-standard.ebenmonney.com/)
 ___
 
 
@@ -64,8 +64,8 @@ ___
 
 ## Installation
 
-*   [OPTION 1] Clone the [Git Repository](https://github.com/emonney/QuickApp.git) and edit with your favorite editor. e.g. Visual Studio, Visual Studio Code
-*   [OPTION 2] Install Project template from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=adentum.QuickApp-ASPNETCoreAngularXProjectTemplate) and follow the usual File -> New Project -> Web -> QuickApp - to create a new Project from this template.
+*   [OPTION 1] Clone the [Git Repository](https://github.com/emonney/SkillPortal.git) and edit with your favorite editor. e.g. Visual Studio, Visual Studio Code
+*   [OPTION 2] Install Project template from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=adentum.SkillPortal-ASPNETCoreAngularXProjectTemplate) and follow the usual File -> New Project -> Web -> SkillPortal - to create a new Project from this template.
     Lunch with `F5` or `Ctrl+F5` (The usual way)
 
 
@@ -86,7 +86,7 @@ ___
     
     *When I say "run from the project folder" I mean run the commands on the command line from those folders  
     If any step fails, post the error details on the [support forum](https://www.ebenmonney.com/forum/?view=forum&id=14) for the needed assistance.
-*   For help and support post in the [support forum](https://www.ebenmonney.com/forum/?view=forum&id=14). For bug reports open an [issue on github](https://github.com/emonney/QuickApp/issues)
+*   For help and support post in the [support forum](https://www.ebenmonney.com/forum/?view=forum&id=14). For bug reports open an [issue on github](https://github.com/emonney/SkillPortal/issues)
 
 
 ## Login
@@ -104,7 +104,7 @@ LOGIN WITH USERNAME OR EMAIL ADDRESS
 
 ## Documentation
 
-*   [Overview of QuickApp](https://www.ebenmonney.com/quickapp)
+*   [Overview of SkillPortal](https://www.ebenmonney.com/quickapp)
 *   [Conceptual overview of what is ASP.NET Core](https://go.microsoft.com/fwlink/?LinkId=518008)
 *   [Working with Data](https://docs.microsoft.com/en-us/ef/#pivot=efcore)
 *   [Angular 6 documentation overview](https://angular.io/guide/quickstart)
@@ -114,7 +114,7 @@ LOGIN WITH USERNAME OR EMAIL ADDRESS
 
 ## Contribution
 
-QuickApp is actively maintained by [Ebenezer Monney](https://github.com/emonney) on [GitHub](https://github.com/emonney/QuickApp). You can support it by
+SkillPortal is actively maintained by [Ebenezer Monney](https://github.com/emonney) on [GitHub](https://github.com/emonney/SkillPortal). You can support it by
 *   Submitting your changes/improvements/features using pull requests
 *   Suggesting ideas or areas of improvements
 *   Encouraging the developers by rating it/starring it
@@ -124,8 +124,8 @@ QuickApp is actively maintained by [Ebenezer Monney](https://github.com/emonney)
 
 ## License
 
-Released under the [MIT License](https://github.com/emonney/QuickApp/blob/master/LICENSE).
+Released under the [MIT License](https://github.com/emonney/SkillPortal/blob/master/LICENSE).
 
 [YOUR FEEDBACK](mailto:contact@ebenmonney.com) | [FOLLOW ME](https://twitter.com/kommand)
 
-### _**If you found this template useful, please take a minute to [rate it](https://marketplace.visualstudio.com/items?itemName=adentum.QuickApp-ASPNETCoreAngularXProjectTemplate#review-details). Appreciated!**_
+### _**If you found this template useful, please take a minute to [rate it](https://marketplace.visualstudio.com/items?itemName=adentum.SkillPortal-ASPNETCoreAngularXProjectTemplate#review-details). Appreciated!**_

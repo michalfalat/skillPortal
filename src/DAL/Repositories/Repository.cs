@@ -25,14 +25,14 @@ namespace DAL.Repositories
             _entities = context.Set<TEntity>();
         }
 
-        public virtual void Add(TEntity entity)
+        public virtual Task Add(TEntity entity)
         {
-            _entities.Add(entity);
+            return _entities.AddAsync(entity);
         }
 
         public virtual void AddRange(IEnumerable<TEntity> entities)
         {
-            _entities.AddRange(entities);
+            _entities.AddRangeAsync(entities);
         }
 
 

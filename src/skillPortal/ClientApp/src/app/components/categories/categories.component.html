@@ -1,0 +1,17 @@
+
+<a mat-raised-button color="primary" routerLink="/categories/add" >Add new category</a>
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let item of data">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{item.name}}  <span class="small-text">({{item.description}})</span>
+      </mat-panel-title>
+      <mat-panel-description>
+        {{item.description}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    test
+  </mat-expansion-panel> 
+</mat-accordion>

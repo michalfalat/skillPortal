@@ -10,6 +10,9 @@ namespace DAL
     public interface IUnitOfWork
     {
         ICustomerRepository Customers { get; }
+        ICategoryRepository Categories { get; }
+
+        IExamRepository Exams { get; }
         IProductRepository Products { get; }
         IOrdersRepository Orders { get; }
 

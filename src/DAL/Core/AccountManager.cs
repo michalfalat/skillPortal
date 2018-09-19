@@ -1,13 +1,4 @@
-﻿
-// More Templates: https://www.ebenmonney.com/templates
-// Email: support@ebenmonney.com
-
-
-// ==> Get QuickApp PREMIUM TEMPLATES
-// ==> https://www.ebenmonney.com/shop
-// ====================================
-
-using DAL;
+﻿using DAL;
 using DAL.Core.Interfaces;
 using DAL.Models;
 using AspNet.Security.OpenIdConnect.Primitives;

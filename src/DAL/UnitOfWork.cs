@@ -20,6 +20,9 @@ namespace DAL
         ICustomerRepository _customers;
         IProductRepository _products;
         IOrdersRepository _orders;
+        ICategoryRepository _categories;
+        IExamRepository _exams;
+
 
 
 
@@ -67,8 +70,28 @@ namespace DAL
             }
         }
 
+        public ICategoryRepository Categories
+        {
+            get
+            {
+                if (_categories == null)
+                    _categories = new CategoryRepository(_context);
 
+                return _categories;
+            }
+        }
 
+        public IExamRepository Exams
+        {
+            get
+            {
+                throw new NotImplementedException();
+                //if (_exams == null)
+                //    _exams = new ExamRepository(_context);
+
+                //return _orders;
+            }
+        }
 
         public int SaveChanges()
         {
