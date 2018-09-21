@@ -57,6 +57,9 @@ import { RolesManagementComponent } from './components/controls/roles-management
 import { RoleEditorComponent } from './components/controls/role-editor.component';
 import { CustomMaterialModule } from './CustomMaterialModule';
 import { CategoryAddComponent } from './components/category-add/category-add.component';
+import { TestsComponent } from './components/tests/tests.component';
+import { TestAddComponent } from './components/test-add/test-add.component';
+import { RatingComponent } from './components/rating/rating.component';
 
 
 
@@ -104,7 +107,10 @@ import { CategoryAddComponent } from './components/category-add/category-add.com
     BootstrapDatepickerDirective,
     GroupByPipe,
     CategoriesComponent,
-    CategoryAddComponent
+    CategoryAddComponent,
+    TestsComponent,
+    TestAddComponent,
+    RatingComponent
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },

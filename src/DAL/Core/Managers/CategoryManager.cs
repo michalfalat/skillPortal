@@ -44,11 +44,13 @@ namespace DAL.Core.Managers
         public void Remove(Category entity)
         {
             this._unitOfWork.Categories.Remove(entity);
+            this._unitOfWork.SaveChanges();
         }
 
         public void Update(Category entity)
         {
             this._unitOfWork.Categories.Update(entity);
+            this._unitOfWork.SaveChanges();
         }
     }
 }

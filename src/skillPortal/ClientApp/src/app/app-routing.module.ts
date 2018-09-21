@@ -1,3 +1,5 @@
+import { TestAddComponent } from './components/test-add/test-add.component';
+import { TestsComponent } from './components/tests/tests.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: 'Login' } },
   { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard], data: { title: 'Categories' } },
   { path: 'categories/add', component: CategoryAddComponent, canActivate: [AuthGuard], data: { title: 'Add category' } },
+  { path: 'category/:catId/tests', component: TestsComponent, canActivate: [AuthGuard], data: { title: 'Tests' } },
+  { path: 'category/:catId/tests/add', component: TestAddComponent, canActivate: [AuthGuard], data: { title: 'Test add' } },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard], data: { title: 'Settings' } },
   { path: 'about', component: AboutComponent, data: { title: 'About Us' } },
   { path: 'home', redirectTo: '/', pathMatch: 'full' },
