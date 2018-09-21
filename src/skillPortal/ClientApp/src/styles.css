@@ -8,8 +8,9 @@
 
 
 
-body {
+html body {
   font-family: 'Roboto', sans-serif;
+  background-color: #fbfbfb;
 }
 .navbar .nav li a:hover,
 .navbar.nav li.toolbaritem a:hover,
@@ -334,7 +335,7 @@ i.page-caption {
   display: inline-block;
 }
 
-a:hover {
+a:hover, a:active, a:visited {
   color: white;
   font-weight: bold;
   text-decoration: none;
@@ -352,4 +353,17 @@ a:hover {
 .small-text {
   color: #555;
   font-weight: lighter;
+}
+
+.main-data-card {
+  max-width: 900px;
+  margin: 10px auto;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.header {
+  font-size: 24px;
+  font-weight: 400;
 }

@@ -3,10 +3,10 @@
 <div id="app_container" class="{{configurations.theme | lowercase}}-theme">
   <ngx-toasta></ngx-toasta>
   <mat-toolbar color="primary">
-          <a mat-icon-button routerLink="/categories" color="">
+          <button mat-button routerLink="/categories" color="">
               <mat-icon class="mat-18">school</mat-icon>
-              Categories
-          </a>
+              <span> Categories</span>
+          </button>
       </mat-toolbar>
       <div id="mainContent" class="app-component">
           <router-outlet></router-outlet>

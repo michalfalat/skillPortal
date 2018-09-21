@@ -1,5 +1,19 @@
-<mat-card>
-  <mat-card-title>Add new category</mat-card-title>
+<mat-card class="main-data-card">
+    <mat-card-header>
+        <span>        
+        <mat-card-title>
+            <span class="header">New category </span>
+        </mat-card-title>
+      </span> 
+        <span class="spacer"></span>
+        <span>        
+            <mat-card-title>
+               <a mat-raised-button color="primary" routerLink="/categories" >Back</a>
+            </mat-card-title>
+          </span> 
+        
+        <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+    </mat-card-header>
 <div class="form-container">
   <mat-form-field>
     <input  [(ngModel)]="addModel.name" matInput placeholder="Name" required>
