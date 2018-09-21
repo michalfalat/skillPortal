@@ -1,15 +1,11 @@
 {
-  "name": "quickapp",
+  "name": "skillportal",
   "version": "2.6.1",
-  "description": "Angular6 (with ASP.NET Core 2.1) startup project template with complete login, user and role management. Plus other useful services for Quick Application Development",
+  "description": "Skill portal used for learning and education",
   "author": {
-    "name": "Ebenezer Monney",
-    "email": "info@ebenmonney.com",
-    "url": "https://www.ebenmonney.com/about"
+    "name": "Michal Falat",
+    "email": "falat.mich@gmail.com"
   },
-  "license": "MIT",
-  "homepage": "https://www.ebenmonney.com/quickapp",
-  "repository": "https://github.com/emonney/quickapp.git",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -71,16 +67,12 @@
   "keywords": [
     "ng",
     "angular",
-    "angular2",
     "angular6",
     "angularX",
     "aspnetcore",
     "aspnet-core",
     "startup",
     "template",
-    "quick-app",
-    "quickapp",
-    "quickapplication",
     "rad",
     "ng2",
     "ng6",
