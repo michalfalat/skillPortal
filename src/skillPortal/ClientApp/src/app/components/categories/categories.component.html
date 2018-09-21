@@ -2,7 +2,7 @@
 <div layout-fill layout="column" layout-align="center none">
   <div layout="row" layout-align="center none">
 
-<mat-card class="main-data-card">
+<mat-card [@fadeInOut] class="main-data-card">
     <mat-card-header>
         <span>        
         <mat-card-title>
@@ -20,23 +20,62 @@
     </mat-card-header>
     <!-- <img matCardImage src="Card wide image source"> -->
     <mat-card-content>
+        <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let item of data">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{item.name}}  <span class="small-text">({{item.description}})</span>
+              {{item.name}}  <span class="small-text">    ({{item.description}})</span>
             </mat-panel-title>
             <mat-panel-description>
-              {{item.description}}
+              
             </mat-panel-description>
           </mat-expansion-panel-header>
       
-          test
+          <!-- <div *ngIf="item.exams == ''">
+              No exams availaible
+          </div> -->
+          <mat-nav-list>
+              <!-- <mat-list-item *ngIf="item.exams == ''">
+                  <button disabled mat-button >
+                     No exams available
+                  </button>
+               </mat-list-item>    -->
+              <mat-list-item *ngFor="let link of item.exams">
+                  <a matLine >aa</a>
+                  <button mat-icon-button  >
+                     <mat-icon>info</mat-icon>
+                  </button>
+               </mat-list-item>
+               <mat-list-item (click)="viewCategoryTests(item.id)">
+                  <button mat-icon-button  >
+                     <mat-icon>assignment</mat-icon>
+                     Tests (5x)
+                  </button>
+               </mat-list-item>     
+               <mat-list-item>
+                  <button mat-icon-button >
+                     <mat-icon>star</mat-icon>
+                     Rating (0x)
+                  </button>
+               </mat-list-item>     
+               <mat-list-item>
+                  <button mat-icon-button >
+                     <mat-icon>folder</mat-icon>
+                     Files (2x)
+                  </button>
+               </mat-list-item>     
+               <!-- <mat-list-item>
+                  <button mat-icon-button >
+                     <mat-icon>add</mat-icon>
+                     Add new
+                  </button>
+               </mat-list-item>            -->
+           </mat-nav-list>
         </mat-expansion-panel> 
       </mat-accordion>
     </mat-card-content>
-    <mat-card-actions align="start">
-        <!-- <button mat-button >Action1</button> -->
+    <mat-card-actions >
         
     </mat-card-actions>
     <mat-card-footer>

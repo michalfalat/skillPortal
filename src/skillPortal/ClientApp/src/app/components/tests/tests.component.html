@@ -1,0 +1,50 @@
+
+<div layout-fill layout="column" layout-align="center none">
+    <div layout="row" layout-align="center none">
+  
+  <mat-card [@fadeInOut] class="main-data-card">
+      <mat-card-header>
+          <span>        
+          <mat-card-title>
+              <span class="header">{{catId}} - Tests </span>
+          </mat-card-title>
+        </span> 
+          <span class="spacer"></span>
+          <span>        
+              <mat-card-title>
+                 <a mat-raised-button color="primary" routerLink="/category/{{catId}}/tests/add" >Add new </a>
+              </mat-card-title>
+            </span> 
+          
+          <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+      </mat-card-header>
+      <!-- <img matCardImage src="Card wide image source"> -->
+      <mat-card-content>
+          <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
+        <mat-accordion>          
+            <mat-nav-list>
+                <!-- <mat-list-item *ngIf="item.exams == ''">
+                    <button disabled mat-button >
+                       No exams available
+                    </button>
+                 </mat-list-item>    -->
+                <mat-list-item >
+                    <a matLine >aa</a>
+                    <button mat-icon-button  >
+                       <mat-icon>info</mat-icon>
+                    </button>
+                 </mat-list-item>                
+             </mat-nav-list>
+        </mat-accordion>
+      </mat-card-content>
+      <mat-card-actions >
+          
+      </mat-card-actions>
+      <mat-card-footer>
+      </mat-card-footer>
+  </mat-card>
+  
+  
+  </div>
+  </div>
+  

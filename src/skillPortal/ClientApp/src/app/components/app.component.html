@@ -7,6 +7,12 @@
               <mat-icon class="mat-18">school</mat-icon>
               <span> Categories</span>
           </button>
+          <span class="spacer"></span>
+          <button mat-button routerLink="/about" color="">
+            <mat-icon class="mat-18">info</mat-icon>
+            <span> {{'mainMenu.About' | translate}}</span>
+        </button>
+       
       </mat-toolbar>
       <div id="mainContent" class="app-component">
           <router-outlet></router-outlet>
