@@ -1,6 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
 import { fadeInOut } from './../../services/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
+import { ApiService } from '../../services/api.service';
+import { ExamsForCategoryViewModel } from '../../models/ExamModels';
 
 @Component({
   selector: 'app-tests',
@@ -11,12 +13,25 @@ import { Component, OnInit } from '@angular/core';
 export class TestsComponent implements OnInit {
 
   public catId = null;
-  public isLoading = false;
+  public isLoading = true;
+  public data: ExamsForCategoryViewModel  = null;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(@Inject(ApiService) private apiService: ApiService, private route: ActivatedRoute, private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.catId = this.route.snapshot.params['catId'];
+    this.loadData();
+  }
+
+  loadData() {
+  this.isLoading = true;
+     this.apiService.getExamsForCategory(this.catId).subscribe((res) => {
+      this.data = res;
+      console.log(this.data);
+      this.isLoading = false;
+      this.ref.detectChanges();
+    });
+
   }
 
 }

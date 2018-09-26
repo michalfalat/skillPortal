@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace skillPortal.ViewModels
 {
-    public class ExamAddModel    {
-
+    public class QuestionAddModel
+    {
         [Required]
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-        public ICollection<QuestionAddModel> Questions { get; set; }
-
+        public string Text { get; set; }
+        public string ImgPath { get; set; }
+        public ICollection<AnswerAddModel> Answers { get; set; }
     }
 }

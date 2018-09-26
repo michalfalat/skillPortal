@@ -60,6 +60,9 @@ import { CategoryAddComponent } from './components/category-add/category-add.com
 import { TestsComponent } from './components/tests/tests.component';
 import { TestAddComponent } from './components/test-add/test-add.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { TestDetailComponent } from './components/test-detail/test-detail.component';
+import { CategoryDetailComponent } from './components/category-detail/category-detail.component';
+import { ApiService } from './services/api.service';
 
 
 
@@ -110,7 +113,9 @@ import { RatingComponent } from './components/rating/rating.component';
     CategoryAddComponent,
     TestsComponent,
     TestAddComponent,
-    RatingComponent
+    RatingComponent,
+    TestDetailComponent,
+    CategoryDetailComponent
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
@@ -118,6 +123,7 @@ import { RatingComponent } from './components/rating/rating.component';
     AlertService,
     ConfigurationService,
     AppTitleService,
+    ApiService,
     AppTranslationService,
     NotificationService,
     NotificationEndpoint,

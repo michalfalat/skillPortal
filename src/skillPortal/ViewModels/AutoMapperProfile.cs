@@ -56,6 +56,14 @@ namespace SkillPortal.ViewModels
 
             CreateMap<Category, CategoryAddModel>()
                 .ReverseMap();
+
+            CreateMap<Category, CategoryViewModel>()
+                .ForMember(d => d.ExamsCount, m => m.MapFrom(s => s.Exams.Count))
+                .ReverseMap();
+
+            CreateMap<Exam, ExamViewModel>()
+                .ForMember(d => d.QuestionsCount, m => m.MapFrom(s => s.Questions.Count))
+                .ReverseMap();
         }
     }
 }

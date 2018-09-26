@@ -33,6 +33,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   viewCategoryTests(id) {
-    this.router.navigate(['/category/' + id + '/tests']);
+    this.router.navigate(['/categories/' + id + '/tests']);
   }
 }

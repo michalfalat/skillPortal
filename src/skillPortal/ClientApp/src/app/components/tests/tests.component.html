@@ -6,13 +6,14 @@
       <mat-card-header>
           <span>        
           <mat-card-title>
-              <span class="header">{{catId}} - Tests </span>
+              
+              <span class="header" *ngIf="!isLoading"><button mat-button routerLink="/categories" class="header-button">Categories </button> / <button mat-button routerLink="/categories/{{catId}}" class="header-button">{{ this.data?.catName }}</button>/ Tests </span>
           </mat-card-title>
         </span> 
           <span class="spacer"></span>
           <span>        
               <mat-card-title>
-                 <a mat-raised-button color="primary" routerLink="/category/{{catId}}/tests/add" >Add new </a>
+                 <a mat-raised-button color="primary" routerLink="/categories/{{catId}}/tests/add" >Add new </a>
               </mat-card-title>
             </span> 
           
@@ -23,17 +24,17 @@
           <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
         <mat-accordion>          
             <mat-nav-list>
-                <!-- <mat-list-item *ngIf="item.exams == ''">
+                 <mat-list-item *ngIf="data?.exams.length === 0">
                     <button disabled mat-button >
                        No exams available
                     </button>
-                 </mat-list-item>    -->
-                <mat-list-item >
+                 </mat-list-item>  
+                <!-- <mat-list-item >
                     <a matLine >aa</a>
                     <button mat-icon-button  >
                        <mat-icon>info</mat-icon>
                     </button>
-                 </mat-list-item>                
+                 </mat-list-item>                 -->
              </mat-nav-list>
         </mat-accordion>
       </mat-card-content>

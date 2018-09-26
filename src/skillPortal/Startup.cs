@@ -173,6 +173,7 @@ namespace SkillPortal
             services.AddScoped<IUnitOfWork, HttpUnitOfWork>();
             services.AddScoped<IAccountManager, AccountManager>();
             services.AddScoped<ICategoryManager, CategoryManager>();
+            services.AddScoped<IExamManager, ExamManager>();
 
             // Auth Handlers
             services.AddSingleton<IAuthorizationHandler, ViewUserAuthorizationHandler>();

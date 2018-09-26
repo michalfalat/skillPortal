@@ -36,6 +36,11 @@ namespace DAL.Core.Managers
             return this._unitOfWork.Categories.GetAllCategoriesIncludingExams();
         }
 
+        public Task<List<Category>> GetAllCategoriesIncludingExamsRatingAndFilesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Category> GetByIdAsync(int id)
         {
             return this._unitOfWork.Categories.Get(id);

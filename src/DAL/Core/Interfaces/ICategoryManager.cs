@@ -10,5 +10,6 @@ namespace DAL.Core.Interfaces
     {
         Task<List<Category>> GetAllCategoriesAsync();
         Task<List<Category>> GetAllCategoriesIncludingExamsAsync();
+        Task<List<Category>> GetAllCategoriesIncludingExamsRatingAndFilesAsync();
     }
 }

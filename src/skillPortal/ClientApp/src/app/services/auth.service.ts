@@ -1,9 +1,4 @@
-
-
-
-
-
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Router, NavigationExtras } from "@angular/router";
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -33,7 +28,8 @@ export class AuthService {
   private _loginStatus = new Subject<boolean>();
 
 
-  constructor(private router: Router, private configurations: ConfigurationService, private endpointFactory: EndpointFactory, private localStorage: LocalStoreManager) {
+  constructor(private router: Router, private configurations: ConfigurationService,
+     @Inject(forwardRef(() =>  EndpointFactory)) private endpointFactory: EndpointFactory, private localStorage: LocalStoreManager) {
     this.initializeLoginStatus();
   }
 

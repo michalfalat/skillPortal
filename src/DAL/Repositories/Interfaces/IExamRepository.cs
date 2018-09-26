@@ -9,5 +9,6 @@ namespace DAL.Repositories.Interfaces
     public interface IExamRepository : IRepository<Exam>
     {
         Task<List<Exam>> GetExamsByCategoryId(int categoryId);
+        Task<Exam> GetFullExam(int examId);
     }
 }

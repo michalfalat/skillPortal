@@ -2,13 +2,13 @@
     <mat-card-header>
         <span>        
         <mat-card-title>
-            <span class="header">New category </span>
+            <span class="header" *ngIf="!isLoading"><button mat-button routerLink="/categories" class="header-button">Categories </button>/ New </span>
         </mat-card-title>
       </span> 
         <span class="spacer"></span>
         <span>        
             <mat-card-title>
-               <a mat-raised-button color="primary" routerLink="/categories" >Back</a>
+               <!-- <a mat-raised-button color="primary" routerLink="/categories" >Back</a> -->
             </mat-card-title>
           </span> 
         

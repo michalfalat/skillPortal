@@ -85,11 +85,10 @@ namespace DAL
         {
             get
             {
-                throw new NotImplementedException();
-                //if (_exams == null)
-                //    _exams = new ExamRepository(_context);
+                if (_exams == null)
+                    _exams = new ExamRepository(_context);
 
-                //return _orders;
+                return _exams;
             }
         }
 

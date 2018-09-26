@@ -13,22 +13,32 @@ export class ApiService extends EndpointFactory {
     constructor( http: HttpClient, configurations: ConfigurationService, injector: Injector) {
     super(http, configurations, injector);
   }
-  private readonly customersUrl: string =  this.configurations.baseUrl + '/api/category/';
-  private readonly customerAddUrl: string =  this.configurations.baseUrl + '/api/category/';
+  private readonly categoryUrl: string =  this.configurations.baseUrl + '/api/category/';
+  private readonly categoryAddUrl: string =  this.configurations.baseUrl + '/api/category/';
+
+  private  examForCategoryUrl(catId): string  { return  this.configurations.baseUrl + '/api/exam/category/' + catId ; }
 
   getAllCategories()  {
 
-    return this.http.get(this.customersUrl, this.getRequestHeaders()).pipe(
+    return this.http.get(this.categoryUrl, this.getRequestHeaders()).pipe(
       catchError(error => {
         return this.handleError(error, () => this.getAllCategories());
       }));
   }
 
   addNewCategory(model: CategoryAddModel): Observable<CategoryAddModel> {
-    return this.http.post<CategoryAddModel>(this.customerAddUrl, model, this.getRequestHeaders()).pipe(
+    return this.http.post<CategoryAddModel>(this.categoryAddUrl, model, this.getRequestHeaders()).pipe(
       catchError(error => {
         return this.handleError(error, () => this.getAllCategories());
       }));
 
   }
+  getExamsForCategory(catId)  {
+    return this.http.get(this.examForCategoryUrl(catId), this.getRequestHeaders()).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.getExamsForCategory(catId));
+      }));
+  }
 }
+
+

@@ -10,5 +10,6 @@ export class CategoryViewModel {
     id: number;
     name: string;
     description: string;
+    examsCount: number;
     exams: ExamViewModel;
 }

@@ -21,6 +21,10 @@ namespace DAL
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+
 
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
