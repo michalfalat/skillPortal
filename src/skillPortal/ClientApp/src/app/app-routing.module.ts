@@ -1,3 +1,5 @@
+import { FilesComponent } from './components/files/files.component';
+import { FileAddComponent } from './components/file-add/file-add.component';
 import { TestAddComponent } from './components/test-add/test-add.component';
 import { TestsComponent } from './components/tests/tests.component';
 import { NgModule } from '@angular/core';
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'categories/add', component: CategoryAddComponent, canActivate: [AuthGuard], data: { title: 'Add category' } },
   { path: 'categories/:catId/tests', component: TestsComponent, canActivate: [AuthGuard], data: { title: 'Tests' } },
   { path: 'categories/:catId/tests/add', component: TestAddComponent, canActivate: [AuthGuard], data: { title: 'Test add' } },
+  { path: 'categories/:catId/files', component: FilesComponent, canActivate: [AuthGuard], data: { title: 'Files' } },
+  { path: 'categories/:catId/files/add', component: FileAddComponent, canActivate: [AuthGuard], data: { title: 'File add' } },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard], data: { title: 'Settings' } },
   { path: 'about', component: AboutComponent, data: { title: 'About Us' } },
   { path: 'home', redirectTo: '/', pathMatch: 'full' },

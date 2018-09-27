@@ -1,3 +1,4 @@
+import { FileAddModel } from './../models/FileModels';
 import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConfigurationService } from './configuration.service';
@@ -16,7 +17,14 @@ export class ApiService extends EndpointFactory {
   private readonly categoryUrl: string =  this.configurations.baseUrl + '/api/category/';
   private readonly categoryAddUrl: string =  this.configurations.baseUrl + '/api/category/';
 
+
+  
+  private readonly fileAddUrl: string =  this.configurations.baseUrl + '/api/file/';
   private  examForCategoryUrl(catId): string  { return  this.configurations.baseUrl + '/api/exam/category/' + catId ; }
+  private  filesForCategoryUrl(catId): string  { return  this.configurations.baseUrl + '/api/file/category/' + catId ; }
+
+
+  
 
   getAllCategories()  {
 
@@ -29,7 +37,7 @@ export class ApiService extends EndpointFactory {
   addNewCategory(model: CategoryAddModel): Observable<CategoryAddModel> {
     return this.http.post<CategoryAddModel>(this.categoryAddUrl, model, this.getRequestHeaders()).pipe(
       catchError(error => {
-        return this.handleError(error, () => this.getAllCategories());
+        return this.handleError(error, () => this.addNewCategory(model));
       }));
 
   }
@@ -38,6 +46,14 @@ export class ApiService extends EndpointFactory {
       catchError(error => {
         return this.handleError(error, () => this.getExamsForCategory(catId));
       }));
+  }
+
+  addNewFile(model: FileAddModel): Observable<FileAddModel> {
+    return this.http.post<FileAddModel>(this.fileAddUrl, model, this.getRequestHeaders()).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.addNewFile(model));
+      }));
+
   }
 }
 

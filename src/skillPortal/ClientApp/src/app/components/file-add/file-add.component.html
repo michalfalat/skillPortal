@@ -1,0 +1,35 @@
+<mat-card [@fadeInOut] class="main-data-card">
+  <mat-card-header>
+      <span>        
+      <mat-card-title>
+          <span class="header" *ngIf="!isLoading"><button mat-button routerLink="/categories" class="header-button">Categories  xy / file</button>/ New </span>
+      </mat-card-title>
+    </span> 
+      <span class="spacer"></span>
+      <span>        
+          <mat-card-title>
+             <!-- <a mat-raised-button color="primary" routerLink="/categories" >Back</a> -->
+          </mat-card-title>
+        </span> 
+      
+      <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+  </mat-card-header>
+<div class="form-container">
+<mat-form-field>
+  <input  [(ngModel)]="addModel.name" matInput placeholder="Name" required>
+</mat-form-field>
+
+<mat-form-field>
+  <textarea [(ngModel)]="addModel.description" matInput placeholder="Description"></textarea>
+</mat-form-field>
+
+<button type="button" md-button (click)="imgFileInput.click()">Select a file</button>
+  <input hidden type="file"  [(ngModel)]="addModel.file"  #imgFileInput />
+<!-- <mat-form-field>
+  <mat-select placeholder="Select">
+    <mat-option value="option">Option</mat-option>
+  </mat-select>
+</mat-form-field> -->
+<button mat-raised-button (click)="AddFile()" color="primary">Add</button>
+</div>
+</mat-card>

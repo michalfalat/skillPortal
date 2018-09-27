@@ -1,9 +1,4 @@
-﻿
-// More Templates: https://www.ebenmonney.com/templates
-// Email: support@ebenmonney.com
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +17,7 @@ namespace DAL
         IOrdersRepository _orders;
         ICategoryRepository _categories;
         IExamRepository _exams;
+        IFileRepository _files;
 
 
 
@@ -89,6 +85,17 @@ namespace DAL
                     _exams = new ExamRepository(_context);
 
                 return _exams;
+            }
+        }
+
+        public IFileRepository Files
+        {
+            get
+            {
+                if (_files == null)
+                    _files = new FileRepository(_context);
+
+                return _files;
             }
         }
 

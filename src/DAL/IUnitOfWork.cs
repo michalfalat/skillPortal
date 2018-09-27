@@ -11,6 +11,7 @@ namespace DAL
     {
         ICustomerRepository Customers { get; }
         ICategoryRepository Categories { get; }
+        IFileRepository Files { get; }
 
         IExamRepository Exams { get; }
         IProductRepository Products { get; }

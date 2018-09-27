@@ -63,6 +63,8 @@ import { RatingComponent } from './components/rating/rating.component';
 import { TestDetailComponent } from './components/test-detail/test-detail.component';
 import { CategoryDetailComponent } from './components/category-detail/category-detail.component';
 import { ApiService } from './services/api.service';
+import { FileAddComponent } from './components/file-add/file-add.component';
+import { FilesComponent } from './components/files/files.component';
 
 
 
@@ -115,7 +117,9 @@ import { ApiService } from './services/api.service';
     TestAddComponent,
     RatingComponent,
     TestDetailComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    FileAddComponent,
+    FilesComponent
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
