@@ -4,6 +4,7 @@ import { FileAddModel } from './../../models/FileModels';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { fadeInOut } from './../../services/animations';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-file-add',
@@ -15,6 +16,7 @@ export class FileAddComponent implements OnInit {
 
   public catId = null;
   public addModel: FileAddModel = new FileAddModel();
+  public progress = 10;
 
   constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute, private snackbar: MatSnackBar) { }
 
@@ -27,8 +29,13 @@ export class FileAddComponent implements OnInit {
     console.log('sending new file:  ');
     console.log(this.addModel);
     this.apiService.addNewFile(this.addModel)
-    .subscribe((result) => this.onFileAdded(this.addModel.name)
-    );
+    .subscribe((event) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round(100 * event.loaded / event.total);
+        } else if (event.type === HttpEventType.Response) {
+          this.onFileAdded(this.addModel.name);
+      }
+    });
   }
 
   onFileAdded(name: string ) {
@@ -38,4 +45,14 @@ export class FileAddComponent implements OnInit {
     this.router.navigate(['/categories']);
   }
 
+  upload(files) {
+    if (files.length === 0) {
+      return;
+    }
+    for (const file of files) {
+      this.addModel.file =  file;
+    }
+  }
 }
+
+

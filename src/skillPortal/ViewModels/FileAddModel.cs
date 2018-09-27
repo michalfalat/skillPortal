@@ -15,7 +15,6 @@ namespace skillPortal.ViewModels
         public string Name { get; set; }
         public string Description { get; set; }
 
-        [Required]
         public IFormFile File { get; set; }
     }
 }

@@ -79,6 +79,16 @@ export class EndpointFactory {
     return { headers: headers };
   }
 
+  protected getRequestHeadersForFile(): { headers: HttpHeaders | { [header: string]: string | string[]; } }  {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.authService.accessToken,
+      'Accept': `application/vnd.iman.v${EndpointFactory.apiVersion}+json, application/json, text/plain, */*`,
+      'App-Version': ConfigurationService.appVersion
+    });
+
+    return { headers: headers };
+  }
+
 
 
   protected handleError(error, continuation: () => Observable<any>) {

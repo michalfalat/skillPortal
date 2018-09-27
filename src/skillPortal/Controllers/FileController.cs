@@ -38,9 +38,9 @@ namespace skillPortal.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([Bind("Title,File")] FileAddModel model)
+        public async Task<IActionResult> Post([FromForm] FileAddModel model)
         {
-
+            var files = Request.Form.Files;
             if (!ModelState.IsValid)
             {
                 return BadRequest(model);

@@ -24,7 +24,10 @@
 </mat-form-field>
 
 <button type="button" md-button (click)="imgFileInput.click()">Select a file</button>
-  <input hidden type="file"  [(ngModel)]="addModel.file"  #imgFileInput />
+  <input hidden type="file"   #imgFileInput (change)="upload(imgFileInput.files)" />
+  {{progress }}
+
+  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
 <!-- <mat-form-field>
   <mat-select placeholder="Select">
     <mat-option value="option">Option</mat-option>

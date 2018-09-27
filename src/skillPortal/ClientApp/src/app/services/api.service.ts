@@ -1,6 +1,6 @@
 import { FileAddModel } from './../models/FileModels';
 import { Injectable, Injector } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ConfigurationService } from './configuration.service';
 import { Observable } from 'rxjs';
 import { EndpointFactory } from './endpoint-factory.service';
@@ -48,13 +48,33 @@ export class ApiService extends EndpointFactory {
       }));
   }
 
-  addNewFile(model: FileAddModel): Observable<FileAddModel> {
-    return this.http.post<FileAddModel>(this.fileAddUrl, model, this.getRequestHeaders()).pipe(
+  addNewFile(model: FileAddModel) {
+    let fd: FormData = new FormData();
+    fd.append('CatId', model.catId.toString());
+    fd.append('File', model.file);
+    fd.append('Name', model.name);
+    const headers = this.getRequestHeadersForFile();
+    const options: IRequestOptions = {
+      headers: headers.headers,
+      reportProgress: true,
+      observe: 'events'
+    };
+    return this.http.post<FileAddModel>(this.fileAddUrl, fd, options ).pipe(
       catchError(error => {
         return this.handleError(error, () => this.addNewFile(model));
       }));
 
   }
+}
+
+export interface IRequestOptions {
+  body?: any;
+  headers?: HttpHeaders | { [header: string]: string | Array<string> };
+  observe?: any;
+  params?: HttpParams | { [param: string]: string | Array<string> };
+  reportProgress?: boolean;
+  responseType?: 'json';
+  withCredentials?: boolean;
 }
 
 
