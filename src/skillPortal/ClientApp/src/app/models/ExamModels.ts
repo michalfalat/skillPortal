@@ -1,3 +1,4 @@
+import { QuestionAddModel } from './QuestionModels';
 export class ExamViewModel {
     id: number;
     name: string;
@@ -10,6 +11,7 @@ export class ExamAddModel {
     id: number;
     name: string;
     description: string;
+    questions: QuestionAddModel[];
 }
 
 export class ExamsForCategoryViewModel {

@@ -145,12 +145,12 @@ export class AccountService {
         tap(data => this.onRolesChanged([role], AccountService.roleModifiedOperation)));
     }
     else {
-      return this.accountEndpoint.getRoleByRoleNameEndpoint<Role>(role.name).pipe<Role>(
-        mergeMap(foundRole => {
-          role.id = foundRole.id;
-          return this.accountEndpoint.getUpdateRoleEndpoint(role, role.id)
-        }),
-        tap(data => this.onRolesChanged([role], AccountService.roleModifiedOperation)));
+      // return this.accountEndpoint.getRoleByRoleNameEndpoint<Role>(role.name).pipe<Role>(
+      //   mergeMap(foundRole => {
+      //     role.id = foundRole.id;
+      //     return this.accountEndpoint.getUpdateRoleEndpoint(role, role.id)
+      //   }),
+      //   tap(data => this.onRolesChanged([role], AccountService.roleModifiedOperation)));
     }
   }
 

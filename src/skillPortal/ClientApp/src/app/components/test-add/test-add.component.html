@@ -22,11 +22,16 @@
   <mat-form-field>
     <textarea [(ngModel)]="exam.description" matInput placeholder="Description"></textarea>
   </mat-form-field>
+  <div *ngFor="let item of exam.questions">
+    question: {{ item.text}}
+  </div>
   <!-- <mat-form-field>
     <mat-select placeholder="Select">
       <mat-option value="option">Option</mat-option>
     </mat-select>
   </mat-form-field> -->
+  
+  <button mat-raised-button (click)="AddNewQuestion()" color="primary">new questions</button>
   <button mat-raised-button (click)="AddTest()" color="primary">Add</button>
 </div>
 </mat-card>
