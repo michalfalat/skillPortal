@@ -42,7 +42,7 @@ export class FileAddComponent implements OnInit {
     this.snackbar.open('File "' + name + '" was added', 'OK', {
       duration: 4000,
     });
-    this.router.navigate(['/categories']);
+    this.router.navigate(['/categories/' + this.catId + '/files']);
   }
 
   upload(files) {

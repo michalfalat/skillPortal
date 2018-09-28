@@ -23,8 +23,8 @@
   <textarea [(ngModel)]="addModel.description" matInput placeholder="Description"></textarea>
 </mat-form-field>
 
-<button type="button" md-button (click)="imgFileInput.click()">Select a file</button>
-  <input hidden type="file"   #imgFileInput (change)="upload(imgFileInput.files)" />
+<button type="button" mat-button (click)="imgFileInput.click()">Select a file</button>
+  <input style="visibility:hidden" type="file"   #imgFileInput (change)="upload(imgFileInput.files)" />
   {{progress }}
 
   <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
