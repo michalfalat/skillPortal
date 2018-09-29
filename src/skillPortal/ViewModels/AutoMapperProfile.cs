@@ -64,6 +64,9 @@ namespace SkillPortal.ViewModels
             CreateMap<Exam, ExamViewModel>()
                 .ForMember(d => d.QuestionsCount, m => m.MapFrom(s => s.Questions.Count))
                 .ReverseMap();
+
+            CreateMap<File, FileMetadataViewModel>()
+                .ReverseMap();
         }
     }
 }

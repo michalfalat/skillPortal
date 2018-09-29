@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
+using AutoMapper;
 using DAL.Core.Interfaces;
 using DAL.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,16 +13,39 @@ namespace skillPortal.Controllers
     public class FileController : Controller
     {
         IFileManager _fileManager;
+        ICategoryManager _categoryManager;
 
-        public FileController(IFileManager fileManager)
+        public FileController(IFileManager fileManager, ICategoryManager categoryManager)
         {
             this._fileManager = fileManager;
+            this._categoryManager = categoryManager;
         }
 
         public async Task<IActionResult> Index()
         {
            var data = await this._fileManager.GetAllAsync();
            return View();
+        }
+
+
+        // GET:
+        [HttpGet("category/{catId}")]
+        public async Task<IActionResult> GetFilesForCategory(int catId)
+        {
+            var cat = await this._categoryManager.GetByIdAsync(catId);
+            if (cat == null)
+            {
+                return NotFound();
+            }
+            //todo return model with name and id  of category 
+            var files = await this._fileManager.GetFilesMetadataForCategory(catId);
+            var filesModel = Mapper.Map<List<DAL.Models.File>, List<FileMetadataViewModel>>(files);
+            var model = new FilesForCategoryViewModel();
+            model.CatId = cat.Id;
+            model.CatName = cat.Name;
+            model.Files = filesModel;
+
+            return Ok(model);
         }
 
         // GET api/values/5

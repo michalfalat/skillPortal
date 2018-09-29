@@ -21,6 +21,7 @@ export class ApiService extends EndpointFactory {
   
   private readonly fileAddUrl: string =  this.configurations.baseUrl + '/api/file/';
   private  examForCategoryUrl(catId): string  { return  this.configurations.baseUrl + '/api/exam/category/' + catId ; }
+  
   private  filesForCategoryUrl(catId): string  { return  this.configurations.baseUrl + '/api/file/category/' + catId ; }
 
 
@@ -45,6 +46,13 @@ export class ApiService extends EndpointFactory {
     return this.http.get(this.examForCategoryUrl(catId), this.getRequestHeaders()).pipe(
       catchError(error => {
         return this.handleError(error, () => this.getExamsForCategory(catId));
+      }));
+  }
+
+  getFilesForCategory(catId)  {
+    return this.http.get(this.filesForCategoryUrl(catId), this.getRequestHeaders()).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.getFilesForCategory(catId));
       }));
   }
 

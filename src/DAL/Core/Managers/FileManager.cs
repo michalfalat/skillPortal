@@ -31,6 +31,16 @@ namespace DAL.Core.Managers
             throw new NotImplementedException();
         }
 
+        public Task<List<File>> GetFilesForCategory(int catId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<File>> GetFilesMetadataForCategory(int catId)
+        {
+           return this._unitOfWork.Files.GetFilesMetadataForCategory(catId);
+        }
+
         public void Remove(File entity)
         {
             throw new NotImplementedException();
