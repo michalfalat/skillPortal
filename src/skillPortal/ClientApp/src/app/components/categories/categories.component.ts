@@ -35,4 +35,7 @@ export class CategoriesComponent implements OnInit {
   viewCategoryTests(id) {
     this.router.navigate(['/categories/' + id + '/tests']);
   }
+  viewCategoryFiles(id) {
+    this.router.navigate(['/categories/' + id + '/files']);
+  }
 }

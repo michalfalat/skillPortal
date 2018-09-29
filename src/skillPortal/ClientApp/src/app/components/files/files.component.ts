@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { fadeInOut } from './../../services/animations';
 import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
 import { ApiService } from '../../services/api.service';

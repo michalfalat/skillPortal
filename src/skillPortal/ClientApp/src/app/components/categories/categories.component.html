@@ -59,10 +59,10 @@
                      Rating (0x) ... Comming soon
                   </button>
                </mat-list-item>     
-               <mat-list-item>
-                  <button mat-icon-button disabled >
+               <mat-list-item (click)="viewCategoryFiles(item.id)">
+                  <button mat-icon-button  >
                      <mat-icon>folder</mat-icon>
-                     Files (0x) ... Comming soon
+                     Files (0x) 
                   </button>
                </mat-list-item>     
                <!-- <mat-list-item>
