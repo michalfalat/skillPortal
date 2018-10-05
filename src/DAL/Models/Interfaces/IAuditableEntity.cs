@@ -8,7 +8,7 @@ namespace DAL.Models.Interfaces
     {
         string CreatedBy { get; set; }
         string UpdatedBy { get; set; }
-        DateTime CreatedDate { get; set; }
-        DateTime UpdatedDate { get; set; }
+        DateTime Created{ get; set; }
+        DateTime Updated { get; set; }
     }
 }

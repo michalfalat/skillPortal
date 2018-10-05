@@ -346,7 +346,7 @@ a:hover, a:active, a:visited {
   flex-direction: column;
 }
 
-.form-container > * {
+.form-container  * {
   width: 100%;
 }
 
@@ -374,4 +374,21 @@ a:hover, a:active, a:visited {
 }
 mat-list-item button  {
   opacity: 0.75;
+}
+
+.spinner-container {
+  
+  margin: 10px auto;
+  text-align: center;
+}
+
+.spinner-container-text {   
+   position: relative;
+  top: -71px;
+  left: 4px;
+  font-size: large;
+}
+
+mat-progress-spinner {  
+  margin: 10px auto;
 }

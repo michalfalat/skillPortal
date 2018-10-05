@@ -5,6 +5,7 @@ using AutoMapper;
 using DAL.Core.Interfaces;
 using DAL.Models;
 using Microsoft.AspNetCore.Mvc;
+using skillPortal.Helpers;
 using skillPortal.ViewModels;
 
 namespace skillPortal.Controllers
@@ -74,8 +75,9 @@ namespace skillPortal.Controllers
             {
                 var entity = new DAL.Models.File();
                 entity.CategoryId = model.CatId;
-                entity.Name = model.Name;
+                entity.Name = model.File.FileName;
                 entity.Description = model.Description;
+                entity.Type = ContentTypeTranslator.GetFileType(model.File.ContentType);
 
                 using (var memoryStream = new MemoryStream())
                 {

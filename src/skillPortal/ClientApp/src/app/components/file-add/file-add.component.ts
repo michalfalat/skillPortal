@@ -15,8 +15,9 @@ import { HttpEventType } from '@angular/common/http';
 export class FileAddComponent implements OnInit {
 
   public catId = null;
+  public uploading = false;
   public addModel: FileAddModel = new FileAddModel();
-  public progress = 10;
+  public progress = 1;
 
   constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute, private snackbar: MatSnackBar) { }
 
@@ -26,6 +27,7 @@ export class FileAddComponent implements OnInit {
   }
 
   AddFile() {
+    this.uploading = true;
     console.log('sending new file:  ');
     console.log(this.addModel);
     this.apiService.addNewFile(this.addModel)
@@ -39,7 +41,8 @@ export class FileAddComponent implements OnInit {
   }
 
   onFileAdded(name: string ) {
-    this.snackbar.open('File "' + name + '" was added', 'OK', {
+    this.uploading = false;
+    this.snackbar.open('File "' + this.addModel.file.name + '" was added', 'OK', {
       duration: 4000,
     });
     this.router.navigate(['/categories/' + this.catId + '/files']);

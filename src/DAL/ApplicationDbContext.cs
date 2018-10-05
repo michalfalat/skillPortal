@@ -110,16 +110,16 @@ namespace DAL
 
                 if (entry.State == EntityState.Added)
                 {
-                    entity.CreatedDate = now;
+                    entity.Created = now;
                     entity.CreatedBy = CurrentUserId;
                 }
                 else
                 {
                     base.Entry(entity).Property(x => x.CreatedBy).IsModified = false;
-                    base.Entry(entity).Property(x => x.CreatedDate).IsModified = false;
+                    base.Entry(entity).Property(x => x.Created).IsModified = false;
                 }
 
-                entity.UpdatedDate = now;
+                entity.Updated = now;
                 entity.UpdatedBy = CurrentUserId;
             }
         }

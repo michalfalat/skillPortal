@@ -10,6 +10,7 @@ export class FileMetadataModel {
     id: number;
     name: string;
     description: string;
+    type: number;
     Created;
 }
 

@@ -15,7 +15,7 @@ namespace skillPortal.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -25,10 +25,10 @@ namespace skillPortal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("ImgPath");
 
@@ -38,10 +38,10 @@ namespace skillPortal.Migrations
 
                     b.Property<string>("Text");
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -58,9 +58,9 @@ namespace skillPortal.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<DateTime>("Created");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<string>("CreatedBy");
 
                     b.Property<string>("Description");
 
@@ -70,9 +70,9 @@ namespace skillPortal.Migrations
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256);
 
-                    b.Property<string>("UpdatedBy");
+                    b.Property<DateTime>("Updated");
 
-                    b.Property<DateTime>("UpdatedDate");
+                    b.Property<string>("UpdatedBy");
 
                     b.HasKey("Id");
 
@@ -96,9 +96,9 @@ namespace skillPortal.Migrations
 
                     b.Property<string>("Configuration");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<DateTime>("Created");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<string>("CreatedBy");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -131,9 +131,9 @@ namespace skillPortal.Migrations
 
                     b.Property<bool>("TwoFactorEnabled");
 
-                    b.Property<string>("UpdatedBy");
+                    b.Property<DateTime>("Updated");
 
-                    b.Property<DateTime>("UpdatedDate");
+                    b.Property<string>("UpdatedBy");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
@@ -157,10 +157,10 @@ namespace skillPortal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Description")
                         .HasMaxLength(256);
@@ -169,10 +169,10 @@ namespace skillPortal.Migrations
                         .IsRequired()
                         .HasMaxLength(32);
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -190,10 +190,10 @@ namespace skillPortal.Migrations
                     b.Property<string>("City")
                         .HasMaxLength(50);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<DateTime>("DateCreated");
 
@@ -212,10 +212,10 @@ namespace skillPortal.Migrations
                         .HasMaxLength(30)
                         .IsUnicode(false);
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -232,10 +232,10 @@ namespace skillPortal.Migrations
 
                     b.Property<int>("CategoryId");
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Description")
                         .HasMaxLength(256);
@@ -244,10 +244,10 @@ namespace skillPortal.Migrations
                         .IsRequired()
                         .HasMaxLength(32);
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -264,10 +264,10 @@ namespace skillPortal.Migrations
 
                     b.Property<int>("CategoryId");
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<byte[]>("Data");
 
@@ -280,10 +280,10 @@ namespace skillPortal.Migrations
 
                     b.Property<int>("Type");
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -303,10 +303,10 @@ namespace skillPortal.Migrations
                     b.Property<string>("Comments")
                         .HasMaxLength(500);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<int>("CustomerId");
 
@@ -316,10 +316,10 @@ namespace skillPortal.Migrations
 
                     b.Property<decimal>("Discount");
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -336,10 +336,10 @@ namespace skillPortal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<decimal>("Discount");
 
@@ -351,10 +351,10 @@ namespace skillPortal.Migrations
 
                     b.Property<decimal>("UnitPrice");
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -373,10 +373,10 @@ namespace skillPortal.Migrations
 
                     b.Property<decimal>("BuyingPrice");
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<DateTime>("DateCreated");
 
@@ -405,10 +405,10 @@ namespace skillPortal.Migrations
 
                     b.Property<int>("UnitsInStock");
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -427,10 +427,10 @@ namespace skillPortal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<DateTime>("DateCreated");
 
@@ -445,10 +445,10 @@ namespace skillPortal.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -461,10 +461,10 @@ namespace skillPortal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<int?>("ExamId");
 
@@ -472,10 +472,10 @@ namespace skillPortal.Migrations
 
                     b.Property<string>("Text");
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 

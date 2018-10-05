@@ -1,38 +1,41 @@
 <mat-card [@fadeInOut] class="main-data-card">
   <mat-card-header>
-      <span>        
+    <span>
       <mat-card-title>
-          <span class="header" *ngIf="!isLoading"><button mat-button routerLink="/categories" class="header-button">Categories  xy / file</button>/ New </span>
+        <span class="header" *ngIf="!isLoading"><button mat-button routerLink="/categories" class="header-button">Categories
+            xy / file</button>/ New </span>
       </mat-card-title>
-    </span> 
-      <span class="spacer"></span>
-      <span>        
-          <mat-card-title>
-             <!-- <a mat-raised-button color="primary" routerLink="/categories" >Back</a> -->
-          </mat-card-title>
-        </span> 
-      
-      <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+    </span>
+    <span class="spacer"></span>
+    <span>
+      <mat-card-title>
+        <!-- <a mat-raised-button color="primary" routerLink="/categories" >Back</a> -->
+      </mat-card-title>
+    </span>
+
+    <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
   </mat-card-header>
-<div class="form-container">
-<mat-form-field>
-  <input  [(ngModel)]="addModel.name" matInput placeholder="Name" required>
-</mat-form-field>
+  <div class="form-container">
+    <div *ngIf="!uploading">
+      <mat-form-field>
+        <textarea [(ngModel)]="addModel.description" matInput placeholder="Description"></textarea>
+      </mat-form-field>
 
-<mat-form-field>
-  <textarea [(ngModel)]="addModel.description" matInput placeholder="Description"></textarea>
-</mat-form-field>
-
-<button type="button" mat-button (click)="imgFileInput.click()">Select a file</button>
-  <input style="visibility:hidden" type="file"   #imgFileInput (change)="upload(imgFileInput.files)" />
-  {{progress }}
-
-  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
-<!-- <mat-form-field>
+      <button type="button" mat-button (click)="imgFileInput.click()">{{ addModel.file == null ? 'Select new file' : addModel.file.name}}</button>
+      <input style="visibility:hidden" type="file" #imgFileInput (change)="upload(imgFileInput.files)" />
+      <!-- <mat-form-field>
   <mat-select placeholder="Select">
     <mat-option value="option">Option</mat-option>
   </mat-select>
 </mat-form-field> -->
-<button mat-raised-button (click)="AddFile()" color="primary">Add</button>
-</div>
+      <button mat-raised-button (click)="AddFile()" color="primary">Add</button>
+    </div>
+  </div>
+  <div *ngIf="uploading" class="spinner-container">
+      <mat-progress-spinner class="example-margin" [mode]=" progress == 100 ? 'indeterminate' : 'determinate'" [value]="progress">
+      </mat-progress-spinner
+      ><div class="spinner-container-text">
+          {{progress }}%
+      </div>  
+    </div>
 </mat-card>

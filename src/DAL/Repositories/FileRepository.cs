@@ -30,8 +30,10 @@ namespace DAL.Repositories
                 .Select(f => new File
                 {
                     Id = f.Id,
-                    CreatedDate = f.CreatedDate,
+                    Created = f.Created,
                     Name = f.Name,
+                    Type = f.Type,
+                    CategoryId = f.CategoryId,                    
                     Description = f.Description
                 })
                 .ToListAsync();
