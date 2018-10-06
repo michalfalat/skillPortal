@@ -50,16 +50,18 @@ namespace skillPortal.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            //this._fileManager.Add
+            var file = await this._fileManager.GetByIdAsync(id);
             //var category = await this._categoryManager.GetByIdAsync(id);
-            //if (category == null)
-            //{
-            //    return NotFound();
-            //}
-            return Ok();
+            if (file == null)
+            {
+                return NotFound();
+            }
+            MemoryStream ms = new MemoryStream(file.Data);
+            return File(file.Data, "application/force-download", fileDownloadName: file.Name);
+            //return new FileStreamResult(ms, "application/force-download",);
         }
 
         // POST api/values

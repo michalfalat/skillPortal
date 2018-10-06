@@ -28,7 +28,7 @@ namespace DAL.Core.Managers
 
         public Task<File> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return this._unitOfWork.Files.Get(id);
         }
 
         public Task<List<File>> GetFilesForCategory(int catId)
