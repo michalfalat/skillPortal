@@ -11,7 +11,8 @@ export class FileMetadataModel {
     name: string;
     description: string;
     type: number;
-    Created;
+    downloads: number;
+    created;
 }
 
 

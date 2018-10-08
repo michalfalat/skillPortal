@@ -274,6 +274,8 @@ namespace skillPortal.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(256);
 
+                    b.Property<int>("Downloads");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(64);
@@ -725,7 +727,7 @@ namespace skillPortal.Migrations
             modelBuilder.Entity("DAL.Models.File", b =>
                 {
                     b.HasOne("DAL.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Files")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

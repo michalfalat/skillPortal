@@ -23,6 +23,7 @@ export class ApiService extends EndpointFactory {
   private  examForCategoryUrl(catId): string  { return  this.configurations.baseUrl + '/api/exam/category/' + catId ; }
   
   private  filesForCategoryUrl(catId): string  { return  this.configurations.baseUrl + '/api/file/category/' + catId ; }
+  private  file(fileId): string  { return  this.configurations.baseUrl + '/api/file/' + fileId ; }
 
 
   
@@ -56,11 +57,24 @@ export class ApiService extends EndpointFactory {
       }));
   }
 
+  getFile(fileId) {
+    const headers = this.getRequestHeadersForFile();
+    const options: IRequestOptions = {
+      headers: headers.headers,
+      responseType: 'blob' as 'json'
+    };
+    return this.http.get( this.file(fileId), options).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.getFile(fileId));
+      }));
+  }
+
   addNewFile(model: FileAddModel) {
     let fd: FormData = new FormData();
     fd.append('CatId', model.catId.toString());
     fd.append('File', model.file);
-    fd.append('Name', model.name);
+    fd.append('Name', '');
+    fd.append('Description', model.description);
     const headers = this.getRequestHeadersForFile();
     const options: IRequestOptions = {
       headers: headers.headers,

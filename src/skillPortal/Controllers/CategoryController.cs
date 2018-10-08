@@ -25,7 +25,7 @@ namespace skillPortal.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var allCategories = await this._categoryManager.GetAllCategoriesIncludingExamsAsync();
+            var allCategories = await this._categoryManager.GetAllCategoriesIncludingAllAsync();
             var models = Mapper.Map<List<Category>, List<CategoryViewModel>>(allCategories);
             return Ok(models);
         }
@@ -35,7 +35,7 @@ namespace skillPortal.Controllers
         [HttpGet("/categories")]
         public async Task<IActionResult> Get()
         {
-            var allCategories = await this._categoryManager.GetAllCategoriesIncludingExamsAsync();
+            var allCategories = await this._categoryManager.GetAllCategoriesIncludingAllAsync();
             var models =  Mapper.Map<List<Category>, List<CategoryViewModel>>(allCategories);
             return Ok(models);
         }

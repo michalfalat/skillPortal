@@ -54,14 +54,14 @@ namespace skillPortal.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var file = await this._fileManager.GetByIdAsync(id);
-            //var category = await this._categoryManager.GetByIdAsync(id);
             if (file == null)
             {
                 return NotFound();
             }
+
+            await this._fileManager.IncrementDownloads(file);
             MemoryStream ms = new MemoryStream(file.Data);
             return File(file.Data, "application/force-download", fileDownloadName: file.Name);
-            //return new FileStreamResult(ms, "application/force-download",);
         }
 
         // POST api/values

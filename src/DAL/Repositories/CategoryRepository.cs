@@ -27,5 +27,24 @@ namespace DAL.Repositories
         {
             return this._appContext.Categories.Include(c => c.Exams).ToListAsync();
         }
+
+        public Task<List<Category>> GetAllCategoriesIncludingAll()
+        {
+            return this._appContext.Categories
+                .Include(c => c.Exams)
+                .Select(c => new Category() 
+                    {
+                        Created = c.Created,
+                        CreatedBy = c.CreatedBy,
+                        Description = c.Description,
+                        Id = c.Id,
+                        Updated = c.Updated,
+                        UpdatedBy = c.UpdatedBy,
+                        Exams = c.Exams,
+                        FilesCount = c.Files.Count,
+                        Name = c.Name
+                    })
+                .ToListAsync();
+        }
     }
 }

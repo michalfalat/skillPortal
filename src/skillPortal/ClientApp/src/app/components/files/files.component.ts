@@ -15,6 +15,7 @@ export class FilesComponent implements OnInit {
   public catId = null;
   public isLoading = true;
   public data: FilesForCategoryViewModel = null;
+  public displayedColumns: string[] = ['name', 'description', 'downloads', 'date', 'action'];
 
   constructor(@Inject(ApiService) private apiService: ApiService, private route: ActivatedRoute, private ref: ChangeDetectorRef) { }
 
@@ -32,5 +33,17 @@ export class FilesComponent implements OnInit {
       this.ref.detectChanges();
     });
 
+  }
+  
+  downloadFile(fileId, fileName) {
+    this.isLoading = true;
+    this.apiService.getFile(fileId).subscribe((res: Blob) => {
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(res);
+          a.download = fileName;
+          // start download
+          a.click();
+      this.isLoading = false;
+    });
   }
 }

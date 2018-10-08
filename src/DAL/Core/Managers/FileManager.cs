@@ -41,6 +41,11 @@ namespace DAL.Core.Managers
            return this._unitOfWork.Files.GetFilesMetadataForCategory(catId);
         }
 
+        public Task IncrementDownloads(File file)
+        {
+            return this._unitOfWork.Files.IncrementDownloadsAsync(file);
+        }
+
         public void Remove(File entity)
         {
             throw new NotImplementedException();

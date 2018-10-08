@@ -31,6 +31,11 @@ namespace DAL.Core.Managers
             return this._unitOfWork.Categories.GetAllCategories();
         }
 
+        public Task<List<Category>> GetAllCategoriesIncludingAllAsync()
+        {
+            return this._unitOfWork.Categories.GetAllCategoriesIncludingAll();
+        }
+
         public Task<List<Category>> GetAllCategoriesIncludingExamsAsync()
         {
             return this._unitOfWork.Categories.GetAllCategoriesIncludingExams();

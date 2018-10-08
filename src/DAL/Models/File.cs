@@ -20,6 +20,8 @@ namespace DAL.Models
         public FileType Type { get; set; }
         public byte[] Data { get; set; }
 
+        public int Downloads { get; set; }
+
         [Required]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }

@@ -11,5 +11,7 @@ namespace DAL.Core.Interfaces
         Task<List<File>> GetFilesForCategory(int catId);
         Task<List<File>> GetFilesMetadataForCategory(int catId);
 
+        Task IncrementDownloads(File file);
+
     }
 }

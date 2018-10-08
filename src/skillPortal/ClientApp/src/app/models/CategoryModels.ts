@@ -11,5 +11,6 @@ export class CategoryViewModel {
     name: string;
     description: string;
     examsCount: number;
+    filesCount: number;
     exams: ExamViewModel;
 }

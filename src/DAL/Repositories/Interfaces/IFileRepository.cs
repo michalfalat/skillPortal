@@ -10,5 +10,7 @@ namespace DAL.Repositories.Interfaces
     {
         Task<List<File>> GetFilesForCategory(int catId);
         Task<List<File>> GetFilesMetadataForCategory(int catId);
+
+        Task IncrementDownloadsAsync(File file);
     }
 }

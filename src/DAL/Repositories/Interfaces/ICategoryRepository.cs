@@ -10,5 +10,6 @@ namespace DAL.Repositories.Interfaces
     {
         Task<List<Category>> GetAllCategories();
         Task<List<Category>> GetAllCategoriesIncludingExams();
+        Task<List<Category>> GetAllCategoriesIncludingAll();
     }
 }

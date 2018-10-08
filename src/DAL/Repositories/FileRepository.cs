@@ -34,9 +34,18 @@ namespace DAL.Repositories
                     Name = f.Name,
                     Type = f.Type,
                     CategoryId = f.CategoryId,                    
-                    Description = f.Description
+                    Description = f.Description,
+                    Downloads = f.Downloads
                 })
                 .ToListAsync();
+        }
+
+        public  Task IncrementDownloadsAsync(File file)
+        {
+            var downloads = file.Downloads;
+            downloads += 1;
+            file.Downloads  = downloads;
+            return this._context.SaveChangesAsync();
         }
     }
 }

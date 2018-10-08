@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DAL.Models
@@ -18,6 +19,10 @@ namespace DAL.Models
         public string Description { get; set; }
 
         public ICollection<Exam> Exams { get; set; }
+        public ICollection<File> Files { get; set; }
+
+        [NotMapped]
+        public int FilesCount { get; set; }
 
 
 
