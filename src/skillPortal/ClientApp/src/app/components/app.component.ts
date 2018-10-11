@@ -1,6 +1,7 @@
+import { filter } from 'rxjs/operators';
 import { SearchService } from './../services/search.service';
 import { Component, ViewEncapsulation, OnInit, OnDestroy, ViewChildren, AfterViewInit, QueryList, ElementRef } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ToastaService, ToastaConfig, ToastOptions, ToastData } from 'ngx-toasta';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   appTitle = 'Skill portal';
   appLogo = require('../assets/images/logo-white.png');
   searchValue: string;
+  public currentRoute: string;
 
   stickyToasties: number[] = [];
 
@@ -61,7 +63,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(storageManager: LocalStoreManager, private toastaService: ToastaService, private toastaConfig: ToastaConfig,
     private accountService: AccountService, private alertService: AlertService, private notificationService: NotificationService,
     private appTitleService: AppTitleService, private authService: AuthService, private translationService: AppTranslationService,
-     public configurations: ConfigurationService, public router: Router, private searchService: SearchService) {
+     public configurations: ConfigurationService, public router: Router, private searchService: SearchService, public route: ActivatedRoute) {
 
     storageManager.initialiseStorageSyncListener();
 
@@ -75,9 +77,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.toastaConfig.showClose = true;
 
     this.appTitleService.appName = this.appTitle;
-    this.searchService.subject.subscribe( (substring: string)  => {
-          this.searchValue = substring;
-      });
+    this.searchService.subject.subscribe((substring: string) => {
+      this.searchValue = substring;
+    });
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => { this.currentRoute = event.url; });
   }
 
 
