@@ -22,6 +22,9 @@
     <mat-card-content>
         <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
       <mat-accordion>
+        <div class="disabledContainer" *ngIf="data?.length === 0">
+          No categories found
+        </div>
         <mat-expansion-panel *ngFor="let item of data">
           <mat-expansion-panel-header>
             <mat-panel-title>

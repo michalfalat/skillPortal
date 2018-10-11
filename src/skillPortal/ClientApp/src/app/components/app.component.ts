@@ -183,7 +183,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   onSearch(searchValue: string ) {
-    console.log(searchValue);
     this.searchService.subject.next(searchValue);
   }
 

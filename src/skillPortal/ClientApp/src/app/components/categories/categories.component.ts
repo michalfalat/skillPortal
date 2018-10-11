@@ -26,8 +26,8 @@ export class CategoriesComponent implements OnInit {
      this.searchService.subject.subscribe( (substring: string)  => {
       if (this.dataMain != null) {
         this.data = this.dataMain.filter(function (el) {
-          return el.name.toLowerCase().includes(substring.toLocaleLowerCase()) ||
-                  el.description.toLowerCase().includes(substring.toLocaleLowerCase());
+          return el.name.toLowerCase().includes(substring.toLocaleLowerCase()) || 
+                  ( el.description  && el.description.toLowerCase().includes(substring.toLocaleLowerCase()));
         });
       }
     });
