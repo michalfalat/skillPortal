@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { fadeInOut } from './../../services/animations';
 import { ExamAddModel } from './../../models/ExamModels';
 import { Component, OnInit } from '@angular/core';
+import { AnswerAddModel } from '../../models/AnswerModels';
 
 @Component({
   selector: 'app-test-add',
@@ -18,12 +19,22 @@ export class TestAddComponent implements OnInit {
 
   ngOnInit() {
     this.catId = this.route.snapshot.params['catId'];
-    this.exam = new ExamAddModel();
+    this.exam =  new ExamAddModel;
+    this.exam.questions = [];
   }
   AddNewQuestion() {
     let question  =   new QuestionAddModel();
     question.text = 'test';
+    question.answers = [];
+    console.log(this.exam);
     this.exam.questions.push(question);
+  }
+
+  AddNewAnswer(question) {
+    let answer  =   new AnswerAddModel();
+    answer.text = 'answer';
+    console.log(this.exam);
+    question.answers.push(answer);
   }
 
 }

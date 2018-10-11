@@ -37,6 +37,7 @@ namespace DAL.Repositories
                     Description = f.Description,
                     Downloads = f.Downloads
                 })
+                .OrderByDescending( f => f.Created)
                 .ToListAsync();
         }
 
