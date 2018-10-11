@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class SearchService {
 public subject: Subject<Object>;
-  constructor() { 
+  constructor() {
     this.subject = new Subject<Object>();
   }
 }

@@ -13,13 +13,13 @@ import { Router } from '@angular/router';
   animations: [fadeInOut]
 })
 export class CategoriesComponent implements OnInit {
-  
+
   private dataMain: CategoryViewModel[] = null;
   private data: CategoryViewModel[] = null;
   public isLoading = true;
 
   constructor(private  apiService: ApiService, private router: Router, private searchService: SearchService) { }
-  
+
 
   ngOnInit() {
     this.reloadCategories();
@@ -46,7 +46,7 @@ export class CategoriesComponent implements OnInit {
   }
 
 
- 
+
 
   viewCategoryTests(id) {
     this.searchService.subject.next('');

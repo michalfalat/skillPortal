@@ -51,10 +51,11 @@ export class AppTranslationService {
 
   changeLanguage(language: string = 'en') {
 
-    if (!language)
+    if (!language) {
       language = this.translate.defaultLang;
+    }
 
-    if (language != this.translate.currentLang) {
+    if (language !== this.translate.currentLang) {
       setTimeout(() => {
         this.translate.use(language);
         this.onLanguageChanged.next(language);
@@ -88,16 +89,10 @@ export class TranslateLanguageLoader implements TranslateLoader {
     switch (lang) {
       case 'en':
         return of(require('../assets/locale/en.json'));
-      case 'fr':
-        return of(require('../assets/locale/fr.json'));
-      case 'de':
-        return of(require('../assets/locale/de.json'));
-      case 'pt':
-        return of(require('../assets/locale/pt.json'));
-      case 'ar':
-        return of(require('../assets/locale/ar.json'));
-      case 'ko':
-        return of(require('../assets/locale/ko.json'));
+      case 'sk':
+        return of(require('../assets/locale/sk.json'));
+      case 'cz':
+        return of(require('../assets/locale/cz.json'));
       default:
     }
   }

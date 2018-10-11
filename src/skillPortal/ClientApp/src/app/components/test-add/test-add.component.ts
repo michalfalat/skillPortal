@@ -21,7 +21,7 @@ export class TestAddComponent implements OnInit {
     this.exam = new ExamAddModel();
   }
   AddNewQuestion() {
-    let question  =   new QuestionAddModel();
+    const question  =   new QuestionAddModel();
     question.text = 'test';
     this.exam.questions.push(question);
   }

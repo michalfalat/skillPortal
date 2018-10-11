@@ -25,7 +25,7 @@ const alertify: any = require('../assets/scripts/alertify.js');
   styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   isAppLoaded: boolean;
   isUserLoggedIn: boolean;
@@ -51,23 +51,25 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   get notificationsTitle() {
 
-    let gT = (key: string) => this.translationService.getTranslation(key);
+    const gT = (key: string) => this.translationService.getTranslation(key);
 
-    if (this.newNotificationCount)
+    if (this.newNotificationCount) {
       return `${gT('app.Notifications')} (${this.newNotificationCount} ${gT('app.New')})`;
-    else
+    } else {
       return gT('app.Notifications');
+    }
   }
 
 
   constructor(storageManager: LocalStoreManager, private toastaService: ToastaService, private toastaConfig: ToastaConfig,
     private accountService: AccountService, private alertService: AlertService, private notificationService: NotificationService,
     private appTitleService: AppTitleService, private authService: AuthService, private translationService: AppTranslationService,
-     public configurations: ConfigurationService, public router: Router, private searchService: SearchService, public route: ActivatedRoute) {
+    public configurations: ConfigurationService, public router: Router, private searchService: SearchService,
+    public route: ActivatedRoute) {
 
     storageManager.initialiseStorageSyncListener();
 
-    translationService.addLanguages(['en', 'fr', 'de', 'pt', 'ar', 'ko']);
+    translationService.addLanguages(['en']);
     translationService.setDefaultLanguage('en');
 
 
@@ -94,8 +96,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           if (control instanceof LoginComponent) {
             this.loginControl = control;
             this.loginControl.modalClosedCallback = () => this.loginModal.hide();
-          }
-          else {
+          } else {
             this.loginModal = control;
             this.loginModal.show();
           }
@@ -115,8 +116,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.loginControl.reset();
     this.shouldShowLoginModal = false;
 
-    if (this.authService.isSessionExpired)
-      this.alertService.showStickyMessage('Session Expired', 'Your Session has expired. Please log in again to renew your session', MessageSeverity.warn);
+    if (this.authService.isSessionExpired) {
+      this.alertService
+      .showStickyMessage('Session Expired', 'Your Session has expired. Please log in again to renew your session', MessageSeverity.warn);
+    }
   }
 
 
@@ -156,8 +159,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       if (this.isUserLoggedIn) {
         this.initNotificationsLoading();
-      }
-      else {
+      } else {
         this.unsubscribeNotifications();
       }
 
@@ -170,7 +172,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        let url = (<NavigationStart>event).url;
+        const url = (<NavigationStart>event).url;
 
         if (url !== url.toLowerCase()) {
           this.router.navigateByUrl((<NavigationStart>event).url.toLowerCase());
@@ -185,14 +187,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.searchService.subject.next(searchValue);
   }
 
-  ngOnDestroy() {
-    this.unsubscribeNotifications();
-  }
 
 
   private unsubscribeNotifications() {
-    if (this.notificationsLoadingSubscription)
+    if (this.notificationsLoadingSubscription) {
       this.notificationsLoadingSubscription.unsubscribe();
+    }
   }
 
 
@@ -207,22 +207,23 @@ export class AppComponent implements OnInit, AfterViewInit {
         error => {
           this.alertService.logError(error);
 
-          if (this.dataLoadingConsecutiveFailurs++ < 20)
+          if (this.dataLoadingConsecutiveFailurs++ < 20) {
             setTimeout(() => this.initNotificationsLoading(), 5000);
-          else
+          } else {
             this.alertService.showStickyMessage('Load Error', 'Loading new notifications from the server failed!', MessageSeverity.error);
+          }
         });
   }
 
 
   markNotificationsAsRead() {
 
-    let recentNotifications = this.notificationService.recentNotifications;
+    const recentNotifications = this.notificationService.recentNotifications;
 
     if (recentNotifications.length) {
       this.notificationService.readUnreadNotification(recentNotifications.map(n => n.id), true)
         .subscribe(response => {
-          for (let n of recentNotifications) {
+          for (const n of recentNotifications) {
             n.isRead = true;
           }
 
@@ -256,10 +257,10 @@ export class AppComponent implements OnInit, AfterViewInit {
           .confirm(dialog.message, (e) => {
             if (e) {
               dialog.okCallback();
-            }
-            else {
-              if (dialog.cancelCallback)
+            } else {
+              if (dialog.cancelCallback) {
                 dialog.cancelCallback();
+              }
             }
           });
 
@@ -269,10 +270,10 @@ export class AppComponent implements OnInit, AfterViewInit {
           .prompt(dialog.message, (e, val) => {
             if (e) {
               dialog.okCallback(val);
-            }
-            else {
-              if (dialog.cancelCallback)
+            } else {
+              if (dialog.cancelCallback) {
                 dialog.cancelCallback();
+              }
             }
           }, dialog.defaultValue);
 
@@ -287,14 +288,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   showToast(message: AlertMessage, isSticky: boolean) {
 
     if (message == null) {
-      for (let id of this.stickyToasties.slice(0)) {
+      for (const id of this.stickyToasties.slice(0)) {
         this.toastaService.clear(id);
       }
 
       return;
     }
 
-    let toastOptions: ToastOptions = {
+    const toastOptions: ToastOptions = {
       title: message.summary,
       msg: message.detail,
       timeout: isSticky ? 0 : 4000
@@ -305,7 +306,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       toastOptions.onAdd = (toast: ToastData) => this.stickyToasties.push(toast.id);
 
       toastOptions.onRemove = (toast: ToastData) => {
-        let index = this.stickyToasties.indexOf(toast.id, 0);
+        const index = this.stickyToasties.indexOf(toast.id, 0);
 
         if (index > -1) {
           this.stickyToasties.splice(index, 1);
@@ -354,14 +355,19 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 
   get canViewCustomers() {
-    return this.accountService.userHasPermission(Permission.viewUsersPermission); //eg. viewCustomersPermission
+    return this.accountService.userHasPermission(Permission.viewUsersPermission); // eg. viewCustomersPermission
   }
 
   get canViewProducts() {
-    return this.accountService.userHasPermission(Permission.viewUsersPermission); //eg. viewProductsPermission
+    return this.accountService.userHasPermission(Permission.viewUsersPermission); // eg. viewProductsPermission
   }
 
   get canViewOrders() {
-    return true; //eg. viewOrdersPermission
+    return true; // eg. viewOrdersPermission
   }
+
+  ngOnDestroy() {
+    this.unsubscribeNotifications();
+  }
+
 }
