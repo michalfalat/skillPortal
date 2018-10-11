@@ -1,3 +1,4 @@
+import { SearchService } from './../services/search.service';
 import { Component, ViewEncapsulation, OnInit, OnDestroy, ViewChildren, AfterViewInit, QueryList, ElementRef } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { ToastaService, ToastaConfig, ToastOptions, ToastData } from 'ngx-toasta';
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   newNotificationCount = 0;
   appTitle = 'Skill portal';
   appLogo = require('../assets/images/logo-white.png');
+  searchValue: string;
 
   stickyToasties: number[] = [];
 
@@ -59,7 +61,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(storageManager: LocalStoreManager, private toastaService: ToastaService, private toastaConfig: ToastaConfig,
     private accountService: AccountService, private alertService: AlertService, private notificationService: NotificationService,
     private appTitleService: AppTitleService, private authService: AuthService, private translationService: AppTranslationService,
-     public configurations: ConfigurationService, public router: Router) {
+     public configurations: ConfigurationService, public router: Router, private searchService: SearchService) {
 
     storageManager.initialiseStorageSyncListener();
 
@@ -73,6 +75,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.toastaConfig.showClose = true;
 
     this.appTitleService.appName = this.appTitle;
+    this.searchService.subject.subscribe( (substring: string)  => {
+          this.searchValue = substring;
+      });
   }
 
 
@@ -170,6 +175,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
 
+  onSearch(searchValue: string ) {
+    console.log(searchValue);
+    this.searchService.subject.next(searchValue);
+  }
+
   ngOnDestroy() {
     this.unsubscribeNotifications();
   }
@@ -235,8 +245,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     switch (dialog.type) {
       case DialogType.alert:
         alertify.alert(dialog.message);
-
-        break
+        break;
       case DialogType.confirm:
         alertify
           .confirm(dialog.message, (e) => {

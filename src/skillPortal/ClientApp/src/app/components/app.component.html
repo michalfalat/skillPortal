@@ -8,6 +8,12 @@
               <span> Categories</span>
           </button>
           <span class="spacer"></span>
+          <mat-form-field class="">
+            <mat-icon class="">search</mat-icon>
+            <input matInput [(ngModel)]="searchValue"  (input)="onSearch($event.target.value)">
+          </mat-form-field>
+          
+          <span class="spacer"></span>
           <button mat-button routerLink="/about" color="">
             <mat-icon class="mat-18">info</mat-icon>
             <span> {{'mainMenu.About' | translate}}</span>

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:56436', //Change this to the address of your backend API if different from frontend address
+  baseUrl: 'http://localhost:55440', //Change this to the address of your backend API if different from frontend address
   loginUrl: "/Login"
 };
 
