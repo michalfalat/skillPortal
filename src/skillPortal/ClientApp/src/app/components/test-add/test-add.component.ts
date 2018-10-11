@@ -23,7 +23,7 @@ export class TestAddComponent implements OnInit {
     this.exam.questions = [];
   }
   AddNewQuestion() {
-    let question  =   new QuestionAddModel();
+    const question  =   new QuestionAddModel();
     question.text = 'test';
     question.answers = [];
     console.log(this.exam);
