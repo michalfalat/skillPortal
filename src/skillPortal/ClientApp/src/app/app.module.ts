@@ -65,6 +65,7 @@ import { CategoryDetailComponent } from './components/category-detail/category-d
 import { ApiService } from './services/api.service';
 import { FileAddComponent } from './components/file-add/file-add.component';
 import { FilesComponent } from './components/files/files.component';
+import { OverviewComponent } from './components/overview/overview.component';
 
 
 
@@ -119,7 +120,8 @@ import { FilesComponent } from './components/files/files.component';
     TestDetailComponent,
     CategoryDetailComponent,
     FileAddComponent,
-    FilesComponent
+    FilesComponent,
+    OverviewComponent
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },

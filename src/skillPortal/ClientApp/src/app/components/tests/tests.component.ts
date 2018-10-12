@@ -19,8 +19,14 @@ export class TestsComponent implements OnInit {
   constructor(@Inject(ApiService) private apiService: ApiService, private route: ActivatedRoute, private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.catId = this.route.snapshot.params['catId'];
-    this.loadData();
+    //console.log(this.route.parent);
+    this.route.parent.params.subscribe(params => {
+      this.catId = +params['catId'];
+      console.log(this.catId);
+      this.loadData();
+    });
+    // this.catId = this.route.parent.params['catId'];
+    // this.loadData();
   }
 
   loadData() {

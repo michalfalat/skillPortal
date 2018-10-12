@@ -5,15 +5,15 @@
   <mat-card [@fadeInOut] class="main-data-card">
       <mat-card-header>
           <span>        
-          <mat-card-title>
+          <!-- <mat-card-title>
               
               <span class="header" *ngIf="!isLoading"><button mat-button routerLink="/categories" class="header-button">Categories </button> / <button mat-button routerLink="/categories/{{catId}}" class="header-button">{{ this.data?.catName }}</button>/ Tests </span>
-          </mat-card-title>
+          </mat-card-title> -->
         </span> 
           <span class="spacer"></span>
           <span>        
               <mat-card-title>
-                 <a mat-raised-button color="primary" routerLink="/categories/{{catId}}/tests/add" >Add new </a>
+                 <a mat-raised-button color="primary" routerLink="/categories/{{catId}}/tests/add" ><mat-icon >add</mat-icon>Add test </a>
               </mat-card-title>
             </span> 
           

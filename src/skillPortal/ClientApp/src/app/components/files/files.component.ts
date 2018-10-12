@@ -20,8 +20,11 @@ export class FilesComponent implements OnInit {
   constructor(@Inject(ApiService) private apiService: ApiService, private route: ActivatedRoute, private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.catId = this.route.snapshot.params['catId'];
-    this.loadData();
+    this.route.parent.params.subscribe(params => {
+      this.catId = +params['catId'];
+      console.log(this.catId);
+      this.loadData();
+    });
   }
 
   loadData() {
@@ -35,12 +38,13 @@ export class FilesComponent implements OnInit {
 
   }
   
-  downloadFile(fileId, fileName) {
+  downloadFile(element) {
     this.isLoading = true;
-    this.apiService.getFile(fileId).subscribe((res: Blob) => {
+    this.apiService.getFile(element.id).subscribe((res: Blob) => {
+          element.downloads = element.downloads + 1;
           const a = document.createElement('a');
           a.href = URL.createObjectURL(res);
-          a.download = fileName;
+          a.download = element.name;
           // start download
           a.click();
       this.isLoading = false;

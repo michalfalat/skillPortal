@@ -39,17 +39,6 @@
               No exams availaible
           </div> -->
           <mat-nav-list>
-              <!-- <mat-list-item *ngIf="item.exams == ''">
-                  <button disabled mat-button >
-                     No exams available
-                  </button>
-               </mat-list-item>    -->
-              <mat-list-item *ngFor="let link of item.exams">
-                  <a matLine >aa</a>
-                  <button mat-icon-button  >
-                     <mat-icon>info</mat-icon>
-                  </button>
-               </mat-list-item>
                <mat-list-item (click)="viewCategoryTests(item.id)">
                   <button mat-icon-button  >
                      <mat-icon>assignment</mat-icon>

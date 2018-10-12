@@ -18,7 +18,10 @@ export class TestAddComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.catId = this.route.snapshot.params['catId'];
+    this.route.parent.params.subscribe(params => {
+      this.catId = +params['catId'];
+      console.log(this.catId);
+    });
     this.exam =  new ExamAddModel;
     this.exam.questions = [];
   }

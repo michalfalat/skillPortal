@@ -1,3 +1,74 @@
-<p>
-  category-detail works!
-</p>
+
+<div layout-fill layout="column" layout-align="center none">
+  <div layout="row" layout-align="center none">
+
+<mat-card [@fadeInOut] class="main-data-card">
+    <mat-card-header>
+        <span>        
+        <mat-card-title>
+          <span class="header" *ngIf="!isLoading"><button mat-button routerLink="/categories" class="header-button">Categories </button> / <button mat-button routerLink="/categories/{{catId}}" class="header-button">{{ this.data?.catName }}</button></span>
+        </mat-card-title>
+      </span> 
+        <!-- <span class="spacer"></span>
+        <span>        
+            <mat-card-title>
+               <a mat-raised-button color="primary" routerLink="/categories/add" >Add new category</a>
+            </mat-card-title>
+          </span>  -->
+        
+        <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+    </mat-card-header>
+    <!-- <img matCardImage src="Card wide image source"> -->
+    <mat-card-content>
+        <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
+        <!-- <mat-tab-group>
+          <mat-tab label="Overview">
+            <ng-template matTabContent>
+              Ovreview
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="Rating">
+            <ng-template matTabContent>
+             Rating
+            </ng-template>
+          </mat-tab>
+          
+          <mat-tab label="Tests"     [routerLink]="tests"
+          routerLinkActive #rla="routerLinkActive"
+          [active]="rla.isActive"> >
+            <ng-template matTabContent>
+              <app-tests></app-tests>
+            </ng-template>
+          </mat-tab>
+          
+          <mat-tab label="Files" [routerLink]="['/files']" routerLinkActive="router-link-active" >
+            <ng-template matTabContent>
+              <app-files></app-files>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group> -->
+        <nav mat-tab-nav-bar style="color:black;">
+          <a mat-tab-link style="color:black;"
+             *ngFor="let link of navLinks"
+             [routerLink]="link.path"
+             routerLinkActive #rla="routerLinkActive"
+             [active]="rla.isActive">
+            {{link.label}}
+          </a>
+        </nav>
+        
+
+<router-outlet></router-outlet>
+    </mat-card-content>
+    <mat-card-actions >
+        
+    </mat-card-actions>
+    <mat-card-footer>
+    </mat-card-footer>
+</mat-card>
+
+
+</div>
+</div>
+
+

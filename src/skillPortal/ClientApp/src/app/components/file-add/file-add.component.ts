@@ -22,8 +22,11 @@ export class FileAddComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
-    this.catId = this.route.snapshot.params['catId'];
-    this.addModel.catId = this.catId;
+    this.route.parent.params.subscribe(params => {
+      this.catId = +params['catId'];
+      this.addModel.catId = this.catId;
+      console.log(this.catId);
+    });
   }
 
   AddFile() {
