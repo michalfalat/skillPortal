@@ -27,7 +27,7 @@ export class TestAddComponent implements OnInit {
   }
   AddNewQuestion() {
     const question  =   new QuestionAddModel();
-    question.text = 'test';
+    question.text = '';
     question.answers = [];
     console.log(this.exam);
     this.exam.questions.push(question);
@@ -39,5 +39,17 @@ export class TestAddComponent implements OnInit {
     console.log(this.exam);
     question.answers.push(answer);
   }
+
+
+  readURL(event, question: QuestionAddModel): void {
+    if (event.target.files && event.target.files[0]) {
+        const file = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.onload = e => question.image = reader.result;
+
+        reader.readAsDataURL(file);
+    }
+}
 
 }

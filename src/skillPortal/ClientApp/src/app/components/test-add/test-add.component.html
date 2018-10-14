@@ -1,44 +1,85 @@
 <mat-card [@fadeInOut] class="main-data-card">
-    <mat-card-header>
-        <span>        
-        <mat-card-title>
-            <span class="header">New test </span>
-        </mat-card-title>
-      </span> 
-        <span class="spacer"></span>
-        <span>        
+  <mat-card-header>
+    <span>
+      <mat-card-title>
+        <span class="header">New test </span>
+      </mat-card-title>
+    </span>
+    <span class="spacer"></span>
+    <span>
+      <mat-card-title>
+        <a mat-raised-button color="primary" routerLink="/categories/{{catId}}/tests">Back</a>
+      </mat-card-title>
+    </span>
+
+    <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+  </mat-card-header>
+  <div class="form-container">
+    <mat-form-field>
+      <input [(ngModel)]="exam.name" matInput placeholder="Name" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea [(ngModel)]="exam.description" matInput placeholder="Description"></textarea>
+    </mat-form-field>
+    <div *ngFor="let question of exam.questions; let i = index">
+      <mat-card [@fadeInOut] class="question-card">
+          <mat-card-header class="unsetWidth">
+          <span>
+              <mat-card-title>
+                <span class="header">{{i+1}}.Question </span>
+              </mat-card-title>
+            </span>
+            <span class="spacer"></span>
+            <span>
+              <mat-card-title>
+                <mat-menu #appMenu="matMenu" [xPosition] = "'before'">
+                  <button  mat-menu-item (click)="AddNewAnswer(question)"><mat-icon class="mat-18">add</mat-icon><span>Add answer</span></button>
+                  <button mat-menu-item (click)="imgReader.click()"><mat-icon class="mat-18">add_photo_alternate</mat-icon><span>Add picture</span></button> 
+                  <button mat-menu-item><mat-icon class="mat-18">delete</mat-icon><span>Delete question</span></button>
+                </mat-menu>
+                
+                <button matTooltip="Menu" mat-icon-button [matMenuTriggerFor]="appMenu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+              </mat-card-title>
+            </span>
+          </mat-card-header>
+        <mat-card-subtitle>     
+              <mat-form-field>
+                <input [(ngModel)]="question.text" matInput placeholder="Question text" required>
+              </mat-form-field>
+              <span class="spacer"></span>
+          <span>
             <mat-card-title>
-               <a mat-raised-button color="primary" routerLink="/categories/{{catId}}/tests" >Back</a>
+              <input style="visibility: hidden;" type='file' (change)="readURL($event, question);" #imgReader/>
+              <img *ngIf="question.image != null"  [src]="question.image"  class="question-image-preview"/>
             </mat-card-title>
-          </span> 
-        
-        <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
-    </mat-card-header>
-<div class="form-container">
-  <mat-form-field>
-    <input  [(ngModel)]="exam.name" matInput placeholder="Name" required>
-  </mat-form-field>
+          </span>
 
-  <mat-form-field>
-    <textarea [(ngModel)]="exam.description" matInput placeholder="Description"></textarea>
-  </mat-form-field>
-  <div *ngFor="let question of exam.questions">
-    question: {{ question.text}}
-    <button mat-icon-button (click)="AddNewAnswer(question)">
-        <mat-icon class="mat-18">add</mat-icon>
-    </button>
+          <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+        </mat-card-subtitle>
+        <!-- <img matCardImage src="Card wide image source"> -->
+        <mat-card-content>
+          <div *ngFor="let answer of question.answers">
+            answer: {{ answer.text}}
+          </div>
 
-    <div *ngFor="let answer of question.answers">
-        answer: {{ answer.text}}
-      </div>
-  </div>
-  <!-- <mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+
+        </mat-card-actions>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+    <!-- <mat-form-field>
     <mat-select placeholder="Select">
       <mat-option value="option">Option</mat-option>
     </mat-select>
   </mat-form-field> -->
-  
-  <button mat-raised-button (click)="AddNewQuestion()" color="primary">new questions</button>
-  <button mat-raised-button (click)="AddTest()" color="primary">Add</button>
-</div>
+
+    <button mat-raised-button (click)="AddNewQuestion()" color="primary">new questions</button>
+    <button mat-raised-button (click)="AddTest()" color="primary">Add</button>
+  </div>
 </mat-card>

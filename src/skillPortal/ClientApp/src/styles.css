@@ -360,6 +360,11 @@ a:hover, a:active, a:visited {
   margin: 10px auto;
 }
 
+.question-card {
+  max-width: 900px;
+  margin: 5px auto;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
@@ -374,6 +379,9 @@ a:hover, a:active, a:visited {
 }
 mat-list-item button  {
   opacity: 0.75;
+}
+.unsetWidth * {
+  width: unset;
 }
 
 .spinner-container {
@@ -391,4 +399,9 @@ mat-list-item button  {
 
 mat-progress-spinner {  
   margin: 10px auto;
+}
+
+.question-image-preview {
+  height: 300px;
+  width: auto;
 }
