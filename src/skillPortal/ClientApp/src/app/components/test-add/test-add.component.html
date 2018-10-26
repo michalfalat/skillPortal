@@ -24,36 +24,42 @@
     </mat-form-field>
     <div *ngFor="let question of exam.questions; let i = index">
       <mat-card [@fadeInOut] class="question-card">
-          <mat-card-header class="unsetWidth">
-          <span>
-              <mat-card-title>
-                <span class="header">{{i+1}}.Question </span>
-              </mat-card-title>
-            </span>
-            <span class="spacer"></span>
-            <span>
-              <mat-card-title>
-                <mat-menu #appMenu="matMenu" [xPosition] = "'before'">
-                  <button  mat-menu-item (click)="AddNewAnswer(question)"><mat-icon class="mat-18">add</mat-icon><span>Add answer</span></button>
-                  <button mat-menu-item (click)="imgReader.click()"><mat-icon class="mat-18">add_photo_alternate</mat-icon><span>Add picture</span></button> 
-                  <button mat-menu-item><mat-icon class="mat-18">delete</mat-icon><span>Delete question</span></button>
-                </mat-menu>
-                
-                <button matTooltip="Menu" mat-icon-button [matMenuTriggerFor]="appMenu">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-              </mat-card-title>
-            </span>
-          </mat-card-header>
-        <mat-card-subtitle>     
-              <mat-form-field>
-                <input [(ngModel)]="question.text" matInput placeholder="Question text" required>
-              </mat-form-field>
-              <span class="spacer"></span>
+        <mat-card-header class="unsetWidth">
           <span>
             <mat-card-title>
-              <input style="visibility: hidden;" type='file' (change)="readURL($event, question);" #imgReader/>
-              <img *ngIf="question.image != null"  [src]="question.image"  class="question-image-preview"/>
+              <span class="header">{{i+1}}.Question </span>
+            </mat-card-title>
+          </span>
+          <span class="spacer"></span>
+          <span>
+            <mat-card-title>
+              <mat-menu #appMenu="matMenu" [xPosition]="'before'">
+                <button mat-menu-item (click)="AddNewAnswer(question)">
+                  <mat-icon class="mat-18">add</mat-icon><span>Add answer</span>
+                </button>
+                <button mat-menu-item (click)="imgReader.click()">
+                  <mat-icon class="mat-18">add_photo_alternate</mat-icon><span>Add picture</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="mat-18">delete</mat-icon><span>Delete question</span>
+                </button>
+              </mat-menu>
+
+              <button matTooltip="Menu" mat-icon-button [matMenuTriggerFor]="appMenu" class="question-menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </mat-card-title>
+          </span>
+        </mat-card-header>
+        <mat-card-subtitle>
+          <mat-form-field>
+            <input [(ngModel)]="question.text" matInput placeholder="Question text" required>
+          </mat-form-field>
+          <span class="spacer"></span>
+          <span>
+            <mat-card-title>
+              <input style="visibility: hidden;" type='file' (change)="readURL($event, question);" #imgReader />
+              <img *ngIf="question.image != null" [src]="question.image" class="question-image-preview" />
             </mat-card-title>
           </span>
 
@@ -61,9 +67,29 @@
         </mat-card-subtitle>
         <!-- <img matCardImage src="Card wide image source"> -->
         <mat-card-content>
-          <div *ngFor="let answer of question.answers">
-            answer: {{ answer.text}}
-          </div>
+            <div class="mat-table"  *ngIf="question.answers.length !== 0">
+                <div class="mat-header-row">
+                  <div class="mat-header-cell">One</div>
+                  <div class="mat-header-cell">Two</div>
+                  <div class="mat-header-cell">Three</div>
+                </div>
+                <div class="mat-row" *ngFor="let answer of question.answers">
+                  <div class="mat-cell">Tick</div>
+                  <div class="mat-cell">Trick</div>
+                  <div class="mat-cell">Track</div>
+                </div>
+              </div>
+          <!-- <mat-table class="mat-elevation-z8" *ngIf="question.answers.length !== 0">
+              <mat-header-row>
+                  <mat-header-cell>Is correct</mat-header-cell>
+                  <mat-header-cell>Text</mat-header-cell>
+                </mat-header-row>
+            <mat-row *ngFor="let answer of question.answers">
+                    <mat-cell>{{answer.isCorrect}}</mat-cell>
+                    <mat-cell>{{answer.text}}</mat-cell>
+              </mat-row>  
+          
+          </mat-table> -->
 
         </mat-card-content>
         <mat-card-actions>

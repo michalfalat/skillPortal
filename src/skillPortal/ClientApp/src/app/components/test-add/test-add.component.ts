@@ -15,6 +15,7 @@ export class TestAddComponent implements OnInit {
 
   public catId;
   public exam: ExamAddModel;
+  columnsForAnswerTable: string[] = ['IsCorrect', 'Text', 'Image', 'Actions', ];
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {

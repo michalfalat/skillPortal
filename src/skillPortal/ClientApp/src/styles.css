@@ -402,6 +402,7 @@ mat-progress-spinner {
 }
 
 .question-image-preview {
-  height: 300px;
+  max-width: 100%;
   width: auto;
+  max-height: 300px;
 }
