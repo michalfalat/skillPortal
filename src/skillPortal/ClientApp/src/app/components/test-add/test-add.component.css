@@ -1,8 +1,21 @@
 .question-menu {
     visibility: hidden;
+    opacity: 0.1;    
+    transition: 0.1s all linear; 
 }
 .question-card:hover .question-menu {
     visibility: visible;
+    opacity: 1;    
+    transition: 0.1s all linear; 
+}
+
+.question-header {
+  font-size: larger;
+}
+
+.question-input {
+  font-weight: bold;
+  font-size: large;
 }
 
 .mat-table {

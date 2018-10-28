@@ -27,7 +27,7 @@
         <mat-card-header class="unsetWidth">
           <span>
             <mat-card-title>
-              <span class="header">{{i+1}}.Question </span>
+              <span class="question-header">{{i+1}}.Question </span>
             </mat-card-title>
           </span>
           <span class="spacer"></span>
@@ -37,12 +37,20 @@
                 <button mat-menu-item (click)="AddNewAnswer(question)">
                   <mat-icon class="mat-18">add</mat-icon><span>Add answer</span>
                 </button>
+                <button mat-menu-item [matMenuTriggerFor]="questionType" >
+                  <mat-icon class="mat-18" >spellcheck</mat-icon><span>Answer type</span>
+                </button>
                 <button mat-menu-item (click)="imgReader.click()">
                   <mat-icon class="mat-18">add_photo_alternate</mat-icon><span>Add picture</span>
                 </button>
                 <button mat-menu-item>
                   <mat-icon class="mat-18">delete</mat-icon><span>Delete question</span>
                 </button>
+              </mat-menu>
+
+              <mat-menu #questionType="matMenu">
+                <button mat-menu-item> <mat-icon class="mat-18">check_box</mat-icon><span>Multiple answers</span></button>
+                <button mat-menu-item><mat-icon class="mat-18">radio_button_checked</mat-icon><span>1 answer</span></button>
               </mat-menu>
 
               <button matTooltip="Menu" mat-icon-button [matMenuTriggerFor]="appMenu" class="question-menu">
@@ -53,7 +61,7 @@
         </mat-card-header>
         <mat-card-subtitle>
           <mat-form-field>
-            <input [(ngModel)]="question.text" matInput placeholder="Question text" required>
+            <input [(ngModel)]="question.text" matInput placeholder="Question text" required class="question-input">
           </mat-form-field>
           <span class="spacer"></span>
           <span>
@@ -69,8 +77,8 @@
         <mat-card-content>
             <div class="mat-table"  *ngIf="question.answers.length !== 0">
                 <div class="mat-header-row">
-                  <div class="mat-header-cell">One</div>
-                  <div class="mat-header-cell">Two</div>
+                  <div class="mat-header-cell">Is correct </div>
+                  <div class="mat-header-cell">Text</div>
                   <div class="mat-header-cell">Three</div>
                 </div>
                 <div class="mat-row" *ngFor="let answer of question.answers">
