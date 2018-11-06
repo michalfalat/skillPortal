@@ -6,7 +6,7 @@
     <mat-card-header>
         <span>        
         <mat-card-title>
-          <span class="header" *ngIf="!isLoading"><button mat-button routerLink="/categories" class="header-button">Categories </button> / <button mat-button routerLink="/categories/{{catId}}" class="header-button">{{ this.data?.catName }}</button></span>
+          <span class="header" *ngIf="!isLoading"><button mat-button routerLink="/categories" class="header-button">{{'categories' | translate }} </button> / <button mat-button routerLink="/categories/{{catId}}" class="header-button">{{ data?.name }}</button></span>
         </mat-card-title>
       </span> 
         <!-- <span class="spacer"></span>
@@ -21,39 +21,13 @@
     <!-- <img matCardImage src="Card wide image source"> -->
     <mat-card-content>
         <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
-        <!-- <mat-tab-group>
-          <mat-tab label="Overview">
-            <ng-template matTabContent>
-              Ovreview
-            </ng-template>
-          </mat-tab>
-          <mat-tab label="Rating">
-            <ng-template matTabContent>
-             Rating
-            </ng-template>
-          </mat-tab>
-          
-          <mat-tab label="Tests"     [routerLink]="tests"
-          routerLinkActive #rla="routerLinkActive"
-          [active]="rla.isActive"> >
-            <ng-template matTabContent>
-              <app-tests></app-tests>
-            </ng-template>
-          </mat-tab>
-          
-          <mat-tab label="Files" [routerLink]="['/files']" routerLinkActive="router-link-active" >
-            <ng-template matTabContent>
-              <app-files></app-files>
-            </ng-template>
-          </mat-tab>
-        </mat-tab-group> -->
         <nav mat-tab-nav-bar style="color:black;">
           <a mat-tab-link style="color:black;"
              *ngFor="let link of navLinks"
              [routerLink]="link.path"
              routerLinkActive #rla="routerLinkActive"
              [active]="rla.isActive">
-            {{link.label}}
+            {{link.label | translate }}
           </a>
         </nav>
         

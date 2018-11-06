@@ -6,24 +6,22 @@
     <mat-card-header>
         <span>        
         <mat-card-title>
-            <span class="header">Categories </span>
+            <span class="header">{{'categories' | translate }} </span>
         </mat-card-title>
       </span> 
         <span class="spacer"></span>
         <span>        
             <mat-card-title>
-               <a mat-raised-button color="primary" routerLink="/categories/add" >Add new category</a>
+               <a mat-raised-button color="primary" routerLink="/categories/add" >{{'addNewCategory' | translate }}</a>
             </mat-card-title>
           </span> 
         
-        <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
     </mat-card-header>
-    <!-- <img matCardImage src="Card wide image source"> -->
     <mat-card-content>
         <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
       <mat-accordion>
         <div class="disabledContainer" *ngIf="data?.length === 0">
-          No categories found
+          {{'noCategoriesFound' | translate }}
         </div>
         <mat-expansion-panel *ngFor="let item of data">
           <mat-expansion-panel-header>
@@ -35,26 +33,23 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
       
-          <!-- <div *ngIf="item.exams == ''">
-              No exams availaible
-          </div> -->
           <mat-nav-list>
                <mat-list-item (click)="viewCategoryTests(item.id)">
                   <button mat-icon-button  >
                      <mat-icon>assignment</mat-icon>
-                     Tests ({{item.examsCount}}x)
+                     {{'tests' | translate }} ({{item.examsCount}}x)
                   </button>
                </mat-list-item>     
                <mat-list-item>
                   <button mat-icon-button disabled>
                      <mat-icon>star</mat-icon>
-                     Rating (0x) ... Comming soon
+                     {{'ratings' | translate }} (0x) ... {{'comingSoon' | translate }}
                   </button>
                </mat-list-item>     
                <mat-list-item (click)="viewCategoryFiles(item.id)">
                   <button mat-icon-button  >
                      <mat-icon>folder</mat-icon>
-                     Files ({{item.filesCount}}x)
+                     {{'files' | translate }} ({{item.filesCount}}x)
                   </button>
                </mat-list-item>     
                <!-- <mat-list-item>

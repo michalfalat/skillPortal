@@ -1,101 +1,41 @@
-
-
 <div id="app_container" class="{{configurations.theme | lowercase}}-theme">
   <ngx-toasta></ngx-toasta>
   <mat-toolbar color="primary">
-          <button mat-button routerLink="/categories" color="">
-              <mat-icon class="mat-18">school</mat-icon>
-              <span> Categories</span>
-          </button>
-          <span class="spacer"></span>
-          <mat-form-field class="" *ngIf="this.currentRoute === '/categories'">
-            <mat-icon class="">search</mat-icon>
-            <input matInput [(ngModel)]="searchValue"  (input)="onSearch($event.target.value)">
-          </mat-form-field>
-          
-          <span class="spacer"></span>
-          <button mat-button routerLink="/about" color="">
-            <mat-icon class="mat-18">info</mat-icon>
-            <span> {{'mainMenu.About' | translate}}</span>
-        </button>
-       
-      </mat-toolbar>
-      <div id="mainContent" class="app-component">
-          <router-outlet></router-outlet>
-        </div>
-  <!-- <div class='container'>
-    <nav id="header" class="app-component navbar navbar-inner navbar-fixed-top">
-      <nav class="container">
-        <div class="navbar-header">
-          <button type="button" class="app-component navbar-toggle collapsed" data-toggle="collapse" data-target=".menuItemsContainer.app-component" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a ngPreserveWhitespaces class="app-component navbar-brand" routerLink="/">
-            <img [src]="appLogo" alt="logo">
-            <span class="app-component appTitle">{{appTitle}}</span>
-          </a>
-        </div>
-        <div  class="app-component collapse navbar-collapse menuItemsContainer">
-          <ul class="app-component nav navbar-nav nav-pills navBarPadding">
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink=""><span class="glyphicon glyphicon-home"></span></a></li>
-            <li routerLinkActive="active" *ngIf="canViewCustomers"><a routerLink="/customers">{{'mainMenu.Customers' | translate}}</a></li>
-            <li routerLinkActive="active" ><a routerLink="/categories">Categories</a></li>
-            <li routerLinkActive="active" *ngIf="canViewProducts"><a routerLink="/products">{{'mainMenu.Products' | translate}}</a></li>
-            <li routerLinkActive="active" *ngIf="canViewOrders"><a routerLink="/orders">{{'mainMenu.Orders' | translate}}</a></li>
-            <li routerLinkActive="active"><a routerLink="/about">{{'mainMenu.About' | translate}}</a></li>
-          </ul>
-          <ul class="app-component nav navbar-nav nav-pills navBarPadding navbar-right">
-            <li (click)="logout()"><a href="javascript:;"><span class="glyphicon glyphicon-log-out"></span> {{'mainMenu.Logout' | translate}}</a></li>
-          </ul>
-          <p class="app-component navbar-text navbar-right notifications-popup">
-            {{'app.Welcome' | translate}}
-            <a class="app-component navbar-link user-name" [popover]="popTemplate" (onHidden)="markNotificationsAsRead()" placement="bottom" [popoverTitle]="notificationsTitle" href="javascript:;" triggers="focus">
-              {{userName}}
-              <span *ngIf="newNotificationCount > 0" class="badge">{{newNotificationCount}}</span>
-            </a>,
-          </p>
+    <button mat-button routerLink="/categories" color="">
+      <mat-icon class="mat-18">school</mat-icon>
+      <span> {{ 'categories' | translate }}</span>
+    </button>
+    <span class="spacer"></span>
+    <mat-form-field class="" *ngIf="this.currentRoute === '/categories'">
+      <mat-icon class="">search</mat-icon>
+      <input matInput [(ngModel)]="searchValue" (input)="onSearch($event.target.value)">
+    </mat-form-field>
 
-        
+    <span class="spacer"></span>
 
+    <button mat-button [matMenuTriggerFor]="langSelector" matTooltip="{{ 'language' | translate }}">
+      <mat-icon class="mat-18">language</mat-icon> {{ selectedLanguage | uppercase }}
 
-          <ul class="app-component nav navbar-nav nav-pills navBarPadding navbar-right">
-            <li routerLinkActive="active"><a routerLink="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-          </ul>
-        </div>
-        <div *ngIf="!isUserLoggedIn && router.isActive('/about', false)" class="app-component collapse navbar-collapse menuItemsContainer">
-          <ul class="app-component nav navbar-nav nav-pills navBarPadding navbar-right">
-            <li routerLinkActive="active"><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span></a></li>
-          </ul>
-        </div>
-        <div *ngIf="!isUserLoggedIn && router.isActive('/login', false) || false" class="app-component collapse navbar-collapse menuItemsContainer">
-          <ul class="app-component nav navbar-nav nav-pills navBarPadding navbar-right">
-            <li routerLinkActive="active"><a routerLink="/about"><span class="glyphicon glyphicon-info-sign"></span></a></li>
-          </ul>
-        </div>
-      </nav>
-    </nav>
+    </button>
+    <mat-menu #langSelector="matMenu" x-position="after" y-position="below" [overlapTrigger]="false">
+      <button mat-menu-item (click)="changeLanguage('sk')">
+        SK
+      </button>
+      <button mat-menu-item (click)="changeLanguage('cz')">
+        CZ
+      </button>
+      <button mat-menu-item (click)="changeLanguage('en')">
+        EN
+      </button>
+    </mat-menu>
+    <button mat-button routerLink="/about" color="">
+      <mat-icon class="mat-18">info</mat-icon>
+      <span> {{'about' | translate}}</span>
+    </button>
+  </mat-toolbar>
+  <div id="mainContent" class="app-component">
+    <router-outlet></router-outlet>
+  </div>
 
-    <div id="pre-bootstrap" *ngIf="!removePrebootScreen" [class.prebootShow.app-component]="!isAppLoaded" class="app-component prebootStep">
-      <div class="messaging">
-        <h1>
-          Loaded!
-        </h1>
-        <p>
-          QUICK APPLICATION SYSTEM - <span class="appName" style="font-style:italic">quick</span><span class="appName">App</span> &copy; <a href="https://www.ebenmonney.com">WWW.EBENMONNEY.COM</a>
-        </p>
-
-      </div>
-    </div>
-
-    <div id="mainContent" class="app-component">
-      <router-outlet></router-outlet>
-    </div>
-
-    <div id="footer">
-      
-  </div> -->
 
 </div>

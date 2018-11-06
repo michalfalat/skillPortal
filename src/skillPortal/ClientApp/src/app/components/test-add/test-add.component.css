@@ -1,12 +1,13 @@
 .question-menu {
-    visibility: hidden;
-    opacity: 0.1;    
-    transition: 0.1s all linear; 
+  visibility: hidden;
+  opacity: 0.1;
+  transition: 0.1s all linear;
 }
+
 .question-card:hover .question-menu {
-    visibility: visible;
-    opacity: 1;    
-    transition: 0.1s all linear; 
+  visibility: visible;
+  opacity: 1;
+  transition: 0.1s all linear;
 }
 
 .question-header {
@@ -19,22 +20,22 @@
 }
 
 .mat-table {
-    display: block;
-  }
-  
-  .mat-row,
-  .mat-header-row {
-    display: flex;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    align-items: center;
-    min-height: 48px;
-    padding: 0 24px;
-  }
-  
-  .mat-cell,
-  .mat-header-cell {
-    flex: 1;
-    overflow: hidden;
-    word-wrap: break-word;
-  }
+  display: block;
+}
+
+.mat-row,
+.mat-header-row {
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 24px;
+}
+
+.mat-cell,
+.mat-header-cell {
+  flex: 1;
+  overflow: hidden;
+  word-wrap: break-word;
+}

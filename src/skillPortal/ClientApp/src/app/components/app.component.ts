@@ -27,6 +27,7 @@ const alertify: any = require('../assets/scripts/alertify.js');
 })
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  public selectedLanguage: string;
   isAppLoaded: boolean;
   isUserLoggedIn: boolean;
   shouldShowLoginModal: boolean;
@@ -68,9 +69,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     public route: ActivatedRoute) {
 
     storageManager.initialiseStorageSyncListener();
-
-    translationService.addLanguages(['en']);
-    translationService.setDefaultLanguage('en');
+    /*this.translateService.setDefaultLang('sk');
+    this.changeLanguage('sk');
+    console.log(this.translateService.currentLang)*/
 
 
     this.toastaConfig.theme = 'bootstrap';
@@ -122,6 +123,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  changeLanguage(lang) {
+    this.translationService.changeLanguage(lang);
+    this.selectedLanguage = this.translationService.getCurrentLanguage();
+  }
 
   onLoginModalHide() {
     this.alertService.resetStickyMessage();
@@ -179,6 +184,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       }
     });
+
+    this.changeLanguage('sk');
   }
 
 

@@ -12,8 +12,7 @@ using SkillPortal.ViewModels;
 
 namespace skillPortal.Controllers
 {
-    [Route("api/[controller]")]
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
         private ICategoryManager _categoryManager;
         readonly ILogger _logger;
@@ -44,7 +43,7 @@ namespace skillPortal.Controllers
 
 
         // GET api/values/5
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             var category = await this._categoryManager.GetByIdAsync(id);

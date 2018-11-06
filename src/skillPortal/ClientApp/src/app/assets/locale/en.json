@@ -1,4 +1,6 @@
-{
+{   
+   "categories": "Subjects",
+  "addNewCategory": "Add new category", 
   "app": {
     "Welcome": "Welcome",
     "Notifications": "Notifications",

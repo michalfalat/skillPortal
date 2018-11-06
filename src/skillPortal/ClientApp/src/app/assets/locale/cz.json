@@ -1,4 +1,14 @@
 {
+  "categories": "Předmety",
+  "addNewCategory": "Přidat nový předmet",
+  "about": "Informace",
+  "noCategoriesFound": "Žádne předměty",
+  "tests": "Testy",
+  "files": "Soubory",
+  "ratings": "Hodnocení",
+  "overview": "Přehled",
+  "back": "Zpět",
+  "language": "Jazyk",
   "app": {
     "Welcome": "Bem-vindo!",
     "Notifications": "Notificações",

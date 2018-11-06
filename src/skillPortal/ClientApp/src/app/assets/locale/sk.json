@@ -1,3 +1,12 @@
 {
-    
+    "categories": "Predmety",
+  "addNewCategory": "Pridať nový predmet" ,
+  "about": "Informácie",
+  "noCategoriesFound": "Žiadne kategórie",
+  "tests": "Testy",
+  "files": "Súbory",
+  "ratings": "Hodnotenie",
+  "overview": "Prehľad",
+  "back": "Späť",
+  "language": "Jazyk"
 }

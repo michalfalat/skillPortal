@@ -19,7 +19,7 @@ export class TestsComponent implements OnInit {
   constructor(@Inject(ApiService) private apiService: ApiService, private route: ActivatedRoute, private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
-    //console.log(this.route.parent);
+    // console.log(this.route.parent);
     this.route.parent.params.subscribe(params => {
       this.catId = +params['catId'];
       console.log(this.catId);

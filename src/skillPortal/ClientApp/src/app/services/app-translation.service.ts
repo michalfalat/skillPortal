@@ -39,6 +39,10 @@ export class AppTranslationService {
     return this.translate.getBrowserLang();
   }
 
+  getCurrentLanguage(){
+    return this.translate.currentLang;
+  }
+
 
   useBrowserLanguage(): string | void {
     const browserLang = this.getBrowserLanguage();
@@ -51,16 +55,17 @@ export class AppTranslationService {
 
   changeLanguage(language: string = 'en') {
 
-    if (!language) {
-      language = this.translate.defaultLang;
-    }
+    this.translate.use(language);
+    // if (!language) {
+    //   language = this.translate.defaultLang;
+    // }
 
-    if (language !== this.translate.currentLang) {
-      setTimeout(() => {
-        this.translate.use(language);
-        this.onLanguageChanged.next(language);
-      });
-    }
+    // if (language !== this.translate.currentLang) {
+    //   setTimeout(() => {
+    //     this.translate.use(language);
+    //     this.onLanguageChanged.next(language);
+    //   });
+    // }
 
     return language;
   }
