@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class CategoryAddComponent implements OnInit {
 
+  public isLoading = false;
   public addModel: CategoryAddModel = new CategoryAddModel();
   constructor(private apiService: ApiService, private router: Router, private snackbar: MatSnackBar) { }
 

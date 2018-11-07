@@ -4,13 +4,13 @@
       <mat-card-title>
         <span class="header" *ngIf="!isLoading">
           <!-- <button mat-button routerLink="/categories" class="header-button">Categories           xy / file</button> -->
-         New file </span>
+         {{'newFile' | translate }} </span>
       </mat-card-title>
     </span>
     <span class="spacer"></span>
     <span>
       <mat-card-title>
-          <a mat-raised-button color="primary" routerLink="/categories/{{catId}}/files" >Back</a>
+          <a mat-raised-button color="primary" routerLink="/categories/{{catId}}/files" >{{'back' | translate }}</a>
       </mat-card-title>
     </span>
 
@@ -18,20 +18,20 @@
   </mat-card-header>
   <div class="form-container">
     <div *ngIf="!uploading">
-     
 
-      <button type="button" mat-button (click)="imgFileInput.click()"><mat-icon *ngIf="addModel.file == null">note_add</mat-icon>{{ addModel.file == null ? ' Upload file' : addModel.file.name}}</button>
+
+      <button type="button" mat-button (click)="imgFileInput.click()"><mat-icon *ngIf="addModel.file == null">note_add</mat-icon>{{ addModel.file == null ? ('uploadFile' | translate) : addModel.file.name}}</button>
       <input style="visibility:hidden" type="file" #imgFileInput (change)="upload(imgFileInput.files)" />
 
       <mat-form-field>
-          <textarea [(ngModel)]="addModel.description" matInput placeholder="Description"></textarea>
+          <textarea [(ngModel)]="addModel.description" matInput placeholder="{{'description' | translate}}"></textarea>
         </mat-form-field>
       <!-- <mat-form-field>
   <mat-select placeholder="Select">
     <mat-option value="option">Option</mat-option>
   </mat-select>
 </mat-form-field> -->
-      <button mat-raised-button (click)="AddFile()" color="primary">Add</button>
+      <button mat-raised-button (click)="AddFile()" color="primary">{{'addFile' | translate }}</button>
     </div>
   </div>
   <div *ngIf="uploading" class="spinner-container">
@@ -39,6 +39,6 @@
       </mat-progress-spinner
       ><div class="spinner-container-text">
           {{progress }}%
-      </div>  
+      </div>
     </div>
 </mat-card>

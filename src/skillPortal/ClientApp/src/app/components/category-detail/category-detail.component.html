@@ -4,23 +4,23 @@
 
 <mat-card [@fadeInOut] class="main-data-card">
     <mat-card-header>
-        <span>        
+        <span>
         <mat-card-title>
           <span class="header" *ngIf="!isLoading"><button mat-button routerLink="/categories" class="header-button">{{'categories' | translate }} </button> / <button mat-button routerLink="/categories/{{catId}}" class="header-button">{{ data?.name }}</button></span>
         </mat-card-title>
-      </span> 
+      </span>
         <!-- <span class="spacer"></span>
-        <span>        
+        <span>
             <mat-card-title>
                <a mat-raised-button color="primary" routerLink="/categories/add" >Add new category</a>
             </mat-card-title>
           </span>  -->
-        
+
         <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
     </mat-card-header>
     <!-- <img matCardImage src="Card wide image source"> -->
     <mat-card-content>
-        <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
+        <!-- <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar> -->
         <nav mat-tab-nav-bar style="color:black;">
           <a mat-tab-link style="color:black;"
              *ngFor="let link of navLinks"
@@ -30,12 +30,12 @@
             {{link.label | translate }}
           </a>
         </nav>
-        
+
 
 <router-outlet></router-outlet>
     </mat-card-content>
     <mat-card-actions >
-        
+
     </mat-card-actions>
     <mat-card-footer>
     </mat-card-footer>

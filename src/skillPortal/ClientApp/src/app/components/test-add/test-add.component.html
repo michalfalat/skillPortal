@@ -2,7 +2,7 @@
   <mat-card-header>
     <span>
       <mat-card-title>
-        <span class="header">New test </span>
+        <span class="header">{{'newTest' | translate }} </span>
       </mat-card-title>
     </span>
     <span class="spacer"></span>
@@ -16,18 +16,18 @@
   </mat-card-header>
   <div class="form-container">
     <mat-form-field>
-      <input [(ngModel)]="exam.name" matInput placeholder="Name" required>
+      <input [(ngModel)]="exam.name" matInput placeholder="{{'name' | translate }}" required>
     </mat-form-field>
 
     <mat-form-field>
-      <textarea [(ngModel)]="exam.description" matInput placeholder="Description"></textarea>
+      <textarea [(ngModel)]="exam.description" matInput placeholder="{{'description' | translate }}"></textarea>
     </mat-form-field>
     <div *ngFor="let question of exam.questions; let i = index">
       <mat-card [@fadeInOut] class="question-card">
         <mat-card-header class="unsetWidth">
           <span>
             <mat-card-title>
-              <span class="question-header">{{i+1}}.Question </span>
+              <span class="question-header">{{i+1}}.{{'question' | translate }}</span>
             </mat-card-title>
           </span>
           <span class="spacer"></span>
@@ -35,22 +35,22 @@
             <mat-card-title>
               <mat-menu #appMenu="matMenu" [xPosition]="'before'">
                 <button mat-menu-item (click)="AddNewAnswer(question)">
-                  <mat-icon class="mat-18">add</mat-icon><span>Add answer</span>
+                  <mat-icon class="mat-18">add</mat-icon><span>{{'addAnswer' | translate}}</span>
                 </button>
                 <button mat-menu-item [matMenuTriggerFor]="questionType" >
-                  <mat-icon class="mat-18" >spellcheck</mat-icon><span>Answer type</span>
+                  <mat-icon class="mat-18" >spellcheck</mat-icon><span>{{'answerType' | translate}}</span>
                 </button>
                 <button mat-menu-item (click)="imgReader.click()">
-                  <mat-icon class="mat-18">add_photo_alternate</mat-icon><span>Add picture</span>
+                  <mat-icon class="mat-18">add_photo_alternate</mat-icon><span>{{'addPicture' | translate }}</span>
                 </button>
                 <button mat-menu-item>
-                  <mat-icon class="mat-18">delete</mat-icon><span>Delete question</span>
+                  <mat-icon class="mat-18">delete</mat-icon><span>{{'deleteQuestion' | translate }}</span>
                 </button>
               </mat-menu>
 
               <mat-menu #questionType="matMenu">
-                <button mat-menu-item> <mat-icon class="mat-18">check_box</mat-icon><span>Multiple answers</span></button>
-                <button mat-menu-item><mat-icon class="mat-18">radio_button_checked</mat-icon><span>1 answer</span></button>
+                <button mat-menu-item> <mat-icon class="mat-18">check_box</mat-icon><span>{{'multipleAnswers' | translate }}</span></button>
+                <button mat-menu-item><mat-icon class="mat-18">radio_button_checked</mat-icon><span>1 {{'answer' | translate }}</span></button>
               </mat-menu>
 
               <button matTooltip="Menu" mat-icon-button [matMenuTriggerFor]="appMenu" class="question-menu">
@@ -61,7 +61,7 @@
         </mat-card-header>
         <mat-card-subtitle>
           <mat-form-field>
-            <input [(ngModel)]="question.text" matInput placeholder="Question text" required class="question-input">
+            <input [(ngModel)]="question.text" matInput placeholder="{{'questionText' | translate }}" required class="question-input">
           </mat-form-field>
           <span class="spacer"></span>
           <span>
@@ -77,8 +77,8 @@
         <mat-card-content>
             <div class="mat-table"  *ngIf="question.answers.length !== 0">
                 <div class="mat-header-row">
-                  <div class="mat-header-cell">Is correct </div>
-                  <div class="mat-header-cell">Text</div>
+                  <div class="mat-header-cell">{{'isCorrect' | translate }} </div>
+                  <div class="mat-header-cell">{{'text'}}</div>
                   <div class="mat-header-cell">Three</div>
                 </div>
                 <div class="mat-row" *ngFor="let answer of question.answers">
@@ -95,14 +95,11 @@
             <mat-row *ngFor="let answer of question.answers">
                     <mat-cell>{{answer.isCorrect}}</mat-cell>
                     <mat-cell>{{answer.text}}</mat-cell>
-              </mat-row>  
-          
+              </mat-row>
+
           </mat-table> -->
 
         </mat-card-content>
-        <mat-card-actions>
-
-        </mat-card-actions>
         <mat-card-footer>
         </mat-card-footer>
       </mat-card>
@@ -113,7 +110,11 @@
     </mat-select>
   </mat-form-field> -->
 
-    <button mat-raised-button (click)="AddNewQuestion()" color="primary">new questions</button>
-    <button mat-raised-button (click)="AddTest()" color="primary">Add</button>
+
+    <button mat-raised-button (click)="AddNewQuestion()" color="primary">{{'newQuestion' | translate }}</button>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <button mat-raised-button (click)="AddTest()" color="primary">{{'addTest' | translate }}</button>
   </div>
 </mat-card>

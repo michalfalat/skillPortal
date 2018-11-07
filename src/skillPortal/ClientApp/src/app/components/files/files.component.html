@@ -1,102 +1,108 @@
 
 <div layout-fill layout="column" layout-align="center none">
     <div layout="row" layout-align="center none">
-  
+
   <mat-card [@fadeInOut] class="main-data-card">
       <mat-card-header>
-          <span>        
+          <span>
           <!-- <mat-card-title>
-              
+
               <span class="header" *ngIf="!isLoading"><button mat-button routerLink="/categories" class="header-button">Categories </button> / <button mat-button routerLink="/categories/{{catId}}" class="header-button">{{ this.data?.catName }}</button>/ Files </span>
           </mat-card-title> -->
-        </span> 
+        </span>
           <span class="spacer"></span>
-          <span>        
+          <span>
               <mat-card-title>
                 <!-- <a mat-icon-button routerLink="/categories/{{catId}}/files/add" color="primary">
                     <mat-icon class="mat-18">add</mat-icon>
                     Add file
                 </a> -->
-                 <a mat-raised-button color="primary" routerLink="/categories/{{catId}}/files/add" > <mat-icon >add</mat-icon> Add file </a>
+                 <a mat-raised-button color="primary" routerLink="/categories/{{catId}}/files/add" > <mat-icon >add</mat-icon> {{'addFile' | translate }} </a>
               </mat-card-title>
-            </span> 
-          
+            </span>
+
           <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
       </mat-card-header>
       <!-- <img matCardImage src="Card wide image source"> -->
       <mat-card-content>
           <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
-          <table mat-table [dataSource]="data?.files" class="mat-elevation-z8" *ngIf="data != null">
+          <mat-accordion>
+            <mat-nav-list>
+                 <mat-list-item *ngIf="data?.files.length === 0">
+                    <button disabled mat-button >
+                       {{'noFilesAvailable' | translate}}
+                    </button>
+                 </mat-list-item>
+             </mat-nav-list>
+        </mat-accordion>
+          <table mat-table [dataSource]="data?.files" class="mat-elevation-z8" *ngIf="data != null  &&  data?.files.length > 0">
 
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-          
+
             <!-- Position Column -->
             <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <th mat-header-cell *matHeaderCellDef> {{'name' | translate }} </th>
               <td mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
-          
+
             <ng-container matColumnDef="description">
-              <th mat-header-cell *matHeaderCellDef> Description </th>
+              <th mat-header-cell *matHeaderCellDef> {{'description' | translate }} </th>
               <td mat-cell *matCellDef="let element"> {{element.description}} </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="downloads">
-              <th mat-header-cell *matHeaderCellDef> Downloads </th>
+              <th mat-header-cell *matHeaderCellDef> {{'downloadCount' | translate }} </th>
               <td mat-cell *matCellDef="let element"> {{element.downloads}} x </td>
             </ng-container>
 
             <ng-container matColumnDef="date">
-                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <th mat-header-cell *matHeaderCellDef> {{'date' | translate }} </th>
                 <td mat-cell *matCellDef="let element"> {{element.created | date }} </td>
               </ng-container>
 
               <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef>  Action </th>
-                <td mat-cell *matCellDef="let element"> <button mat-icon-button  matTooltip="Download" (click)="downloadFile(element)">
+                <th mat-header-cell *matHeaderCellDef>  </th>
+                <td mat-cell *matCellDef="let element"> <button mat-icon-button  [matTooltip]="'download' | translate" (click)="downloadFile(element)">
                     <mat-icon class="mat-18">archive</mat-icon>
                 </button> </td>
               </ng-container>
 
-              
-          
-         
-          
+
+
+
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"  ></tr>
           </table>
-          
-        <!-- <mat-accordion>          
+
+        <!-- <mat-accordion>
             <mat-nav-list>
                  <mat-list-item *ngIf="data?.files.length === 0">
                     <button disabled mat-button >
                        No files available
                     </button>
-                 </mat-list-item>  
-                 
+                 </mat-list-item>
+
                  <mat-list-item *ngFor="let item of data?.files" (click)="downloadFile(item.id, item.name)">
                      <mat-icon class="outlined">{{item.type | lowercase }}</mat-icon>
                      {{ item.name }}
-                 </mat-list-item>  
+                 </mat-list-item>
               - <mat-list-item >
                     <a matLine >aa</a>
                     <button mat-icon-button  >
                        <mat-icon>info</mat-icon>
                     </button>
-                 </mat-list-item>                
+                 </mat-list-item>
              </mat-nav-list>
         </mat-accordion> -->
       </mat-card-content>
       <mat-card-actions >
-          
+
       </mat-card-actions>
       <mat-card-footer>
       </mat-card-footer>
   </mat-card>
-  
-  
+
+
   </div>
   </div>
-  

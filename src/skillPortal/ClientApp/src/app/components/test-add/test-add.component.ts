@@ -15,7 +15,8 @@ export class TestAddComponent implements OnInit {
 
   public catId;
   public exam: ExamAddModel;
-  columnsForAnswerTable: string[] = ['IsCorrect', 'Text', 'Image', 'Actions', ];
+  public isLoading = false;
+  columnsForAnswerTable: string[] = ['IsCorrect', 'Text', 'Image', 'Actions',];
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -23,11 +24,11 @@ export class TestAddComponent implements OnInit {
       this.catId = +params['catId'];
       console.log(this.catId);
     });
-    this.exam =  new ExamAddModel;
+    this.exam = new ExamAddModel;
     this.exam.questions = [];
   }
   AddNewQuestion() {
-    const question  =   new QuestionAddModel();
+    const question = new QuestionAddModel();
     question.text = '';
     question.answers = [];
     console.log(this.exam);
@@ -35,22 +36,24 @@ export class TestAddComponent implements OnInit {
   }
 
   AddNewAnswer(question) {
-    let answer  =   new AnswerAddModel();
+    let answer = new AnswerAddModel();
     answer.text = 'answer';
     console.log(this.exam);
     question.answers.push(answer);
   }
 
+  AddTest() {
 
+  }
   readURL(event, question: QuestionAddModel): void {
     if (event.target.files && event.target.files[0]) {
-        const file = event.target.files[0];
+      const file = event.target.files[0];
 
-        const reader = new FileReader();
-        reader.onload = e => question.image = reader.result;
+      const reader = new FileReader();
+      reader.onload = e => question.image = reader.result;
 
-        reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
     }
-}
+  }
 
 }

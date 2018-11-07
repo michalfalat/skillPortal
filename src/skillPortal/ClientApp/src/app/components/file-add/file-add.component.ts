@@ -16,6 +16,7 @@ export class FileAddComponent implements OnInit {
 
   public catId = null;
   public uploading = false;
+  public isLoading = false;
   public addModel: FileAddModel = new FileAddModel();
   public progress = 1;
 

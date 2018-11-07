@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class CategoriesComponent implements OnInit {
 
   private dataMain: CategoryViewModel[] = null;
-  private data: CategoryViewModel[] = null;
+  public data: CategoryViewModel[] = null;
   public isLoading = true;
 
   constructor(private  apiService: ApiService, private router: Router, private searchService: SearchService) { }
@@ -26,7 +26,7 @@ export class CategoriesComponent implements OnInit {
      this.searchService.subject.subscribe( (substring: string)  => {
       if (this.dataMain != null) {
         this.data = this.dataMain.filter(function (el) {
-          return el.name.toLowerCase().includes(substring.toLocaleLowerCase()) || 
+          return el.name.toLowerCase().includes(substring.toLocaleLowerCase()) ||
                   ( el.description  && el.description.toLowerCase().includes(substring.toLocaleLowerCase()));
         });
       }

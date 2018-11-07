@@ -42,11 +42,11 @@ input.form-control.is-required-status, textarea.form-control.is-required-status,
 
 
 /*.ng-valid[required], .ng-valid.required {
-  border-left: 5px solid #42A948; 
+  border-left: 5px solid #42A948;
 }
 
 .ng-invalid:not(form) {
-  border-left: 5px solid #a94442; 
+  border-left: 5px solid #a94442;
 }*/
 
 .bootstrap-select.ng-novalidation > .dropdown-toggle {
@@ -337,8 +337,9 @@ i.page-caption {
 
 a:hover, a:active, a:visited {
   color: white;
-  font-weight: bold;
+  opacity: 0.8;
   text-decoration: none;
+  transition: all 0.1s ease-in;
 }
 
 .form-container {
@@ -385,26 +386,26 @@ mat-list-item button  {
 }
 
 .spinner-container {
-  
+
   margin: 10px auto;
   text-align: center;
 }
 
-.spinner-container-text {   
+.spinner-container-text {
    position: relative;
   top: -71px;
   left: 4px;
   font-size: large;
 }
 
-mat-progress-spinner {  
+mat-progress-spinner {
   margin: 10px auto;
 }
 
 .question-image-preview {
   max-width: 100%;
   width: auto;
-  max-height: 300px;  
+  max-height: 300px;
   margin: auto;
   display: block;
 }
