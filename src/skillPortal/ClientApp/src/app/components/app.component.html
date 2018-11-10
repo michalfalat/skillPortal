@@ -2,7 +2,7 @@
   <ngx-toasta></ngx-toasta>
   <mat-toolbar color="primary">
     <button mat-button routerLink="/categories" color="">
-      <mat-icon class="mat-18">school</mat-icon>
+      <mat-icon class="">school</mat-icon>
       <span> {{ 'categories' | translate }}</span>
     </button>
     <span class="spacer"></span>
@@ -14,7 +14,7 @@
     <span class="spacer"></span>
 
     <button mat-button [matMenuTriggerFor]="langSelector" matTooltip="{{ 'language' | translate }}">
-      <mat-icon class="mat-18">language</mat-icon> {{ selectedLanguage | uppercase }}
+      <mat-icon class="">language</mat-icon> {{ selectedLanguage | uppercase }}
 
     </button>
     <mat-menu #langSelector="matMenu" x-position="after" y-position="below" [overlapTrigger]="false">
@@ -29,7 +29,7 @@
       </button>
     </mat-menu>
     <button mat-button routerLink="/about" color="">
-      <mat-icon class="mat-18">info</mat-icon>
+      <mat-icon class="">info</mat-icon>
       <span> {{'about' | translate}}</span>
     </button>
   </mat-toolbar>

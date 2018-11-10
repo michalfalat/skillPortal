@@ -35,22 +35,26 @@
             <mat-card-title>
               <mat-menu #appMenu="matMenu" [xPosition]="'before'">
                 <button mat-menu-item (click)="AddNewAnswer(question)">
-                  <mat-icon class="mat-18">add</mat-icon><span>{{'addAnswer' | translate}}</span>
+                  <mat-icon class="">add</mat-icon><span>{{'addAnswer' | translate}}</span>
                 </button>
-                <button mat-menu-item [matMenuTriggerFor]="questionType" >
-                  <mat-icon class="mat-18" >spellcheck</mat-icon><span>{{'answerType' | translate}}</span>
+                <button mat-menu-item [matMenuTriggerFor]="questionType">
+                  <mat-icon class="">spellcheck</mat-icon><span>{{'answerType' | translate}}</span>
                 </button>
                 <button mat-menu-item (click)="imgReader.click()">
-                  <mat-icon class="mat-18">add_photo_alternate</mat-icon><span>{{'addPicture' | translate }}</span>
+                  <mat-icon class="">add_photo_alternate</mat-icon><span>{{'addPicture' | translate }}</span>
                 </button>
                 <button mat-menu-item>
-                  <mat-icon class="mat-18">delete</mat-icon><span>{{'deleteQuestion' | translate }}</span>
+                  <mat-icon class="">delete</mat-icon><span>{{'deleteQuestion' | translate }}</span>
                 </button>
               </mat-menu>
 
               <mat-menu #questionType="matMenu">
-                <button mat-menu-item> <mat-icon class="mat-18">check_box</mat-icon><span>{{'multipleAnswers' | translate }}</span></button>
-                <button mat-menu-item><mat-icon class="mat-18">radio_button_checked</mat-icon><span>1 {{'answer' | translate }}</span></button>
+                <button mat-menu-item>
+                  <mat-icon class="">check_box</mat-icon><span>{{'multipleAnswers' | translate }}</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="">radio_button_checked</mat-icon><span>1 {{'answer' | translate }}</span>
+                </button>
               </mat-menu>
 
               <button matTooltip="Menu" mat-icon-button [matMenuTriggerFor]="appMenu" class="question-menu">
@@ -75,18 +79,18 @@
         </mat-card-subtitle>
         <!-- <img matCardImage src="Card wide image source"> -->
         <mat-card-content>
-            <div class="mat-table"  *ngIf="question.answers.length !== 0">
-                <div class="mat-header-row">
-                  <div class="mat-header-cell">{{'isCorrect' | translate }} </div>
-                  <div class="mat-header-cell">{{'text'}}</div>
-                  <div class="mat-header-cell">Three</div>
-                </div>
-                <div class="mat-row" *ngFor="let answer of question.answers">
-                  <div class="mat-cell">Tick</div>
-                  <div class="mat-cell">Trick</div>
-                  <div class="mat-cell">Track</div>
-                </div>
-              </div>
+          <div class="mat-table" *ngIf="question.answers.length !== 0">
+            <div class="mat-header-row">
+              <div class="mat-header-cell">{{'isCorrect' | translate }} </div>
+              <div class="mat-header-cell">{{'text'}}</div>
+              <div class="mat-header-cell">Three</div>
+            </div>
+            <div class="mat-row" *ngFor="let answer of question.answers">
+              <div class="mat-cell">Tick</div>
+              <div class="mat-cell">Trick</div>
+              <div class="mat-cell">Track</div>
+            </div>
+          </div>
           <!-- <mat-table class="mat-elevation-z8" *ngIf="question.answers.length !== 0">
               <mat-header-row>
                   <mat-header-cell>Is correct</mat-header-cell>
