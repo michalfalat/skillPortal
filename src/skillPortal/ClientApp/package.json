@@ -27,6 +27,7 @@
     "@angular/router": "^6.0.9",
     "@ngx-translate/core": "^10.0.2",
     "@swimlane/ngx-datatable": "^13.0.1",
+    "angular-6-social-login-v2": "^1.0.5",
     "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "^1.8.0",
     "bootstrap-select": "^1.13.1",

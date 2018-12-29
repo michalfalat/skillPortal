@@ -66,7 +66,39 @@ import { FileAddComponent } from './components/file-add/file-add.component';
 import { FilesComponent } from './components/files/files.component';
 import { OverviewComponent } from './components/overview/overview.component';
 
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  LinkedinLoginProvider,
+  VkontakteLoginProvider,
+} from 'angular-6-social-login-v2';
+import { SocialLoginComponent } from './components/social-login/social-login.component';
 
+export function getAuthServiceConfigs() {
+  const config = new AuthServiceConfig(
+    [
+      // {
+      //   id: FacebookLoginProvider.PROVIDER_ID,
+      //   provider: new FacebookLoginProvider('Your-Facebook-app-id')
+      // },
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider('888437108446-9l05416tjj0u637fcgmgb70cfk2a9q7r.apps.googleusercontent.com')
+      },
+      // {
+      //   id: VkontakteLoginProvider.PROVIDER_ID,
+      //   provider: new VkontakteLoginProvider('Your-VK-Client-Id')
+      // },
+      // {
+      //   id: LinkedinLoginProvider.PROVIDER_ID,
+      //   provider: new LinkedinLoginProvider('1098828800522-m2ig6bieilc3tpqvmlcpdvrpvn86q4ks.apps.googleusercontent.com')
+      // },
+    ]
+  );
+  return config;
+}
 
 @NgModule({
   imports: [
@@ -89,7 +121,8 @@ import { OverviewComponent } from './components/overview/overview.component';
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
     ChartsModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    SocialLoginModule
   ],
   declarations: [
     AppComponent,
@@ -120,11 +153,13 @@ import { OverviewComponent } from './components/overview/overview.component';
     CategoryDetailComponent,
     FileAddComponent,
     FilesComponent,
-    OverviewComponent
+    OverviewComponent,
+    SocialLoginComponent
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
     { provide: ErrorHandler, useClass: AppErrorHandler },
+    { provide: AuthServiceConfig, useFactory: getAuthServiceConfigs },
     AlertService,
     ConfigurationService,
     AppTitleService,

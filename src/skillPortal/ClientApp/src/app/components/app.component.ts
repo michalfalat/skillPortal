@@ -11,10 +11,11 @@ import { AppTranslationService } from '../services/app-translation.service';
 import { AccountService } from '../services/account.service';
 import { LocalStoreManager } from '../services/local-store-manager.service';
 import { AppTitleService } from '../services/app-title.service';
-import { AuthService } from '../services/auth.service';
 import { ConfigurationService } from '../services/configuration.service';
 import { Permission } from '../models/permission.model';
 import { LoginComponent } from '../components/login/login.component';
+import { AuthService, SocialUser } from 'angular-6-social-login-v2';
+import { MainAuthService } from '../services/main-auth.service';
 
 const alertify: any = require('../assets/scripts/alertify.js');
 
@@ -29,7 +30,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public selectedLanguage: string;
   isAppLoaded: boolean;
-  isUserLoggedIn: boolean;
+  public isUserLoggedIn: boolean;
+  public user: SocialUser;
   shouldShowLoginModal: boolean;
   removePrebootScreen: boolean;
   newNotificationCount = 0;
@@ -64,7 +66,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(storageManager: LocalStoreManager, private toastaService: ToastaService, private toastaConfig: ToastaConfig,
     private accountService: AccountService, private alertService: AlertService, private notificationService: NotificationService,
-    private appTitleService: AppTitleService, private authService: AuthService, private translationService: AppTranslationService,
+    private appTitleService: AppTitleService, private authService: MainAuthService, private translationService: AppTranslationService,
     public configurations: ConfigurationService, public router: Router, private searchService: SearchService,
     public route: ActivatedRoute) {
 
@@ -117,10 +119,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     this.loginControl.reset();
     this.shouldShowLoginModal = false;
 
-    if (this.authService.isSessionExpired) {
-      this.alertService
-      .showStickyMessage('Session Expired', 'Your Session has expired. Please log in again to renew your session', MessageSeverity.warn);
-    }
+    // if (this.authService.isSessionExpired) {
+    //   this.alertService
+    //   .showStickyMessage('Session Expired', 'Your Session has expired. Please log in again to renew your session', MessageSeverity.warn);
+    // }
   }
 
   changeLanguage(lang) {
@@ -134,45 +136,54 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   ngOnInit() {
-    this.isUserLoggedIn = this.authService.isLoggedIn;
+    const currentUser = this.authService.user;
+    console.log('social user');
+    console.log(currentUser);
+    this.isUserLoggedIn = (currentUser != null);
+    this.user = currentUser;
 
     // 1 sec to ensure all the effort to get the css animation working is appreciated :|, Preboot screen is removed .5 sec later
     setTimeout(() => this.isAppLoaded = true, 1000);
     setTimeout(() => this.removePrebootScreen = true, 1500);
 
-    setTimeout(() => {
-      if (this.isUserLoggedIn) {
-        this.alertService.resetStickyMessage();
+    // setTimeout(() => {
+    //   if (this.isUserLoggedIn) {
+    //     this.alertService.resetStickyMessage();
 
-        // if (!this.authService.isSessionExpired)
-        this.alertService.showMessage('Login', `Welcome back ${this.userName}!`, MessageSeverity.default);
-        // else
-        //    this.alertService.showStickyMessage('Session Expired', 'Your Session has expired. Please log in again', MessageSeverity.warn);
-      }
-    }, 2000);
+    //     // if (!this.authService.isSessionExpired)
+    //     this.alertService.showMessage('Login', `Welcome back ${this.userName}!`, MessageSeverity.default);
+    //     // else
+    //     //    this.alertService.showStickyMessage('Session Expired', 'Your Session has expired. Please log in again', MessageSeverity.warn);
+    //   }
+    // }, 2000);
 
 
     this.alertService.getDialogEvent().subscribe(alert => this.showDialog(alert));
     this.alertService.getMessageEvent().subscribe(message => this.showToast(message, false));
     this.alertService.getStickyMessageEvent().subscribe(message => this.showToast(message, true));
 
-    this.authService.reLoginDelegate = () => this.shouldShowLoginModal = true;
+    // this.authService.reLoginDelegate = () => this.shouldShowLoginModal = true;
 
-    this.authService.getLoginStatusEvent().subscribe(isLoggedIn => {
-      this.isUserLoggedIn = isLoggedIn;
-
-
-      if (this.isUserLoggedIn) {
-        this.initNotificationsLoading();
+    this.authService.socialAuthState().subscribe(socialUser => {
+      this.user = socialUser;
+      if (socialUser == null) {
+        this.isUserLoggedIn = false;
       } else {
-        this.unsubscribeNotifications();
+        this.isUserLoggedIn = true;
       }
 
-      setTimeout(() => {
-        if (!this.isUserLoggedIn) {
-          this.alertService.showMessage('Session Ended!', '', MessageSeverity.default);
-        }
-      }, 500);
+
+      // if (this.isUserLoggedIn) {
+      //   this.initNotificationsLoading();
+      // } else {
+      //   this.unsubscribeNotifications();
+      // }
+
+      // setTimeout(() => {
+      //   if (!this.isUserLoggedIn) {
+      //     this.alertService.showMessage('Session Ended!', '', MessageSeverity.default);
+      //   }
+      // }, 500);
     });
 
     this.router.events.subscribe(event => {
@@ -189,7 +200,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
-  onSearch(searchValue: string ) {
+  onSearch(searchValue: string) {
     this.searchService.subject.next(searchValue);
   }
 
@@ -340,7 +351,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   logout() {
     this.authService.logout();
-    this.authService.redirectLogoutUser();
+    this.router.navigate(['home']);
   }
 
 
@@ -349,14 +360,14 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
-  get userName(): string {
-    return this.authService.currentUser ? this.authService.currentUser.userName : '';
-  }
+  // get userName(): string {
+  //   return this.authService. ? this.authService.currentUser.userName : '';
+  // }
 
 
-  get fullName(): string {
-    return this.authService.currentUser ? this.authService.currentUser.fullName : '';
-  }
+  // get fullName(): string {
+  //   return this.authService.currentUser ? this.authService.currentUser.fullName : '';
+  // }
 
 
 

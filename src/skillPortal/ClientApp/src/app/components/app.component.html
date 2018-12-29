@@ -32,6 +32,26 @@
       <mat-icon class="">info</mat-icon>
       <span> {{'about' | translate}}</span>
     </button>
+
+    <button *ngIf="!isUserLoggedIn" mat-button routerLink="/login" color="">
+      <mat-icon class="">user</mat-icon>
+      <span> {{'login' | translate}}</span>
+    </button>
+
+    <button *ngIf="isUserLoggedIn" mat-button [matMenuTriggerFor]="userDropdown" matTooltip="{{ 'profile' | translate }}">
+      <mat-icon class="">language</mat-icon> {{ user != null ? user.email : 'Logged user'}}
+
+    </button>
+    <mat-menu #userDropdown="matMenu" x-position="after" y-position="below" [overlapTrigger]="false">
+      <button mat-menu-item (click)="changeLanguage('sk')">
+        Profile
+      </button>
+      <button mat-menu-item (click)="logout()">
+        Logout
+      </button>
+    </mat-menu>
+
+
   </mat-toolbar>
   <div id="mainContent" class="app-component">
     <router-outlet></router-outlet>

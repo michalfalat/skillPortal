@@ -17,22 +17,25 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CategoryAddComponent } from './components/category-add/category-add.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { OverviewComponent } from './components/overview/overview.component';
+import { SocialLoginComponent } from './components/social-login/social-login.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard], data: { title: 'Home' } },
-  { path: 'login', component: LoginComponent, data: { title: 'Login' } },
+  { path: 'login', component: SocialLoginComponent, data: { title: 'Login' } },
   { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard], data: { title: 'Categories' } },
   { path: 'categories/add', component: CategoryAddComponent, canActivate: [AuthGuard], data: { title: 'Add category' } },
-  { path: 'categories/:catId', component: CategoryDetailComponent, canActivate: [AuthGuard], data: { title: 'Add category' }, children: [
-    { path: 'ratings', component: RatingComponent, canActivate: [AuthGuard], data: { title: 'Tests' } },
-    { path: 'tests', component: TestsComponent, canActivate: [AuthGuard], data: { title: 'Tests' } },
-    { path: 'tests/add', component: TestAddComponent, canActivate: [AuthGuard], data: { title: 'Test add' } },
-    { path: 'files', component: FilesComponent, canActivate: [AuthGuard], data: { title: 'Files' } },
-    { path: 'files/add', component: FileAddComponent, canActivate: [AuthGuard], data: { title: 'File add' } },
-    { path: 'overview', component: OverviewComponent, canActivate: [AuthGuard], data: { title: 'Tests' } },
-    { path: '', redirectTo: 'overview', pathMatch: 'full' },
-  ] },
+  {
+    path: 'categories/:catId', component: CategoryDetailComponent, canActivate: [AuthGuard], data: { title: 'Add category' }, children: [
+      { path: 'ratings', component: RatingComponent, canActivate: [AuthGuard], data: { title: 'Tests' } },
+      { path: 'tests', component: TestsComponent, canActivate: [AuthGuard], data: { title: 'Tests' } },
+      { path: 'tests/add', component: TestAddComponent, canActivate: [AuthGuard], data: { title: 'Test add' } },
+      { path: 'files', component: FilesComponent, canActivate: [AuthGuard], data: { title: 'Files' } },
+      { path: 'files/add', component: FileAddComponent, canActivate: [AuthGuard], data: { title: 'File add' } },
+      { path: 'overview', component: OverviewComponent, canActivate: [AuthGuard], data: { title: 'Tests' } },
+      { path: '', redirectTo: 'overview', pathMatch: 'full' },
+    ]
+  },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard], data: { title: 'Settings' } },
   { path: 'about', component: AboutComponent, data: { title: 'About Us' } },
   { path: 'home', redirectTo: '/', pathMatch: 'full' },

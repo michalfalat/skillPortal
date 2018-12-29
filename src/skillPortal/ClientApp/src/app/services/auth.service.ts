@@ -1,5 +1,5 @@
 import { Injectable, Inject, forwardRef } from '@angular/core';
-import { Router, NavigationExtras } from "@angular/router";
+import { Router, NavigationExtras } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -29,7 +29,7 @@ export class AuthService {
 
 
   constructor(private router: Router, private configurations: ConfigurationService,
-     @Inject(forwardRef(() =>  EndpointFactory)) private endpointFactory: EndpointFactory, private localStorage: LocalStoreManager) {
+    @Inject(forwardRef(() => EndpointFactory)) private endpointFactory: EndpointFactory, private localStorage: LocalStoreManager) {
     this.initializeLoginStatus();
   }
 
@@ -43,8 +43,8 @@ export class AuthService {
 
   gotoPage(page: string, preserveParams = true) {
 
-    let navigationExtras: NavigationExtras = {
-      queryParamsHandling: preserveParams ? "merge" : "", preserveFragment: preserveParams
+    const navigationExtras: NavigationExtras = {
+      queryParamsHandling: preserveParams ? 'merge' : '', preserveFragment: preserveParams
     };
 
 
@@ -53,17 +53,17 @@ export class AuthService {
 
 
   redirectLoginUser() {
-    let redirect = this.loginRedirectUrl && this.loginRedirectUrl != '/' && this.loginRedirectUrl != ConfigurationService.defaultHomeUrl ? this.loginRedirectUrl : this.homeUrl;
+    const redirect = this.loginRedirectUrl && this.loginRedirectUrl !== '/' && this.loginRedirectUrl !== ConfigurationService.defaultHomeUrl ? this.loginRedirectUrl : this.homeUrl;
     this.loginRedirectUrl = null;
 
 
-    let urlParamsAndFragment = Utilities.splitInTwo(redirect, '#');
-    let urlAndParams = Utilities.splitInTwo(urlParamsAndFragment.firstPart, '?');
+    const urlParamsAndFragment = Utilities.splitInTwo(redirect, '#');
+    const urlAndParams = Utilities.splitInTwo(urlParamsAndFragment.firstPart, '?');
 
-    let navigationExtras: NavigationExtras = {
+    const navigationExtras: NavigationExtras = {
       fragment: urlParamsAndFragment.secondPart,
       queryParams: Utilities.getQueryParamsFromString(urlAndParams.secondPart),
-      queryParamsHandling: "merge"
+      queryParamsHandling: 'merge'
     };
 
     this.router.navigate([urlAndParams.firstPart], navigationExtras);
@@ -71,7 +71,7 @@ export class AuthService {
 
 
   redirectLogoutUser() {
-    let redirect = this.logoutRedirectUrl ? this.logoutRedirectUrl : this.loginUrl;
+    const redirect = this.logoutRedirectUrl ? this.logoutRedirectUrl : this.loginUrl;
     this.logoutRedirectUrl = null;
 
     this.router.navigate([redirect]);
@@ -90,8 +90,7 @@ export class AuthService {
 
     if (this.reLoginDelegate) {
       this.reLoginDelegate();
-    }
-    else {
+    } else {
       this.redirectForLogin();
     }
   }
@@ -105,8 +104,9 @@ export class AuthService {
 
   login(userName: string, password: string, rememberMe?: boolean) {
 
-    if (this.isLoggedIn)
+    if (this.isLoggedIn) {
       this.logout();
+    }
 
     return this.endpointFactory.getLoginEndpoint<LoginResponse>(userName, password).pipe(
       map(response => this.processLoginResponse(response, rememberMe)));
@@ -164,8 +164,7 @@ export class AuthService {
       this.localStorage.savePermanentData(expiresIn, DBkeys.TOKEN_EXPIRES_IN);
       this.localStorage.savePermanentData(permissions, DBkeys.USER_PERMISSIONS);
       this.localStorage.savePermanentData(user, DBkeys.CURRENT_USER);
-    }
-    else {
+    } else {
       this.localStorage.saveSyncedSessionData(accessToken, DBkeys.ACCESS_TOKEN);
       this.localStorage.saveSyncedSessionData(idToken, DBkeys.ID_TOKEN);
       this.localStorage.saveSyncedSessionData(refreshToken, DBkeys.REFRESH_TOKEN);
@@ -195,10 +194,10 @@ export class AuthService {
 
   private reevaluateLoginStatus(currentUser?: User) {
 
-    let user = currentUser || this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
-    let isLoggedIn = user != null;
+    const user = currentUser || this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
+    const isLoggedIn = user != null;
 
-    if (this.previousIsLoggedInCheck != isLoggedIn) {
+    if (this.previousIsLoggedInCheck !== isLoggedIn) {
       setTimeout(() => {
         this._loginStatus.next(isLoggedIn);
       });
@@ -215,7 +214,7 @@ export class AuthService {
 
   get currentUser(): User {
 
-    let user = this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
+    const user = this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
     this.reevaluateLoginStatus(user);
 
     return user;
@@ -264,6 +263,6 @@ export class AuthService {
   }
 
   get rememberMe(): boolean {
-    return this.localStorage.getDataObject<boolean>(DBkeys.REMEMBER_ME) == true;
+    return this.localStorage.getDataObject<boolean>(DBkeys.REMEMBER_ME) === true;
   }
 }
