@@ -1,0 +1,23 @@
+.login-card {
+    max-width: 300px;
+    margin: 10px auto;
+}
+
+.facebook-button {
+    background-color: #4267b2;
+    color: white;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.googleplus-button {
+    margin-top: 20px;
+    background-color: #d34836;
+    color: white;
+    width: 100%;
+}
+
+button mat-icon {
+    margin-top: -3px;
+    margin-right: 5px;
+}

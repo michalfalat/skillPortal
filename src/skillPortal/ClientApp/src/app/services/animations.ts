@@ -7,6 +7,11 @@ export const fadeInOut = trigger('fadeInOut', [
   transition(':leave', [animate('0.4s 10ms ease-out', style({ opacity: 0 }))])
 ]);
 
+export const fadeInOutLong = trigger('fadeInOutLong', [
+  transition(':enter', [style({ opacity: 0 }), animate('0.5s ease-in', style({ opacity: 1 }))]),
+  transition(':leave', [animate('0.6s 10ms ease-out', style({ opacity: 0 }))])
+]);
+
 
 
 export function flyInOut(duration: number = 0.2) {

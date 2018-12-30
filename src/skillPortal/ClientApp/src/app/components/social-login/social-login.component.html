@@ -1,5 +1,30 @@
-<h2>
-  Login
-</h2>
-<button mat-button (click)="socialSignIn('facebook')">Sign in with Facebook</button>
-<button mat-button (click)="socialSignIn('google')">Sign in with Google</button>
+<div layout-fill layout="column" layout-align="center none">
+  <div layout="row" layout-align="center none">
+
+    <mat-card [@fadeInOutLong] class="login-card">
+      <mat-card-title>
+        <span class="spacer"></span>
+        <span class="header">{{'login' | translate }} </span>
+        <span class="spacer"></span>
+      </mat-card-title>
+
+      <mat-card-content>
+        <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
+        <button mat-button (click)="socialSignIn('facebook')" class="facebook-button">
+          <mat-icon class=""><img class="profile-image" src="../../assets/fb.png" /></mat-icon>Sign in with
+          Facebook
+        </button>
+        <button mat-button (click)="socialSignIn('google')" class="googleplus-button">
+          <mat-icon class=""><img class="profile-image" src="../../assets/gplus.png" /></mat-icon>Sign in with Google
+        </button>
+      </mat-card-content>
+      <mat-card-actions>
+
+      </mat-card-actions>
+      <mat-card-footer>
+      </mat-card-footer>
+    </mat-card>
+
+
+  </div>
+</div>

@@ -15,9 +15,8 @@ export class MainAuthService {
   }
 
 
-  loginSocial(providerId) {
-
-    this.socialAuthService.signIn(providerId).then(
+  loginSocial(providerId): Promise<void> {
+    return this.socialAuthService.signIn(providerId).then(
       (userData) => {
 
         localStorage.setItem('auth_provider', providerId);

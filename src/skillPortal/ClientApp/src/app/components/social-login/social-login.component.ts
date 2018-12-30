@@ -6,15 +6,18 @@ import {
   VkontakteLoginProvider
 } from 'angular-6-social-login-v2';
 import { MainAuthService } from 'src/app/services/main-auth.service';
+import { Router } from '@angular/router';
+import { fadeInOut, fadeInOutLong } from 'src/app/services/animations';
 
 @Component({
   selector: 'app-social-login',
   templateUrl: './social-login.component.html',
-  styleUrls: ['./social-login.component.css']
+  styleUrls: ['./social-login.component.css'],
+  animations: [fadeInOutLong]
 })
 export class SocialLoginComponent implements OnInit {
 
-  constructor(private mainAuthService: MainAuthService) { }
+  constructor(private mainAuthService: MainAuthService, private router: Router) { }
 
   public socialSignIn(socialPlatform: string) {
     let socialPlatformProvider;
@@ -24,7 +27,9 @@ export class SocialLoginComponent implements OnInit {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     }
 
-    this.mainAuthService.loginSocial(socialPlatformProvider);
+    this.mainAuthService.loginSocial(socialPlatformProvider).then(() => {
+      this.router.navigate(['home']);
+    });
   }
 
   ngOnInit() {
