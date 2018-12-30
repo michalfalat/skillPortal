@@ -79,13 +79,13 @@ import { SocialLoginComponent } from './components/social-login/social-login.com
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
     [
-      // {
-      //   id: FacebookLoginProvider.PROVIDER_ID,
-      //   provider: new FacebookLoginProvider('Your-Facebook-app-id')
-      // },
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider('1963017767128440')
+      },
       {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider('888437108446-9l05416tjj0u637fcgmgb70cfk2a9q7r.apps.googleusercontent.com')
+        provider: new GoogleLoginProvider('888437108446-m8ukv902jlq4pt8so2hafa304m91q765.apps.googleusercontent.com')
       },
       // {
       //   id: VkontakteLoginProvider.PROVIDER_ID,

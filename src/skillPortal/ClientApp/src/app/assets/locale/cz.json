@@ -1,6 +1,6 @@
 {
-  "categories": "Předmety",
-  "addNewCategory": "Přidat nový předmet",
+  "categories": "Předměty",
+  "addNewCategory": "Přidat nový předmět",
   "about": "Informace",
   "noCategoriesFound": "Žádne předměty",
   "tests": "Testy",
@@ -26,6 +26,12 @@
   "addFile": "Přidat soubor",
   "description": "Popis",
   "login": "Přihlásit",
+  "login2": "Přihlásení",
+  "joinVSBCommunity": "Připoj sa ke komunitě VŠB portálu",
+  "addAndEditContent": "Přidávej a edituj obsah",
+  "signOnlyForIdentityConfirmation": "Přihlásení slouží jenom na ověrení identity",
+  "signWithFacebook": "Přihlásit přes Facebook",
+  "signWithGoogle": "Přihlásit přes Google+",
   "app": {
     "Welcome": "Bem-vindo!",
     "Notifications": "Notificações",

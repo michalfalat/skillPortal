@@ -3,19 +3,23 @@
 
     <mat-card [@fadeInOutLong] class="login-card">
       <mat-card-title>
-        <span class="spacer"></span>
-        <span class="header">{{'login' | translate }} </span>
-        <span class="spacer"></span>
+        <span class="login-header">{{'login2' | translate }} </span>
       </mat-card-title>
 
       <mat-card-content>
+        <ul>
+          <li>{{ 'joinVSBCommunity' | translate }}</li>
+          <li>{{ 'addAndEditContent' | translate }}</li>
+          <li>{{ 'signOnlyForIdentityConfirmation' | translate }}</li>
+        </ul>
         <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
         <button mat-button (click)="socialSignIn('facebook')" class="facebook-button">
-          <mat-icon class=""><img class="profile-image" src="../../assets/fb.png" /></mat-icon>Sign in with
-          Facebook
+          <mat-icon class=""><img class="profile-image" src="../../assets/fb.png" /></mat-icon>
+          {{ 'signWithFacebook' | translate }}
         </button>
         <button mat-button (click)="socialSignIn('google')" class="googleplus-button">
-          <mat-icon class=""><img class="profile-image" src="../../assets/gplus.png" /></mat-icon>Sign in with Google
+          <mat-icon class=""><img class="profile-image" src="../../assets/gplus.png" /></mat-icon>
+          {{ 'signWithGoogle' | translate }}
         </button>
       </mat-card-content>
       <mat-card-actions>

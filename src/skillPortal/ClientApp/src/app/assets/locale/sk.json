@@ -31,5 +31,11 @@
   "date": "Dátum",
   "download": "Stiahnuť",
   "noFilesAvailable": "Žiadne súbory",
-  "login": "Prihlásiť"
+  "login": "Prihlásiť",
+  "login2": "Prihlásenie",
+  "joinVSBCommunity": "Pripoj sa ku komunite VŠB portálu",
+  "addAndEditContent": "Pridávaj a edituj obsah",
+  "signOnlyForIdentityConfirmation": "Prihlásenie slúži iba na overenie identity",
+  "signWithFacebook": "Prihlásiť cez Facebook",
+  "signWithGoogle": "Prihlásiť cez Google+"
 }
