@@ -7,6 +7,7 @@ using DAL.Core.Interfaces;
 using DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
 using skillPortal.ViewModels;
 using SkillPortal.ViewModels;
 
@@ -15,11 +16,13 @@ namespace skillPortal.Controllers
     public class CategoryController : BaseController
     {
         private ICategoryManager _categoryManager;
+        public ISocialUserManager _socialUserManager { get; set; }
         readonly ILogger _logger;
-        public CategoryController(ICategoryManager categoryManager, ILogger<CategoryController> logger)
+        public CategoryController(ICategoryManager categoryManager, ILogger<CategoryController> logger, ISocialUserManager socialUserManager)
         {
             this._categoryManager = categoryManager;
             this._logger = logger;
+            this._socialUserManager = socialUserManager;
         }
 
         public async Task<IActionResult> Index()
@@ -60,15 +63,35 @@ namespace skillPortal.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CategoryAddModel model)
         {
+           
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(model);
             }
             else
             {
-                Category entity =  Mapper.Map<Category>(model);
-                this._categoryManager.Add(entity);
-                return Ok();
+                StringValues authorizationToken;
+                Request.Headers.TryGetValue("Social_Authorization", out authorizationToken);
+                var token = authorizationToken.FirstOrDefault();
+                if (string.IsNullOrEmpty(token))
+                {
+                    return Unauthorized();
+                }
+                else
+                {
+                    var usr = await this._socialUserManager.GetUserByTokenlAsync(token);
+                    if(usr == null)
+                    {
+                        return Unauthorized();
+                    }
+
+                    Category entity = Mapper.Map<Category>(model);
+                    entity.SocialUserId = usr.Id;
+                    this._categoryManager.Add(entity);
+                    return Ok();
+                }
+                
             }
 
         }

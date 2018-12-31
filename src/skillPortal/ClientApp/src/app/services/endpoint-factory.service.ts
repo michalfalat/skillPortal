@@ -19,16 +19,19 @@ export class EndpointFactory {
 
   private _authService: AuthService;
 
+
   private get authService() {
-    if (!this._authService)
+    if (!this._authService) {
       this._authService = this.injector.get(AuthService);
+    }
 
     return this._authService;
   }
 
 
 
-  constructor(protected http: HttpClient, protected configurations: ConfigurationService, private injector: Injector) {
+
+  constructor(protected http: HttpClient, protected configurations: ConfigurationService, protected injector: Injector) {
 
   }
 
@@ -79,7 +82,7 @@ export class EndpointFactory {
     return { headers: headers };
   }
 
-  protected getRequestHeadersForFile(): { headers: HttpHeaders | { [header: string]: string | string[]; } }  {
+  protected getRequestHeadersForFile(): { headers: HttpHeaders | { [header: string]: string | string[]; } } {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this.authService.accessToken,
       'Accept': `application/vnd.iman.v${EndpointFactory.apiVersion}+json, application/json, text/plain, */*`,

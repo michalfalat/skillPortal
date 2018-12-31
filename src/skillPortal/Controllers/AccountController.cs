@@ -14,6 +14,7 @@ using SkillPortal.Helpers;
 using Microsoft.AspNetCore.JsonPatch;
 using DAL.Core;
 using OpenIddict.Validation;
+using skillPortal.ViewModels;
 
 namespace SkillPortal.Controllers
 {
@@ -23,13 +24,15 @@ namespace SkillPortal.Controllers
     {
         private readonly IAccountManager _accountManager;
         private readonly IAuthorizationService _authorizationService;
+        public ISocialUserManager _socialUserManager { get; set; }
         private const string GetUserByIdActionName = "GetUserById";
         private const string GetRoleByIdActionName = "GetRoleById";
 
-        public AccountController(IAccountManager accountManager, IAuthorizationService authorizationService)
+        public AccountController(IAccountManager accountManager, IAuthorizationService authorizationService, ISocialUserManager socialUserManager)
         {
             _accountManager = accountManager;
             _authorizationService = authorizationService;
+            _socialUserManager = socialUserManager;
         }
 
 
@@ -40,6 +43,22 @@ namespace SkillPortal.Controllers
             return await GetUserByUserName(this.User.Identity.Name);
         }
 
+
+        [HttpPost("registerSocialUser")]
+        [AllowAnonymous]
+        public async Task<IActionResult> RegisterSocialUser([FromBody]SocialUserAddModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(model);
+            }
+
+            SocialUser entity = Mapper.Map<SocialUser>(model);
+            entity.Created = DateTimeOffset.UtcNow;
+            entity.IsLocked = false;
+            await this._socialUserManager.RegisterUser(entity, model.Token);
+            return Ok();
+        }
 
         [HttpGet("users/{id}", Name = GetUserByIdActionName)]
         [ProducesResponseType(200, Type = typeof(UserViewModel))]

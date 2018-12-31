@@ -18,8 +18,13 @@ namespace DAL.Models
         [MaxLength(256)]
         public string Description { get; set; }
 
-        public ICollection<Exam> Exams { get; set; }
-        public ICollection<File> Files { get; set; }
+        public ICollection<Exam> Exams { get; set; } 
+        public ICollection<File> Files { get; set; } 
+        public ICollection<Rating> Ratings { get; set; } 
+
+
+        public int SocialUserId { get; set; }
+        public virtual SocialUser SocialUser { get; set; }
 
         [NotMapped]
         public int FilesCount { get; set; }

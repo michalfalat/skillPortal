@@ -29,11 +29,9 @@ const alertify: any = require('../assets/scripts/alertify.js');
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public selectedLanguage: string;
-  isAppLoaded: boolean;
   public isUserLoggedIn: boolean;
   public user: SocialUser;
   shouldShowLoginModal: boolean;
-  removePrebootScreen: boolean;
   newNotificationCount = 0;
   appTitle = 'Skill portal';
   appLogo = require('../assets/images/logo-white.png');
@@ -141,10 +139,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log(currentUser);
     this.isUserLoggedIn = (currentUser != null);
     this.user = currentUser;
-
-    // 1 sec to ensure all the effort to get the css animation working is appreciated :|, Preboot screen is removed .5 sec later
-    setTimeout(() => this.isAppLoaded = true, 1000);
-    setTimeout(() => this.removePrebootScreen = true, 1500);
 
     // setTimeout(() => {
     //   if (this.isUserLoggedIn) {

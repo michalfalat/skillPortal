@@ -18,6 +18,9 @@ namespace DAL
         ICategoryRepository _categories;
         IExamRepository _exams;
         IFileRepository _files;
+        IRatingRepository _ratings;
+        ISocialUserRepository _socialUsers;
+        ISocialUserLoginRepository _socialUserLogins;
 
 
 
@@ -96,6 +99,39 @@ namespace DAL
                     _files = new FileRepository(_context);
 
                 return _files;
+            }
+        }
+
+        public IRatingRepository Ratings
+        {
+            get
+            {
+                if (_ratings == null)
+                    _ratings = new RatingRepository(_context);
+
+                return _ratings;
+            }
+        }
+
+        public ISocialUserRepository SocialUsers
+        {
+            get
+            {
+                if (_socialUsers == null)
+                    _socialUsers = new SocialUserRepository(_context);
+
+                return _socialUsers;
+            }
+        }
+
+        public ISocialUserLoginRepository SocialUserLogins
+        {
+            get
+            {
+                if (_socialUserLogins == null)
+                    _socialUserLogins = new SocialUserLoginRepository(_context);
+
+                return _socialUserLogins;
             }
         }
 

@@ -169,12 +169,16 @@ namespace skillPortal.Migrations
                         .IsRequired()
                         .HasMaxLength(32);
 
+                    b.Property<int>("SocialUserId");
+
                     b.Property<DateTime>("Updated");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SocialUserId");
 
                     b.ToTable("Categories");
                 });
@@ -280,6 +284,8 @@ namespace skillPortal.Migrations
                         .IsRequired()
                         .HasMaxLength(64);
 
+                    b.Property<int>("SocialUserId");
+
                     b.Property<int>("Type");
 
                     b.Property<DateTime>("Updated");
@@ -290,6 +296,8 @@ namespace skillPortal.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("SocialUserId");
 
                     b.ToTable("Files");
                 });
@@ -484,6 +492,76 @@ namespace skillPortal.Migrations
                     b.HasIndex("ExamId");
 
                     b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("DAL.Models.Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryId");
+
+                    b.Property<DateTimeOffset>("Created");
+
+                    b.Property<int>("SocialUserId");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(1024);
+
+                    b.Property<double>("Value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("SocialUserId");
+
+                    b.ToTable("Ratings");
+                });
+
+            modelBuilder.Entity("DAL.Models.SocialUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTimeOffset>("Created");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("IsLocked");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(512);
+
+                    b.Property<string>("Provider")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SocialUsers");
+                });
+
+            modelBuilder.Entity("DAL.Models.SocialUserLogin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTimeOffset>("Created");
+
+                    b.Property<int>("SocialUserId");
+
+                    b.Property<string>("Token");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SocialUserId");
+
+                    b.ToTable("SocialUserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -716,6 +794,14 @@ namespace skillPortal.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("DAL.Models.Category", b =>
+                {
+                    b.HasOne("DAL.Models.SocialUser", "SocialUser")
+                        .WithMany()
+                        .HasForeignKey("SocialUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("DAL.Models.Exam", b =>
                 {
                     b.HasOne("DAL.Models.Category", "Category")
@@ -729,6 +815,11 @@ namespace skillPortal.Migrations
                     b.HasOne("DAL.Models.Category", "Category")
                         .WithMany("Files")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAL.Models.SocialUser", "SocialUser")
+                        .WithMany()
+                        .HasForeignKey("SocialUserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -775,6 +866,27 @@ namespace skillPortal.Migrations
                     b.HasOne("DAL.Models.Exam")
                         .WithMany("Questions")
                         .HasForeignKey("ExamId");
+                });
+
+            modelBuilder.Entity("DAL.Models.Rating", b =>
+                {
+                    b.HasOne("DAL.Models.Category", "Category")
+                        .WithMany("Ratings")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAL.Models.SocialUser", "SocialUser")
+                        .WithMany()
+                        .HasForeignKey("SocialUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DAL.Models.SocialUserLogin", b =>
+                {
+                    b.HasOne("DAL.Models.SocialUser", "SocialUser")
+                        .WithMany()
+                        .HasForeignKey("SocialUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

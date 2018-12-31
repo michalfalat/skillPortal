@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace skillPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180919150224_m1")]
-    partial class m1
+    [Migration("20181231140318_addedSocialUserLogin")]
+    partial class addedSocialUserLogin
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,10 +27,10 @@ namespace skillPortal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("ImgPath");
 
@@ -40,16 +40,16 @@ namespace skillPortal.Migrations
 
                     b.Property<string>("Text");
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
                     b.HasIndex("QUestionId");
 
-                    b.ToTable("Answer");
+                    b.ToTable("Answers");
                 });
 
             modelBuilder.Entity("DAL.Models.ApplicationRole", b =>
@@ -60,9 +60,9 @@ namespace skillPortal.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<DateTime>("Created");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<string>("CreatedBy");
 
                     b.Property<string>("Description");
 
@@ -72,9 +72,9 @@ namespace skillPortal.Migrations
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256);
 
-                    b.Property<string>("UpdatedBy");
+                    b.Property<DateTime>("Updated");
 
-                    b.Property<DateTime>("UpdatedDate");
+                    b.Property<string>("UpdatedBy");
 
                     b.HasKey("Id");
 
@@ -98,9 +98,9 @@ namespace skillPortal.Migrations
 
                     b.Property<string>("Configuration");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<DateTime>("Created");
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<string>("CreatedBy");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -133,9 +133,9 @@ namespace skillPortal.Migrations
 
                     b.Property<bool>("TwoFactorEnabled");
 
-                    b.Property<string>("UpdatedBy");
+                    b.Property<DateTime>("Updated");
 
-                    b.Property<DateTime>("UpdatedDate");
+                    b.Property<string>("UpdatedBy");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
@@ -159,21 +159,28 @@ namespace skillPortal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<string>("Description")
+                        .HasMaxLength(256);
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(32);
 
-                    b.Property<string>("Name");
+                    b.Property<int>("SocialUserId");
+
+                    b.Property<DateTime>("Updated");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
 
-                    b.Property<DateTime>("UpdatedDate");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("SocialUserId");
 
                     b.ToTable("Categories");
                 });
@@ -189,10 +196,10 @@ namespace skillPortal.Migrations
                     b.Property<string>("City")
                         .HasMaxLength(50);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<DateTime>("DateCreated");
 
@@ -211,10 +218,10 @@ namespace skillPortal.Migrations
                         .HasMaxLength(30)
                         .IsUnicode(false);
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -231,25 +238,70 @@ namespace skillPortal.Migrations
 
                     b.Property<int>("CategoryId");
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<string>("Description")
+                        .HasMaxLength(256);
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(32);
 
-                    b.Property<string>("Name");
+                    b.Property<DateTime>("Updated");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Exam");
+                    b.ToTable("Exams");
+                });
+
+            modelBuilder.Entity("DAL.Models.File", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryId");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<byte[]>("Data");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(256);
+
+                    b.Property<int>("Downloads");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64);
+
+                    b.Property<int>("SocialUserId");
+
+                    b.Property<int>("Type");
+
+                    b.Property<DateTime>("Updated");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("SocialUserId");
+
+                    b.ToTable("Files");
                 });
 
             modelBuilder.Entity("DAL.Models.Order", b =>
@@ -263,10 +315,10 @@ namespace skillPortal.Migrations
                     b.Property<string>("Comments")
                         .HasMaxLength(500);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<int>("CustomerId");
 
@@ -276,10 +328,10 @@ namespace skillPortal.Migrations
 
                     b.Property<decimal>("Discount");
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -296,10 +348,10 @@ namespace skillPortal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<decimal>("Discount");
 
@@ -311,10 +363,10 @@ namespace skillPortal.Migrations
 
                     b.Property<decimal>("UnitPrice");
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -333,10 +385,10 @@ namespace skillPortal.Migrations
 
                     b.Property<decimal>("BuyingPrice");
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<DateTime>("DateCreated");
 
@@ -365,10 +417,10 @@ namespace skillPortal.Migrations
 
                     b.Property<int>("UnitsInStock");
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -387,10 +439,10 @@ namespace skillPortal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<DateTime>("DateCreated");
 
@@ -405,10 +457,10 @@ namespace skillPortal.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
@@ -421,10 +473,10 @@ namespace skillPortal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<int?>("ExamId");
 
@@ -432,16 +484,86 @@ namespace skillPortal.Migrations
 
                     b.Property<string>("Text");
 
+                    b.Property<DateTime>("Updated");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(256);
-
-                    b.Property<DateTime>("UpdatedDate");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ExamId");
 
-                    b.ToTable("Question");
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("DAL.Models.Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryId");
+
+                    b.Property<DateTimeOffset>("Created");
+
+                    b.Property<int>("SocialUserId");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(1024);
+
+                    b.Property<double>("Value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("SocialUserId");
+
+                    b.ToTable("Ratings");
+                });
+
+            modelBuilder.Entity("DAL.Models.SocialUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTimeOffset>("Created");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("IsLocked");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(512);
+
+                    b.Property<string>("Provider")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SocialUsers");
+                });
+
+            modelBuilder.Entity("DAL.Models.SocialUserLogin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTimeOffset>("Created");
+
+                    b.Property<int>("SocialUserId");
+
+                    b.Property<string>("Token");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SocialUserId");
+
+                    b.ToTable("SocialUserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -674,11 +796,32 @@ namespace skillPortal.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("DAL.Models.Category", b =>
+                {
+                    b.HasOne("DAL.Models.SocialUser", "SocialUser")
+                        .WithMany()
+                        .HasForeignKey("SocialUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("DAL.Models.Exam", b =>
                 {
                     b.HasOne("DAL.Models.Category", "Category")
                         .WithMany("Exams")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DAL.Models.File", b =>
+                {
+                    b.HasOne("DAL.Models.Category", "Category")
+                        .WithMany("Files")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAL.Models.SocialUser", "SocialUser")
+                        .WithMany()
+                        .HasForeignKey("SocialUserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -725,6 +868,27 @@ namespace skillPortal.Migrations
                     b.HasOne("DAL.Models.Exam")
                         .WithMany("Questions")
                         .HasForeignKey("ExamId");
+                });
+
+            modelBuilder.Entity("DAL.Models.Rating", b =>
+                {
+                    b.HasOne("DAL.Models.Category", "Category")
+                        .WithMany("Ratings")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DAL.Models.SocialUser", "SocialUser")
+                        .WithMany()
+                        .HasForeignKey("SocialUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DAL.Models.SocialUserLogin", b =>
+                {
+                    b.HasOne("DAL.Models.SocialUser", "SocialUser")
+                        .WithMany()
+                        .HasForeignKey("SocialUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -14,8 +14,8 @@ namespace skillPortal.Migrations
                 {
                     CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
                     UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedDate = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    Updated = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
@@ -38,8 +38,8 @@ namespace skillPortal.Migrations
                 {
                     CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
                     UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedDate = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    Updated = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
@@ -64,8 +64,8 @@ namespace skillPortal.Migrations
                     Description = table.Column<string>(nullable: true),
                     CreatedBy = table.Column<string>(nullable: true),
                     UpdatedBy = table.Column<string>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    UpdatedDate = table.Column<DateTime>(nullable: false)
+                    Created = table.Column<DateTime>(nullable: false),
+                    Updated = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -97,29 +97,12 @@ namespace skillPortal.Migrations
                     IsEnabled = table.Column<bool>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
                     UpdatedBy = table.Column<string>(nullable: true),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    UpdatedDate = table.Column<DateTime>(nullable: false)
+                    Created = table.Column<DateTime>(nullable: false),
+                    Updated = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedDate = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -161,13 +144,30 @@ namespace skillPortal.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SocialUsers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    Name = table.Column<string>(maxLength: 512, nullable: true),
+                    Provider = table.Column<string>(maxLength: 256, nullable: true),
+                    IsLocked = table.Column<bool>(nullable: false),
+                    Created = table.Column<DateTimeOffset>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SocialUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AppProducts",
                 columns: table => new
                 {
                     CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
                     UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedDate = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    Updated = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
@@ -227,8 +227,8 @@ namespace skillPortal.Migrations
                 {
                     CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
                     UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedDate = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    Updated = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Discount = table.Column<decimal>(nullable: false),
@@ -341,31 +341,6 @@ namespace skillPortal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Exam",
-                columns: table => new
-                {
-                    CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedDate = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Exam", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Exam_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "OpenIddictAuthorizations",
                 columns: table => new
                 {
@@ -390,13 +365,38 @@ namespace skillPortal.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
+                    UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
+                    Updated = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 32, nullable: false),
+                    Description = table.Column<string>(maxLength: 256, nullable: true),
+                    SocialUserId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Categories_SocialUsers_SocialUserId",
+                        column: x => x.SocialUserId,
+                        principalTable: "SocialUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AppOrderDetails",
                 columns: table => new
                 {
                     CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
                     UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedDate = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    Updated = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UnitPrice = table.Column<decimal>(nullable: false),
@@ -420,31 +420,6 @@ namespace skillPortal.Migrations
                         principalTable: "AppProducts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Question",
-                columns: table => new
-                {
-                    CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedDate = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Text = table.Column<string>(nullable: true),
-                    ImgPath = table.Column<string>(nullable: true),
-                    ExamId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Question", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Question_Exam_ExamId",
-                        column: x => x.ExamId,
-                        principalTable: "Exam",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -482,13 +457,127 @@ namespace skillPortal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Answer",
+                name: "Exams",
                 columns: table => new
                 {
                     CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
                     UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
-                    UpdatedDate = table.Column<DateTime>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    Updated = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 32, nullable: false),
+                    Description = table.Column<string>(maxLength: 256, nullable: true),
+                    CategoryId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Exams", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Exams_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Files",
+                columns: table => new
+                {
+                    CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
+                    UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
+                    Updated = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 64, nullable: false),
+                    Description = table.Column<string>(maxLength: 256, nullable: true),
+                    Type = table.Column<int>(nullable: false),
+                    Data = table.Column<byte[]>(nullable: true),
+                    Downloads = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false),
+                    SocialUserId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Files", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Files_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Files_SocialUsers_SocialUserId",
+                        column: x => x.SocialUserId,
+                        principalTable: "SocialUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ratings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Text = table.Column<string>(maxLength: 1024, nullable: false),
+                    Value = table.Column<double>(nullable: false),
+                    Created = table.Column<DateTimeOffset>(nullable: false),
+                    SocialUserId = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ratings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ratings_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Ratings_SocialUsers_SocialUserId",
+                        column: x => x.SocialUserId,
+                        principalTable: "SocialUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Questions",
+                columns: table => new
+                {
+                    CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
+                    UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
+                    Updated = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Text = table.Column<string>(nullable: true),
+                    ImgPath = table.Column<string>(nullable: true),
+                    ExamId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Questions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Questions_Exams_ExamId",
+                        column: x => x.ExamId,
+                        principalTable: "Exams",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Answers",
+                columns: table => new
+                {
+                    CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
+                    UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
+                    Updated = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ImgPath = table.Column<string>(nullable: true),
@@ -498,18 +587,18 @@ namespace skillPortal.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Answer", x => x.Id);
+                    table.PrimaryKey("PK_Answers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Answer_Question_QUestionId",
+                        name: "FK_Answers_Questions_QUestionId",
                         column: x => x.QUestionId,
-                        principalTable: "Question",
+                        principalTable: "Questions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Answer_QUestionId",
-                table: "Answer",
+                name: "IX_Answers_QUestionId",
+                table: "Answers",
                 column: "QUestionId");
 
             migrationBuilder.CreateIndex(
@@ -592,9 +681,24 @@ namespace skillPortal.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Exam_CategoryId",
-                table: "Exam",
+                name: "IX_Categories_SocialUserId",
+                table: "Categories",
+                column: "SocialUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exams_CategoryId",
+                table: "Exams",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Files_CategoryId",
+                table: "Files",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Files_SocialUserId",
+                table: "Files",
+                column: "SocialUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OpenIddictApplications_ClientId",
@@ -631,15 +735,25 @@ namespace skillPortal.Migrations
                 filter: "[ReferenceId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Question_ExamId",
-                table: "Question",
+                name: "IX_Questions_ExamId",
+                table: "Questions",
                 column: "ExamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ratings_CategoryId",
+                table: "Ratings",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ratings_SocialUserId",
+                table: "Ratings",
+                column: "SocialUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Answer");
+                name: "Answers");
 
             migrationBuilder.DropTable(
                 name: "AppOrderDetails");
@@ -660,13 +774,19 @@ namespace skillPortal.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Files");
+
+            migrationBuilder.DropTable(
                 name: "OpenIddictScopes");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictTokens");
 
             migrationBuilder.DropTable(
-                name: "Question");
+                name: "Ratings");
+
+            migrationBuilder.DropTable(
+                name: "Questions");
 
             migrationBuilder.DropTable(
                 name: "AppOrders");
@@ -681,7 +801,7 @@ namespace skillPortal.Migrations
                 name: "OpenIddictAuthorizations");
 
             migrationBuilder.DropTable(
-                name: "Exam");
+                name: "Exams");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
@@ -697,6 +817,9 @@ namespace skillPortal.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "SocialUsers");
         }
     }
 }

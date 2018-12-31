@@ -65,6 +65,7 @@ import { ApiService } from './services/api.service';
 import { FileAddComponent } from './components/file-add/file-add.component';
 import { FilesComponent } from './components/files/files.component';
 import { OverviewComponent } from './components/overview/overview.component';
+import { StarRatingModule } from 'angular-star-rating';
 
 import {
   SocialLoginModule,
@@ -120,6 +121,7 @@ export function getAuthServiceConfigs() {
     BsDropdownModule.forRoot(),
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
+    StarRatingModule.forRoot(),
     ChartsModule,
     CustomMaterialModule,
     SocialLoginModule

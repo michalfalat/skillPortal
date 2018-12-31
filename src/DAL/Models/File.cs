@@ -8,7 +8,6 @@ namespace DAL.Models
 {
     public class File : AuditableEntity
     {
-        [Required]
         public int Id { get; set; }
 
         [Required]
@@ -22,8 +21,11 @@ namespace DAL.Models
 
         public int Downloads { get; set; }
 
-        [Required]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
+
+
+        public int SocialUserId { get; set; }
+        public virtual SocialUser SocialUser { get; set; }
     }
 }

@@ -17,6 +17,12 @@ namespace DAL
         IProductRepository Products { get; }
         IOrdersRepository Orders { get; }
 
+        IRatingRepository Ratings { get; }
+
+        ISocialUserRepository SocialUsers { get; }
+
+        ISocialUserLoginRepository SocialUserLogins { get;  }
+
 
         int SaveChanges();
     }

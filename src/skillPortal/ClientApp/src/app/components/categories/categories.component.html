@@ -1,74 +1,74 @@
-
 <div layout-fill layout="column" layout-align="center none">
-  <div layout="row" layout-align="center none">
+   <div layout="row" layout-align="center none">
 
-<mat-card [@fadeInOut] class="main-data-card">
-    <mat-card-header>
-        <span>        
-        <mat-card-title>
-            <span class="header">{{'categories' | translate }} </span>
-        </mat-card-title>
-      </span> 
-        <span class="spacer"></span>
-        <span>        
-            <mat-card-title>
-               <a mat-raised-button color="primary" routerLink="/categories/add" >{{'addNewCategory' | translate }}</a>
-            </mat-card-title>
-          </span> 
-        
-    </mat-card-header>
-    <mat-card-content>
-        <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
-      <mat-accordion>
-        <div class="disabledContainer" *ngIf="data?.length === 0">
-          {{'noCategoriesFound' | translate }}
-        </div>
-        <mat-expansion-panel *ngFor="let item of data">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{item.name}}  <span class="small-text">    ({{item.description}})</span>
-            </mat-panel-title>
-            <mat-panel-description>
-              
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-      
-          <mat-nav-list>
-               <mat-list-item (click)="viewCategoryTests(item.id)">
-                  <button mat-icon-button  >
-                     <mat-icon>assignment</mat-icon>
-                     {{'tests' | translate }} ({{item.examsCount}}x)
-                  </button>
-               </mat-list-item>     
-               <mat-list-item>
-                  <button mat-icon-button disabled>
-                     <mat-icon>star</mat-icon>
-                     {{'ratings' | translate }} (0x) ... {{'comingSoon' | translate }}
-                  </button>
-               </mat-list-item>     
-               <mat-list-item (click)="viewCategoryFiles(item.id)">
-                  <button mat-icon-button  >
-                     <mat-icon>folder</mat-icon>
-                     {{'files' | translate }} ({{item.filesCount}}x)
-                  </button>
-               </mat-list-item>     
-               <!-- <mat-list-item>
+      <mat-card [@fadeInOut] class="main-data-card">
+         <mat-card-header>
+            <span>
+               <mat-card-title>
+                  <span class="header">{{'categories' | translate }} </span>
+               </mat-card-title>
+            </span>
+            <span class="spacer"></span>
+            <span>
+               <mat-card-title *ngIf="mainAuthService.user !== null; else fake_add_button">
+                  <a mat-raised-button color="primary" routerLink="/categories/add">{{'addNewCategory' | translate }}</a>
+               </mat-card-title>
+               <ng-template #fake_add_button>
+                  <mat-card-title>
+                     <a mat-raised-button disabled color="primary">{{'addNewCategory' | translate }}</a>
+                  </mat-card-title>
+               </ng-template>
+            </span>
+
+         </mat-card-header>
+         <mat-card-content>
+            <mat-progress-bar *ngIf="isLoading === true" mode="indeterminate"></mat-progress-bar>
+            <mat-accordion>
+               <div class="disabledContainer" *ngIf="data?.length === 0">
+                  {{'noCategoriesFound' | translate }}
+               </div>
+               <mat-expansion-panel *ngFor="let item of data">
+                  <mat-expansion-panel-header>
+                     <mat-panel-title>
+                        {{item.name}} <span class="small-text"> ({{item.description}})</span>
+                     </mat-panel-title>
+                     <mat-panel-description>
+
+                     </mat-panel-description>
+                  </mat-expansion-panel-header>
+
+                  <mat-nav-list>
+                     <mat-list-item (click)="viewCategoryTests(item.id)" class="list-section">
+                        <mat-icon>assignment</mat-icon>
+                        {{'tests' | translate }} ({{item.examsCount}}x)
+                     </mat-list-item>
+                     <mat-list-item (click)="viewCategoryRatings(item.id)" class="list-section">
+                        <mat-icon>star</mat-icon>
+                        {{'ratings' | translate }} ({{item.ratingsCount}}x)
+                        <star-rating [starType]="'svg'" [numOfStars]="10" [rating]="item.rating" [showHalfStars]="true"
+                           [readOnly]="true"></star-rating> <span>{{item.ratingsCount === 0 ? ' - ' : item.rating}}/10</span>
+                     </mat-list-item>
+                     <mat-list-item (click)="viewCategoryFiles(item.id)" class="list-section">
+                        <mat-icon>folder</mat-icon>
+                        {{'files' | translate }} ({{item.filesCount}}x)
+                     </mat-list-item>
+                     <!-- <mat-list-item>
                   <button mat-icon-button >
                      <mat-icon>add</mat-icon>
                      Add new
                   </button>
                </mat-list-item>            -->
-           </mat-nav-list>
-        </mat-expansion-panel> 
-      </mat-accordion>
-    </mat-card-content>
-    <mat-card-actions >
-        
-    </mat-card-actions>
-    <mat-card-footer>
-    </mat-card-footer>
-</mat-card>
+                  </mat-nav-list>
+               </mat-expansion-panel>
+            </mat-accordion>
+         </mat-card-content>
+         <mat-card-actions>
+
+         </mat-card-actions>
+         <mat-card-footer>
+         </mat-card-footer>
+      </mat-card>
 
 
-</div>
+   </div>
 </div>

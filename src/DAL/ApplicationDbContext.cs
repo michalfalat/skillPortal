@@ -25,6 +25,9 @@ namespace DAL
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<File> Files { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
+        public DbSet<SocialUser> SocialUsers { get; set; }
+        public DbSet<SocialUserLogin> SocialUserLogins { get; set; }
 
 
 

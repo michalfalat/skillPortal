@@ -41,6 +41,8 @@ namespace DAL.Repositories
                         Updated = c.Updated,
                         UpdatedBy = c.UpdatedBy,
                         Exams = c.Exams,
+                        Ratings = c.Ratings,
+                        SocialUser = c.SocialUser,
                         FilesCount = c.Files.Count,
                         Name = c.Name
                     })

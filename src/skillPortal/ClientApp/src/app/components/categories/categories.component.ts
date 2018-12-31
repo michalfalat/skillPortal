@@ -6,6 +6,7 @@ import { ApiService } from '../../services/api.service';
 import { CategoryViewModel } from '../../models/CategoryModels';
 import { Router } from '@angular/router';
 import { AuthService } from 'angular-6-social-login-v2';
+import { MainAuthService } from 'src/app/services/main-auth.service';
 
 @Component({
   selector: 'app-categories',
@@ -21,7 +22,7 @@ export class CategoriesComponent implements OnInit {
   public isLoggedUser = false;
 
   constructor(private apiService: ApiService, private router: Router, private searchService: SearchService,
-    private authService: AuthService) { }
+    private authService: AuthService, public mainAuthService: MainAuthService) { }
 
 
   ngOnInit() {
@@ -35,7 +36,6 @@ export class CategoriesComponent implements OnInit {
       }
     });
 
-    this.authService.authState.subscribe((user) => console.log(user));
 
   }
 
@@ -61,5 +61,10 @@ export class CategoriesComponent implements OnInit {
   viewCategoryFiles(id) {
     this.searchService.subject.next('');
     this.router.navigate(['/categories/' + id + '/files']);
+  }
+
+  viewCategoryRatings(id) {
+    this.searchService.subject.next('');
+    this.router.navigate(['/categories/' + id + '/ratings']);
   }
 }

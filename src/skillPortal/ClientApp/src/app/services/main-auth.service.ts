@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, forwardRef, Inject } from '@angular/core';
 import { AuthService, SocialUser } from 'angular-6-social-login-v2';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { map } from 'rxjs/operators';
 export class MainAuthService {
   public user: SocialUser;
 
-  constructor(private socialAuthService: AuthService) {
+  constructor(private socialAuthService: AuthService, /*private apiService: ApiService*/) {
     const userData = localStorage.getItem('auth_user');
     this.user = (userData === null) ? null : JSON.parse(userData);
   }
@@ -22,6 +23,9 @@ export class MainAuthService {
         localStorage.setItem('auth_provider', providerId);
         localStorage.setItem('auth_user', JSON.stringify(userData));
         console.log('social sign in data : ', userData);
+        if (userData !== null) {
+          // this.apiService.registerUser(userData).subscribe(() => { });
+        }
         // Now sign-in with userData
         // ...
 
