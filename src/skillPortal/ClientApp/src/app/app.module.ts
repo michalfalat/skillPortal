@@ -1,8 +1,9 @@
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -76,6 +77,7 @@ import {
   VkontakteLoginProvider,
 } from 'angular-6-social-login-v2';
 import { SocialLoginComponent } from './components/social-login/social-login.component';
+import { MainAuthService } from './services/main-auth.service';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -103,8 +105,9 @@ export function getAuthServiceConfigs() {
 
 @NgModule({
   imports: [
-    BrowserModule,
     BrowserAnimationsModule,
+    SocialLoginModule,
+    BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
@@ -123,8 +126,7 @@ export function getAuthServiceConfigs() {
     ModalModule.forRoot(),
     StarRatingModule.forRoot(),
     ChartsModule,
-    CustomMaterialModule,
-    SocialLoginModule
+    CustomMaterialModule
   ],
   declarations: [
     AppComponent,
@@ -162,6 +164,7 @@ export function getAuthServiceConfigs() {
     { provide: 'BASE_URL', useFactory: getBaseUrl },
     { provide: ErrorHandler, useClass: AppErrorHandler },
     { provide: AuthServiceConfig, useFactory: getAuthServiceConfigs },
+    MainAuthService,
     AlertService,
     ConfigurationService,
     AppTitleService,

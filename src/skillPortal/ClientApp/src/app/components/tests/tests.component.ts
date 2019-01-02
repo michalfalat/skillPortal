@@ -14,7 +14,7 @@ export class TestsComponent implements OnInit {
 
   public catId = null;
   public isLoading = true;
-  public data: ExamsForCategoryViewModel  = null;
+  public data: ExamsForCategoryViewModel = null;
 
   constructor(@Inject(ApiService) private apiService: ApiService, private route: ActivatedRoute, private ref: ChangeDetectorRef) { }
 
@@ -30,8 +30,8 @@ export class TestsComponent implements OnInit {
   }
 
   loadData() {
-  this.isLoading = true;
-     this.apiService.getExamsForCategory(this.catId).subscribe((res) => {
+    this.isLoading = true;
+    this.apiService.getExamsForCategory(this.catId).subscribe((res) => {
       this.data = res;
       console.log(this.data);
       this.isLoading = false;

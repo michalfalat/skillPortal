@@ -15,6 +15,17 @@ export class MainAuthService {
     this.user = (userData === null) ? null : JSON.parse(userData);
   }
 
+  isLoggedIn() {
+    const userData = localStorage.getItem('auth_user');
+    this.user = (userData === null) ? null : JSON.parse(userData);
+    return this.user !== null ? true : false;
+  }
+
+  getUser() {
+    const userData = localStorage.getItem('auth_user');
+    this.user = (userData === null) ? null : JSON.parse(userData);
+    return this.user;
+  }
 
   loginSocial(providerId): Promise<void> {
     return this.socialAuthService.signIn(providerId).then(
@@ -36,6 +47,7 @@ export class MainAuthService {
   public socialAuthState(): Observable<SocialUser> {
     return this.socialAuthService.authState.pipe(
       map(userData => {
+        console.log('change');
         this.user = userData;
         return userData;
       }));

@@ -6,11 +6,12 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild, NavigationExtras, CanLoad, Route } from '@angular/router';
 import { AuthService } from './auth.service';
+import { MainAuthService } from './main-auth.service';
 
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(private authService: AuthService, private router: Router, private mainAuthService: MainAuthService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
@@ -29,14 +30,13 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     }
 
     checkLogin(url: string): boolean {
-      return true;
-        // if (this.authService.isLoggedIn) {
-        //    return true;
-        // }
+        if (this.mainAuthService.isLoggedIn()) {
+            return true;
+        }
 
-        // this.authService.loginRedirectUrl = url;
-        // this.router.navigate(['/login']);
+        this.authService.loginRedirectUrl = url;
+        this.router.navigate(['/login']);
 
-        // return false;
+        return false;
     }
 }

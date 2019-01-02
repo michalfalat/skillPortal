@@ -19,10 +19,6 @@ export class CategoryAddComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router, private snackbar: MatSnackBar, public mainAuthService: MainAuthService) { }
 
   ngOnInit() {
-    const user = this.mainAuthService.user;
-    if (user == null) {
-      this.router.navigate(['/login']);
-    }
   }
 
   AddCategory() {

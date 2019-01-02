@@ -21,22 +21,22 @@ import { SocialLoginComponent } from './components/social-login/social-login.com
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard], data: { title: 'Home' } },
+  { path: '', component: HomeComponent, data: { title: 'Home' } },
   { path: 'login', component: SocialLoginComponent, data: { title: 'Login' } },
-  { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard], data: { title: 'Categories' } },
+  { path: 'categories', component: CategoriesComponent, data: { title: 'Categories' } },
   { path: 'categories/add', component: CategoryAddComponent, canActivate: [AuthGuard], data: { title: 'Add category' } },
   {
-    path: 'categories/:catId', component: CategoryDetailComponent, canActivate: [AuthGuard], data: { title: 'Add category' }, children: [
-      { path: 'ratings', component: RatingComponent, canActivate: [AuthGuard], data: { title: 'Tests' } },
-      { path: 'tests', component: TestsComponent, canActivate: [AuthGuard], data: { title: 'Tests' } },
+    path: 'categories/:catId', component: CategoryDetailComponent, canActivate: [], data: { title: 'Add category' }, children: [
+      { path: 'ratings', component: RatingComponent, canActivate: [], data: { title: 'Tests' } },
+      { path: 'tests', component: TestsComponent, canActivate: [], data: { title: 'Tests' } },
       { path: 'tests/add', component: TestAddComponent, canActivate: [AuthGuard], data: { title: 'Test add' } },
-      { path: 'files', component: FilesComponent, canActivate: [AuthGuard], data: { title: 'Files' } },
+      { path: 'files', component: FilesComponent, canActivate: [], data: { title: 'Files' } },
       { path: 'files/add', component: FileAddComponent, canActivate: [AuthGuard], data: { title: 'File add' } },
-      { path: 'overview', component: OverviewComponent, canActivate: [AuthGuard], data: { title: 'Tests' } },
+      { path: 'overview', component: OverviewComponent, canActivate: [], data: { title: 'Tests' } },
       { path: '', redirectTo: 'overview', pathMatch: 'full' },
     ]
   },
-  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard], data: { title: 'Settings' } },
+  { path: 'settings', component: SettingsComponent, canActivate: [], data: { title: 'Settings' } },
   { path: 'about', component: AboutComponent, data: { title: 'About Us' } },
   { path: 'home', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent, data: { title: 'Page Not Found' } }

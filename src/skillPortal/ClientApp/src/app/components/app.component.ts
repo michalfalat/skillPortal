@@ -68,6 +68,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     public configurations: ConfigurationService, public router: Router, private searchService: SearchService,
     public route: ActivatedRoute) {
 
+    this.user = this.authService.getUser();
+    this.isUserLoggedIn = this.authService.isLoggedIn();
+
     storageManager.initialiseStorageSyncListener();
     /*this.translateService.setDefaultLang('sk');
     this.changeLanguage('sk');
@@ -134,11 +137,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   ngOnInit() {
-    const currentUser = this.authService.user;
-    console.log('social user');
-    console.log(currentUser);
-    this.isUserLoggedIn = (currentUser != null);
-    this.user = currentUser;
 
     // setTimeout(() => {
     //   if (this.isUserLoggedIn) {
